@@ -1,51 +1,177 @@
-# Godot 4+ specific ignores
+# Godot 4.x - Generated files
 .godot/
 .import/
 
-# Imported translations (automatically generated from CSV files)
+# Godot-specific ignores
 *.translation
+export.cfg
+export_presets.cfg
+
+# Imported translations (automatically generated from CSV files)
+*.import
 
 # Mono-specific ignores
 .mono/
 data_*/
 mono_crash.*.json
 
-# User-specific files
-*.user
-*.suo
-*.csproj.user
-*.unityproj
+#############################################
+# BUILD E EXECUTÁVEIS (NÃO VERSIONAR!)
+#############################################
 
-# OS-specific files
-.DS_Store
-Thumbs.db
-desktop.ini
-
-# Build results
+# Builds exportados
 builds/
 build/
 export/
-export_presets.cfg
+*.exe
+*.pck
+*.zip
+*.dmg
+*.app
+*.apk
+*.aab
+*.ipa
+
+# Executáveis do projeto
+PAP_Game.exe
+PAP_Game.pck
+PAP_Game_*.exe
+
+#############################################
+# ADDONS - BINÁRIOS COMPILADOS
+#############################################
+
+# SQLite binários (muito grandes)
+addons/godot-sqlite/bin/
+addons/*/bin/
+addons/*/*.a
+addons/*/*.lib
+addons/*/*.dylib
+addons/*/*.so
+addons/*/*.dll
+addons/*/*.framework/
+addons/*/*.xcframework/
+
+# Manter só o código dos addons
+!addons/**/*.gd
+!addons/**/*.tscn
+!addons/**/*.tres
+!addons/**/plugin.cfg
+
+#############################################
+# USER DATA (SAVES, CONFIGS, DATABASE)
+#############################################
+
+# Pasta user:// (saves e configs dos usuários)
+user://
+*.save
+*.dat
+
+# Database local (não versionar saves dos utilizadores)
+*.db
+*.sqlite
+*.db-shm
+*.db-wal
+game.db
+
+# Configs locais
+*.cfg
+!export_presets.cfg
+!project.godot
+
+#############################################
+# LOGS E TEMPORÁRIOS
+#############################################
 
 # Logs
 *.log
+logs/
+*.stackdump
 
-# Addons (se quiser versionar addons, comente estas linhas)
-# addons/
-
-# User data (saves, configs - IMPORTANTE!)
-user://
-*.save
-*.cfg
-
-# Temporary files
+# Temporários
 *.tmp
 *.bak
 *.swp
 *~
+*.autosave
 
-# IDE files
+# Cache
+.cache/
+cache/
+
+#############################################
+# SISTEMA OPERATIVO
+#############################################
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.directory
+
+#############################################
+# IDEs E EDITORES
+#############################################
+
+# Visual Studio Code
 .vscode/
+*.code-workspace
+
+# JetBrains (Rider, IntelliJ)
 .idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
 *.sublime-workspace
 *.sublime-project
+
+# Vim
+*.swp
+*.swo
+*~
+
+#############################################
+# GIT E CONTROLO DE VERSÃO
+#############################################
+
+# Git LFS (se usar no futuro)
+*.lfs
+
+# Merge conflicts
+*.orig
+
+#############################################
+# OUTROS
+#############################################
+
+# Screenshots e recordings (se fizer muitos)
+screenshots/
+recordings/
+*.mp4
+*.avi
+*.mov
+
+# Documentação gerada
+docs/_build/
+site/
+
+# Node modules (se usar ferramentas JS)
+node_modules/
+
+# Python (se usar scripts Python)
+__pycache__/
+*.pyc
+*.pyo
