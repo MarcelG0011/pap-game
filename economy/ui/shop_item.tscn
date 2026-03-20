@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://b7jfk6afbnocd"]
+
+[ext_resource type="Script" uid="uid://bqbvv5854jrix" path="res://economy/ui/shop_item.gd" id="1_jkni3"]
+
+[node name="ShopItem" type="PanelContainer" unique_id=1906420430]
+custom_minimum_size = Vector2(0, 70)
+script = ExtResource("1_jkni3")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=660440260]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1033167427]
+layout_mode = 2
+
+[node name="InfoContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1315284114]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="NameLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoContainer" unique_id=1473497568]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Item Name"
+
+[node name="DescriptionLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoContainer" unique_id=1468753736]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Description here"
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoContainer" unique_id=92542339]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.9143204, 0.14759362, 1)
+theme_override_font_sizes/font_size = 10
+
+[node name="RightContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=2021431492]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="PriceLabel" type="Label" parent="MarginContainer/HBoxContainer/RightContainer" unique_id=940823646]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "100 soul's"
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="MarginContainer/HBoxContainer/RightContainer" unique_id=370588159]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+text = "BUY"

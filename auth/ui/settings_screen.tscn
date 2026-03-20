@@ -1,0 +1,132 @@
+[gd_scene format=3 uid="uid://btaiak5flspl2"]
+
+[ext_resource type="Script" uid="uid://df0c5rse7mlsh" path="res://auth/ui/settings_screen.gd" id="1_4ww47"]
+
+[node name="SettingsScreen" type="Control" unique_id=1183131467]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4ww47")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1781272844]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36103386, 0.36103386, 0.43760642, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=4066560]
+custom_minimum_size = Vector2(0, 250)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 250.0
+grow_horizontal = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=957299011]
+custom_minimum_size = Vector2(360, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=80057172]
+layout_mode = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=778752144]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer" unique_id=1757946336]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=320623921]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "SETTINGS"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=834529154]
+layout_mode = 2
+
+[node name="InactivitySection" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=844063665]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Inactivity Lock:"
+
+[node name="EnabledCheckbox" type="CheckBox" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=151365194]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enable auto-lock"
+
+[node name="TimeoutLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=2003368172]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Lock after (minutes):"
+
+[node name="TimeoutContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=858196602]
+layout_mode = 2
+
+[node name="TimeoutSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TimeoutContainer" unique_id=415997016]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 10.0
+value = 2.0
+
+[node name="TimeoutValue" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TimeoutContainer" unique_id=569352011]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "2 min"
+
+[node name="Spacer" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1840764259]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="SaveButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=206126535]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "SAVE SETTINGS"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1533903447]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1081032517]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 35)
+layout_mode = 2
+text = "Back"
+
+[node name="AutoSaveSection" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1272524450]
+layout_mode = 2
+text = "Autosave:"
+
+[node name="AutoSaveCheckBox" type="CheckBox" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=2066848328]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enable Autosave"
+
+[node name="IntervalLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1783099675]
+layout_mode = 2
+text = "Autosave interval (minutes):"
+
+[node name="IntervalSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=152674582]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+max_value = 10.0
+value = 3.0

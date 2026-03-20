@@ -1,0 +1,74 @@
+[gd_scene format=3 uid="uid://uat88hwh360s"]
+
+[ext_resource type="Texture2D" uid="uid://cht6gyqwntfmt" path="res://00_global/player_hub/health_bar_frame.png" id="1_822c7"]
+[ext_resource type="Script" uid="uid://c81hnohtkxy76" path="res://00_global/player_hub/player_hub.gd" id="1_ti8ll"]
+[ext_resource type="PackedScene" uid="uid://cmvegf2v1ebo8" path="res://economy/ui/currency_display.tscn" id="3_l7cnt"]
+
+[sub_resource type="Gradient" id="Gradient_ti8ll"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_l7cnt"]
+gradient = SubResource("Gradient_ti8ll")
+height = 16
+
+[sub_resource type="Gradient" id="Gradient_32muj"]
+colors = PackedColorArray(0.8627451, 0.34117648, 0.34117648, 1, 0.84855527, 0.5358884, 0.5358884, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u32a5"]
+gradient = SubResource("Gradient_32muj")
+
+[node name="PlayerHub" type="CanvasLayer" unique_id=582929787]
+process_mode = 3
+layer = 2
+script = ExtResource("1_ti8ll")
+
+[node name="Control" type="Control" parent="." unique_id=1205405761]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HPMarginContainer" type="MarginContainer" parent="Control" unique_id=1085464440]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 117.0
+offset_bottom = 28.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Control/HPMarginContainer" unique_id=482994841]
+layout_mode = 2
+texture = ExtResource("1_822c7")
+region_rect = Rect2(0, 0, 40, 20)
+patch_margin_left = 27
+patch_margin_right = 7
+axis_stretch_horizontal = 1
+
+[node name="HPBar" type="TextureProgressBar" parent="Control/HPMarginContainer/NinePatchRect" unique_id=1385685407]
+unique_name_in_owner = true
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = 6.0
+offset_right = -3.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 50.0
+rounded = true
+nine_patch_stretch = true
+texture_under = SubResource("GradientTexture2D_l7cnt")
+texture_progress = SubResource("GradientTexture2D_u32a5")
+
+[node name="CurrencyDisplay" parent="." unique_id=1741465259 instance=ExtResource("3_l7cnt")]
+offset_left = 133.0
+offset_top = 2.0
+offset_right = 133.0
+offset_bottom = 2.0

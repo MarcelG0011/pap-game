@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://v8gvm1salk12"]
+
+[ext_resource type="Script" uid="uid://mg6rft1hxryr" path="res://ranking/ui/leaderboard_screen.gd" id="1_j6a2i"]
+
+[node name="LeaderboardScreen" type="Control" unique_id=306365838]
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j6a2i")
+
+[node name="Background" type="ColorRect" parent="." unique_id=219066387]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.15686275)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1178878704]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -135.0
+offset_right = 240.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=507195784]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1248461730]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 270.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=532763923]
+layout_mode = 2
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Title" type="Label" parent="VBoxContainer/MarginContainer" unique_id=1155335433]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "LeaderBoard"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=170676261]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TabsContainer" type="HBoxContainer" parent="VBoxContainer/HSeparator" unique_id=1462657238]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.5
+offset_top = 37.0
+offset_right = 53.5
+offset_bottom = 60.0
+grow_horizontal = 2
+
+[node name="LocalButton" type="Button" parent="VBoxContainer/HSeparator/TabsContainer" unique_id=266155496]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Local"
+
+[node name="OnlineButton" type="Button" parent="VBoxContainer/HSeparator/TabsContainer" unique_id=1964337429]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Online"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=403565029]
+layout_mode = 2
+
+[node name="PersonalBestLabel" type="Label" parent="VBoxContainer/HSeparator2" unique_id=1173657987]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 160.0
+offset_bottom = 27.0
+text = "Personal Best : --:--"
+
+[node name="EntriesContainer" type="VBoxContainer" parent="VBoxContainer/HSeparator2" unique_id=588916523]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -198.0
+offset_top = 65.0
+offset_right = 202.0
+offset_bottom = 205.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HSeparator2/EntriesContainer" unique_id=1896050637]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="." unique_id=705624572]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -196.0
+offset_top = -28.0
+offset_right = 204.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Back"

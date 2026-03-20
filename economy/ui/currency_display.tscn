@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cmvegf2v1ebo8"]
+
+[ext_resource type="Script" uid="uid://bh6lfe3sns7n7" path="res://economy/ui/currency_display.gd" id="1_12qli"]
+[ext_resource type="Texture2D" uid="uid://w5jnmn5vmb2s" path="res://economy/coin.png" id="2_i0pdd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5eju"]
+atlas = ExtResource("2_i0pdd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t4xo"]
+atlas = ExtResource("2_i0pdd")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u2837"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5eju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t4xo")
+}],
+"loop": true,
+"name": &"Soul",
+"speed": 0.5
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frljc"]
+atlas = ExtResource("2_i0pdd")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1k4p8"]
+atlas = ExtResource("2_i0pdd")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_klcoi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frljc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1k4p8")
+}],
+"loop": true,
+"name": &"Gems",
+"speed": 0.5
+}]
+
+[node name="CurrencyDisplay" type="Control" unique_id=848859508]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_12qli")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1327809314]
+layout_mode = 0
+offset_left = 14.0
+offset_right = 54.0
+offset_bottom = 40.0
+theme_override_constants/separation = 5
+
+[node name="SoulContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=586729169]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="SoulIcon" type="AnimatedSprite2D" parent="VBoxContainer/SoulContainer" unique_id=1492741180]
+modulate = Color(0.9735091, 0.9735091, 0.9735091, 1)
+position = Vector2(-7, 8)
+sprite_frames = SubResource("SpriteFrames_u2837")
+animation = &"Soul"
+autoplay = "Soul"
+frame_progress = 0.44282523
+offset = Vector2(1, 0)
+
+[node name="SoulLabel" type="Label" parent="VBoxContainer/SoulContainer" unique_id=1020003268]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 1
+
+[node name="GemsContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1082194241]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="GemsIcon" type="AnimatedSprite2D" parent="VBoxContainer/GemsContainer" unique_id=1174113925]
+modulate = Color(1, 0.5854947, 0.5854947, 1)
+position = Vector2(-6, 6)
+sprite_frames = SubResource("SpriteFrames_klcoi")
+animation = &"Gems"
+autoplay = "Gems"
+frame_progress = 0.6517323
+
+[node name="GemsLabel" type="Label" parent="VBoxContainer/GemsContainer" unique_id=163552730]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 14
+text = "0"
+horizontal_alignment = 1

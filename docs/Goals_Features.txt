@@ -1,0 +1,116 @@
+🔹 Movimentação Básica
+
+1. Andar e Correr – movimento horizontal fluido, com aceleração e inércia.
+2. Saltar – física ajustada (altura, tempo de pressão).
+3. Agachar – reduz a hitbox e prepara ataques baixos.
+4. Pular nos inimigos (opcional)** – causa dano se acertar no topo (como *Hollow Knight*).
+
+🔹 Combate e Mobilidade Avançada
+
+5. Combos de Ataques** – sistema encadeado (3 golpes consecutivos, animações diferentes).
+6. Ataque Carregado / Golpe no chão – ataque vertical de impacto que causa dano em área.
+7. Salto Duplo (Double Jump) – desbloqueável.
+8. Esquiva (Dash / Roll) – invulnerável por alguns frames; essencial para o “feel” roguelike.
+9. Morph Roll (modo bola / rolar) – permite aceder a passagens pequenas (inspirado em *Metroid*).
+10. Aderência à parede / Salto na parede – útil para plataforma vertical e puzzles.
+
+💡 progressão:
+No início, o jogador tem apenas andar, correr, pular, atacar.
+As outras habilidades são desbloqueadas ao longo do jogo.
+
+---
+
+👾 INIMIGOS
+
+🔹 Tipos Básicos
+
+1. Melee básico – persegue o jogador e ataca ao estar próximo.
+2. Com projéteis – dispara em intervalos regulares.
+3. Voador – patrulha e mergulha em direção ao jogador.
+4. Explosivo / Armadilha viva – causa dano ao morrer.
+
+🔹 Inteligência Artificial (IA)
+
+5. Controle por estados (FSM – Finite State Machine)
+	 Patrulhar → Detectar jogador → Atacar → Recuar → Morrer.
+6. Spawn e respawn dinâmico ** (dependendo da sala ou checkpoint).
+
+---
+
+👑 BATALHAS CONTRA BOSS
+
+🔹 Tipos de Boss
+
+1. Boss Grande (cinemático) – múltiplas fases, ataques previsíveis e visuais marcantes.
+2. Mini-Boss (proporção semelhante ao jogador) – ataques rápidos e intensos, ideal para transições de área.
+
+🔹 Fases de Boss
+
+ Ataque 1 → Padrão 2 → Fase Enraivecida (com efeitos visuais e som diferenciados).
+ Mecânica específica (ex: reflete projéteis, teleporta, invoca minions).
+
+---
+
+🌍 NÍVEIS & EXPLORAÇÃO
+
+🔹 Estrutura
+
+1. Sistema de salas interligadas (metroidvania-style) – portas, transições, checkpoints.
+2. Seleção de habilidades desbloqueáveis – novas zonas acessíveis após upgrades.
+3. Segredos e áreas ocultas – paredes falsas, túneis escondidos.
+4. Áreas seguras (safe zones) – locais de descanso e gravação de progresso.
+
+ 🔹 Interatividade
+
+5. Passagens desbloqueáveis – chaves, interruptores ou magias.
+6. Baús de tesouro – contêm upgrades, moedas ou lore.
+7. Plataformas móveis / unidirecionais – puzzles e ritmo de movimento.
+8. Perigos ambientais – espinhos, lava, gases, armadilhas, colapsos.
+
+---
+
+⚙️ SISTEMA
+
+1. Saúde (HP) – barras ou corações; upgrades possíveis.
+2. Guardar e Carregar progresso – checkpoints automáticos e slots manuais.
+3. Aquisição de habilidades – desbloqueio gradual (incentiva exploração).
+4. Sistema de melhorias (upgrades) – ataque, defesa, velocidade, energia.
+5. Spawn de inimigos dinâmico – com base no progresso ou localização.
+6. Cutscenes / Diálogos – simples, integradas no gameplay (usando AnimationPlayer ou Timeline).
+7. Sistema de moeda / almas (opcional) – gasta-se em upgrades.
+
+---
+
+🧭 INTERFACE & UI
+
+1. Player HUD
+   * Barra de vida
+   * Stamina / energia
+   * Itens equipados / habilidades ativas
+
+2. Menus principais
+   * Ecrã inicial (Título, Jogar, Opções, Sair)
+   * Menu de pausa
+   * Inventário / upgrades
+
+3. Sistema de mapa (opcional)
+   * Exploração progressiva do mundo
+
+4. Tela de Game Over
+   * Reiniciar / Voltar ao menu / Carregar checkpoint
+
+---
+
+✨ POLISH (FINALIZAÇÃO)
+
+1. Efeitos Visuais (VFX) – impactos, partículas, brilho em ataques.
+2. Efeitos de Partículas – fumo, sangue, poeira ao correr, faíscas de espada.
+3. Som (SFX) – passos, ataques, dano, ambiente.
+4. Música – loops ambientes e trilha de boss (ex: *Dark ambient / orchestral*).
+5. Game Feel & Game Juice –
+   * Câmera treme ao impacto (CameraShake)
+   * Flash branco no dano
+   * Pequeno “slow motion” em acertos críticos
+   * Som de impacto reforçado
+
+6. Otimização e performance – LODs, culling, menos draw calls.

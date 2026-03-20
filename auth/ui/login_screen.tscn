@@ -1,0 +1,136 @@
+[gd_scene format=3 uid="uid://55tl7v8k5xgr"]
+
+[ext_resource type="Script" uid="uid://bcs7k6n2wmeh1" path="res://auth/ui/login_screen.gd" id="1_rfirf"]
+
+[node name="LoginScreen" type="Control" unique_id=910625678]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rfirf")
+
+[node name="Background" type="ColorRect" parent="." unique_id=1503441888]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4862745, 0.4862745, 0.58431375, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1949370805]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=927264061]
+custom_minimum_size = Vector2(450, 0)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=790120616]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=998780229]
+custom_minimum_size = Vector2(0, 230)
+layout_mode = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer" unique_id=453681081]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleContainer" type="MarginContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1913964342]
+layout_mode = 2
+theme_override_constants/margin_bottom = 20
+
+[node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TitleContainer" unique_id=931630136]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "LOGIN"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=376228201]
+layout_mode = 2
+
+[node name="UsenamerLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=599160296]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="UsernameInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=95809512]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+placeholder_text = "Enter username or email"
+
+[node name="PasswordLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1713344109]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Password"
+
+[node name="PasswordContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=712534385]
+layout_mode = 2
+
+[node name="PasswordInput" type="LineEdit" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/PasswordContainer" unique_id=377028359]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+placeholder_text = "Enter Password"
+expand_to_text_length = true
+secret = true
+
+[node name="ShowPasswordButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/PasswordContainer" unique_id=1336688871]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+text = "Show"
+
+[node name="RememberCheckbox" type="CheckBox" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=427805994]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Remenber me"
+
+[node name="LoginButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=354766458]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "LOGIN"
+
+[node name="ErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=123486945]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+theme_override_colors/font_color = Color(1.353256, 0.7977378, 0.7977378, 1)
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=26374009]
+layout_mode = 2
+
+[node name="SignupLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1507721827]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Don´t have an account?"
+horizontal_alignment = 1
+
+[node name="SignupButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1809623158]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Create Account"
+
+[node name="ForgotPasswordButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=127172442]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Forgot Password?"
+flat = true

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bjj7g2i6xqslh"]
+
+[ext_resource type="Script" uid="uid://d07tfykaor112" path="res://intro/splash_screen.gd" id="1_ejk4d"]
+[ext_resource type="Texture2D" uid="uid://cxi4n5j332ojl" path="res://logo_godot.png" id="2_68hco"]
+
+[node name="SplashScreen" type="Control" unique_id=1107121814]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ejk4d")
+
+[node name="Background" type="ColorRect" parent="." unique_id=368876796]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.9411765)
+
+[node name="Label" type="Label" parent="Background" unique_id=1104183104]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -64.0
+offset_top = -38.0
+offset_right = -24.0
+offset_bottom = -23.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Skip..."
+
+[node name="Logo1" type="TextureRect" parent="." unique_id=614592941]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_68hco")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FadeOverlay" type="ColorRect" parent="." unique_id=403758628]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)

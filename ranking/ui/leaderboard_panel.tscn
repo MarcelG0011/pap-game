@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bpb5seyjlp45v"]
+
+[ext_resource type="Script" uid="uid://bjasklp2saf6k" path="res://ranking/ui/leaderboard_panel.gd" id="1_qov3r"]
+
+[node name="LeaderboardPanel" type="Node2D" unique_id=737097372]
+script = ExtResource("1_qov3r")

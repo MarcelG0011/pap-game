@@ -1,0 +1,148 @@
+[gd_scene format=3 uid="uid://c2te3e7fvdpkf"]
+
+[ext_resource type="Script" uid="uid://7vddl53m26e7" path="res://auth/ui/signup_screen.gd" id="1_j71ng"]
+
+[node name="SignupScreen" type="Control" unique_id=107528948]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j71ng")
+
+[node name="Background" type="ColorRect" parent="." unique_id=82516490]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.36103386, 0.36103386, 0.43760642, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="Background" unique_id=404395213]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -225.0
+offset_right = 225.0
+offset_bottom = 600.0
+grow_horizontal = 2
+
+[node name="Panel" type="PanelContainer" parent="Background/CenterContainer" unique_id=795566086]
+custom_minimum_size = Vector2(450, 600)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Background/CenterContainer/Panel" unique_id=1565555705]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Background/CenterContainer/Panel/MarginContainer" unique_id=2119952410]
+clip_contents = false
+custom_minimum_size = Vector2(0, 230)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+follow_focus = true
+scroll_vertical_custom_step = 3403.549
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer" unique_id=1867221357]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
+
+[node name="TitleContainer" type="MarginContainer" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=806067122]
+layout_mode = 2
+theme_override_constants/margin_bottom = 15
+
+[node name="Title" type="Label" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer/TitleContainer" unique_id=49570953]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "CREATE ACCOUNT"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=648290394]
+layout_mode = 2
+
+[node name="UsernameLabel" type="Label" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=983346576]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Username"
+
+[node name="UsernameInput" type="LineEdit" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=976420867]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "3-20 characters"
+max_length = 20
+
+[node name="EmailLabel" type="Label" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1536824589]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Email"
+
+[node name="EmailInput" type="LineEdit" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=821519451]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "your123@email.com"
+max_length = 20
+
+[node name="PasswordLabel" type="Label" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1639928615]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Password"
+
+[node name="PasswordInput" type="LineEdit" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=857922736]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "Minimum 8 characters"
+max_length = 20
+secret = true
+
+[node name="ConfirmPasswordLabel" type="Label" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=942211481]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Password"
+
+[node name="ConfirmPasswordInput" type="LineEdit" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1113697830]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+placeholder_text = "Re-enter password"
+max_length = 20
+secret = true
+
+[node name="SignupButton" type="Button" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=236932253]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "CREATE ACCOUNT
+"
+
+[node name="ErrorLabel" type="Label" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1460483591]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=645303432]
+layout_mode = 2
+
+[node name="BackToLoginLabel" type="Label" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=502092288]
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "Already have an account?"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=999344054]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Back To Login"

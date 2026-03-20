@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dtu0jebutchl0"]
+
+[ext_resource type="Script" uid="uid://cmpo8aalqdnjt" path="res://npcs/shop_keeper.gd" id="1_anw5m"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0nek7"]
+
+[node name="ShopKeeper" type="Area2D" unique_id=1347331621]
+script = ExtResource("1_anw5m")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1579378247]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=462796886]
+shape = SubResource("CapsuleShape2D_0nek7")
+
+[node name="InteractLabel" type="Label" parent="." unique_id=112889144]
+visible = false
+offset_right = 40.0
+offset_bottom = 15.0
+text = "Press E to shop"

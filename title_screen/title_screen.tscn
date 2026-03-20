@@ -1,0 +1,202 @@
+[gd_scene format=4 uid="uid://b2ytuw8vsq22q"]
+
+[ext_resource type="TileSet" uid="uid://7ynaeuuteie2" path="res://levels/tilesets/forgotten_forest.tres" id="1_4kkuq"]
+[ext_resource type="Script" uid="uid://rrvjlt74q46y" path="res://title_screen/title_screen.gd" id="1_nqviy"]
+[ext_resource type="PackedScene" uid="uid://c67ssfmo87iw4" path="res://levels/props/torch.tscn" id="2_jm15f"]
+[ext_resource type="Script" uid="uid://dqjshejv1b1qn" path="res://music/music_auto_trigger.gd" id="4_0m3ch"]
+[ext_resource type="AudioStream" uid="uid://cic80cdt00ljo" path="res://music/title_01.ogg" id="5_fk0fn"]
+
+[node name="TitleScreen" type="CanvasLayer" unique_id=2028893718]
+layer = 5
+script = ExtResource("1_nqviy")
+
+[node name="Control" type="Control" parent="." unique_id=2135288588]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=753820682]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TileMapContainer" type="Control" parent="Control/ColorRect" unique_id=1912807972]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TileMapLayer_Ground" type="TileMapLayer" parent="Control/ColorRect/TileMapContainer" unique_id=1868700788]
+z_index = 1
+tile_map_data = PackedByteArray("AAD//wcAAAAAAAgAAAD//wgAAAAAAAkAAAAAAAcAAAABAAgAAAAAAAgAAAACAAkAAAABAAcAAAACAAgAAAABAAgAAAACAAkAAAACAAcAAAACAAgAAAACAAgAAAADAAkAAAADAAcAAAADAAgAAAADAAgAAAACAAkAAAAEAAcAAAACAAgAAAAEAAgAAAADAAkAAAAFAAcAAAADAAgAAAAFAAgAAAADAAkAAAAGAAcAAAACAAgAAAAGAAgAAAACAAkAAAAHAAcAAAADAAgAAAAHAAgAAAADAAkAAAAIAAcAAAACAAgAAAAIAAgAAAACAAkAAAAJAAcAAAADAAgAAAAJAAgAAAADAAkAAAAKAAcAAAACAAgAAAAKAAgAAAACAAkAAAALAAcAAAADAAgAAAALAAgAAAADAAkAAAAMAAcAAAACAAgAAAAMAAgAAAADAAkAAAANAAcAAAADAAgAAAANAAgAAAACAAkAAAAOAAcAAAAEAAgAAAAOAAgAAAADAAkAAAAPAAcAAAAFAAgAAAAPAAgAAAAFAAkAAAD/////AAADAAoAAAD//wAAAAADAAoAAAAAAP//AAADAAoAAAAAAAAAAAACAAsAAAABAP//AAACAAsAAAABAAAAAAACAAsAAAACAP//AAACAAsAAAACAAAAAAADAAsAAAADAP//AAADAAsAAAADAAAAAAACAAsAAAAEAP//AAACAAsAAAAEAAAAAAADAAsAAAAFAP//AAADAAsAAAAFAAAAAAACAAsAAAAGAP//AAACAAsAAAAGAAAAAAADAAsAAAAHAP//AAADAAsAAAAHAAAAAAACAAsAAAAIAP//AAACAAsAAAAIAAAAAAADAAsAAAAJAP//AAADAAsAAAAJAAAAAAACAAsAAAAKAP//AAACAAsAAAAKAAAAAAADAAsAAAALAP//AAADAAsAAAALAAAAAAACAAsAAAAMAP//AAACAAsAAAAMAAAAAAACAAsAAAANAP//AAADAAsAAAANAAAAAAACAAsAAAAOAP//AAADAAoAAAAOAAAAAAADAAsAAAAPAP//AAADAAoAAAAPAAAAAAADAAoAAAAAAAEAAAAEAA4AAAABAAEAAAAFAA4AAAANAAEAAAACAA4AAAAOAAEAAAADAA4AAAANAAIAAAAAAAwAAAAOAAIAAAABAAwAAAAAAAIAAAAEAAwAAAABAAIAAAAFAAwAAAAPAAEAAAADAAoAAAAQAAEAAAADAAoAAAAQAAAAAAADAAoAAAAQAP//AAADAAoAAAD///7/AAADAAoAAAAAAP7/AAADAAoAAAABAP7/AAADAAoAAAACAP7/AAADAAoAAAADAP7/AAADAAoAAAAEAP7/AAADAAoAAAAFAP7/AAADAAoAAAAGAP7/AAADAAoAAAAHAP7/AAADAAoAAAAIAP7/AAADAAoAAAAJAP7/AAADAAoAAAAKAP7/AAADAAoAAAALAP7/AAADAAoAAAAMAP7/AAADAAoAAAANAP7/AAADAAoAAAAOAP7/AAADAAoAAAAPAP7/AAADAAoAAAAQAP7/AAADAAoAAAD//wEAAAADAAoAAAD+/wEAAAADAAoAAAD+/wAAAAADAAoAAAD+////AAADAAoAAAD+//7/AAADAAoAAAD+/wkAAAADAAoAAAD//wkAAAADAAoAAAAAAAkAAAADAAoAAAAOAAkAAAADAAoAAAAPAAkAAAADAAoAAAAQAAkAAAADAAoAAAANAAkAAAADAAoAAAAMAAkAAAADAAoAAAALAAkAAAADAAoAAAAKAAkAAAADAAoAAAAJAAkAAAADAAoAAAAIAAkAAAADAAoAAAAHAAkAAAADAAoAAAAGAAkAAAADAAoAAAAFAAkAAAADAAoAAAAEAAkAAAADAAoAAAADAAkAAAADAAoAAAACAAkAAAADAAoAAAABAAkAAAADAAoAAAACAAEAAAADAAwAAAADAAEAAAACAAwAAAAEAAEAAAADAAwAAAAFAAEAAAACAAwAAAAGAAEAAAADAAwAAAAHAAEAAAACAAwAAAAIAAEAAAADAAwAAAAJAAEAAAACAAwAAAAKAAEAAAADAAwAAAALAAEAAAACAAwAAAAMAAEAAAADAAwAAAA=")
+tile_set = ExtResource("1_4kkuq")
+collision_visibility_mode = 2
+
+[node name="TileMapLayer_BackGround" type="TileMapLayer" parent="Control/ColorRect/TileMapContainer" unique_id=1727063830]
+tile_map_data = PackedByteArray("AAACAAEAAAAHAAwAAAADAAEAAAAIAAwAAAAEAAEAAAAJAAwAAAAKAAEAAAAHAAwAAAALAAEAAAAIAAwAAAAMAAEAAAAJAAwAAAAKAAYAAAAHAA4AAAALAAYAAAAIAA4AAAAMAAYAAAAJAA4AAAACAAYAAAAHAA4AAAADAAYAAAAIAA4AAAAEAAYAAAAJAA4AAAACAAMAAAAHAA0AAAADAAMAAAAIAA0AAAAEAAMAAAAJAA0AAAACAAQAAAAHAA0AAAADAAQAAAAIAA0AAAAEAAQAAAAJAA0AAAACAAUAAAAHAA0AAAADAAUAAAAIAA0AAAAEAAUAAAAJAA0AAAAKAAMAAAAHAA0AAAALAAMAAAAIAA0AAAAMAAMAAAAHAA0AAAAKAAQAAAAHAA0AAAALAAQAAAAIAA0AAAAMAAQAAAAJAA0AAAAKAAUAAAAHAA0AAAALAAUAAAAIAA0AAAAMAAUAAAAJAA0AAAAFAAEAAAAJAA0AABAGAAEAAAAHAA0AAAAHAAEAAAAJAA0AAAAIAAEAAAAHAA0AAAAJAAEAAAAJAA0AAAAJAAMAAAAJAA0AAAAJAAQAAAAJAA0AAAAJAAUAAAAJAA0AAAAJAAYAAAAHAA0AAAAIAAYAAAAHAA0AAAAHAAYAAAAHAA0AAAAGAAYAAAAJAA0AABAFAAYAAAAHAA0AAAAFAAUAAAAJAA0AAAAFAAQAAAAHAA0AAAAFAAMAAAAJAA0AAAAIAAMAAAAJAA0AABAIAAQAAAAJAA0AAAAIAAUAAAAJAA0AAAAHAAUAAAAJAA0AAAAGAAUAAAAHAA0AAAAGAAQAAAAJAA0AAAAGAAMAAAAJAA0AAAAHAAMAAAAJAA0AAAAHAAQAAAAHAA0AAAANAAMAAAAJAA0AABANAAQAAAAHAA0AAAAOAAQAAAAHAA0AAAAOAAUAAAAHAA0AAAAOAAYAAAAJAA0AAAANAAYAAAAHAA0AAAANAAUAAAAJAA0AAAAOAAMAAAAJAA0AAAANAAIAAAAHAA0AAAANAAEAAAAHAA0AAAAOAAEAAAAHAA0AAAAOAAIAAAAHAA0AAAAOAAAAAAAHAA0AAAANAAAAAAAHAA0AAAAMAAAAAAAHAA0AAAALAAAAAAAHAA0AAAAKAAAAAAAHAA0AAAAJAAAAAAAHAA0AAAAIAAAAAAAHAA0AAAAHAAAAAAAHAA0AAAAGAAAAAAAHAA0AAAAFAAAAAAAHAA0AAAAEAAAAAAAHAA0AAAADAAAAAAAHAA0AAAACAAAAAAAHAA0AAAABAAAAAAAHAA0AAAABAAEAAAAHAA0AAAABAAIAAAAHAA0AAAABAAMAAAAJAA0AAAABAAQAAAAJAA0AAAABAAUAAAAHAA0AAAABAAYAAAAHAA0AAAAAAAYAAAAHAA0AAAAAAAUAAAAHAA0AAAAAAAQAAAAJAA0AAAAAAAMAAAAJAA0AAAAAAAIAAAAHAA0AAAAAAAcAAAAHAA0AAAABAAcAAAAHAA0AAAACAAcAAAAHAA0AAAADAAcAAAAHAA0AAAAEAAcAAAAHAA0AAAAFAAcAAAAHAA0AAAAGAAcAAAAHAA0AAAAHAAcAAAAHAA0AAAAIAAcAAAAHAA0AAAAJAAcAAAAHAA0AAAAKAAcAAAAHAA0AAAALAAcAAAAHAA0AAAAMAAcAAAAHAA0AAAANAAcAAAAHAA0AAAAOAAcAAAAHAA0AAAAPAAcAAAAHAA0AAAAPAAYAAAAHAA0AAAAPAAUAAAAHAA0AAAAPAAQAAAAJAA0AAAAPAAMAAAAHAA0AAAAPAAIAAAAJAA0AAAD//wIAAAAJAA0AAAD//wMAAAAHAA0AAAD//wQAAAAJAA0AAAD//wUAAAAHAA0AAAD//wYAAAAJAA0AAAD//wcAAAAHAA0AAAAFAAIAAAAJAA0AAAAGAAIAAAAJAA0AAAAHAAIAAAAJAA0AAAAIAAIAAAAJAA0AAAAJAAIAAAAJAA0AAAACAAIAAAAHAAwAAAADAAIAAAAIAAwAAAAEAAIAAAAJAAwAAAAKAAIAAAAHAAwAAAALAAIAAAAIAAwAAAAMAAIAAAAJAAwAAAA=")
+tile_set = ExtResource("1_4kkuq")
+
+[node name="props" type="Node2D" parent="Control/ColorRect/TileMapContainer" unique_id=1866115923]
+
+[node name="Torch" parent="Control/ColorRect/TileMapContainer/props" unique_id=418032343 instance=ExtResource("2_jm15f")]
+z_index = 1
+position = Vector2(75, 197)
+
+[node name="Torch2" parent="Control/ColorRect/TileMapContainer/props" unique_id=460809822 instance=ExtResource("2_jm15f")]
+z_index = 1
+position = Vector2(406, 197)
+
+[node name="MainMenu" type="VBoxContainer" parent="Control" unique_id=523534137]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 168.0
+offset_top = 32.0
+offset_right = 312.0
+offset_bottom = 214.0
+theme_override_constants/separation = 10
+
+[node name="Logo" type="Control" parent="Control/MainMenu" unique_id=1712934345]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/MainMenu/Logo" unique_id=1762560664]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/MainMenu/Logo/Sprite2D" unique_id=1418212393]
+
+[node name="Label" type="Label" parent="Control/MainMenu/Logo" unique_id=926518079]
+modulate = Color(0.030451782, 0.81996036, 0.92089695, 1)
+layout_mode = 0
+offset_top = 72.0
+offset_right = 78.0
+offset_bottom = 87.0
+scale = Vector2(2, 2)
+text = "SoulBound"
+
+[node name="NewGameButton" type="Button" parent="Control/MainMenu" unique_id=1361885005]
+layout_mode = 2
+text = "New Game"
+
+[node name="LoadGameButton" type="Button" parent="Control/MainMenu" unique_id=170022118]
+layout_mode = 2
+text = "Load Game"
+
+[node name="LeaderboardButton" type="Button" parent="Control/MainMenu" unique_id=2123516707]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Leaderboard"
+
+[node name="SettingsButton" type="Button" parent="Control/MainMenu" unique_id=1277186749]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="NewGameMenu" type="VBoxContainer" parent="Control" unique_id=1726007805]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -73.0
+offset_right = 76.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/NewGameMenu" unique_id=1499737119]
+layout_mode = 2
+text = "Start a new game..."
+
+[node name="Control" type="Control" parent="Control/NewGameMenu" unique_id=1536113956]
+layout_mode = 2
+
+[node name="NewSlot01" type="Button" parent="Control/NewGameMenu" unique_id=965272455]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Slot 01
+"
+
+[node name="NewSlot02" type="Button" parent="Control/NewGameMenu" unique_id=699489940]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Slot 02
+"
+
+[node name="NewSlot03" type="Button" parent="Control/NewGameMenu" unique_id=151445820]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Slot 03
+"
+
+[node name="LoadGameMenu" type="VBoxContainer" parent="Control" unique_id=1589206674]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -73.0
+offset_right = 76.0
+offset_bottom = 109.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="Control/LoadGameMenu" unique_id=1712990330]
+layout_mode = 2
+text = "Load a saved game..."
+
+[node name="Control" type="Control" parent="Control/LoadGameMenu" unique_id=1870892268]
+layout_mode = 2
+
+[node name="LoadSlot01" type="Button" parent="Control/LoadGameMenu" unique_id=241622909]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Slot 01
+"
+
+[node name="LoadSlot02" type="Button" parent="Control/LoadGameMenu" unique_id=2089012988]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Slot 02
+"
+
+[node name="LoadSlot03" type="Button" parent="Control/LoadGameMenu" unique_id=1186892786]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Slot 03
+"
+
+[node name="LogoutButton" type="Button" parent="Control" unique_id=1941863707]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(70, 28)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 67.0
+offset_bottom = 33.0
+theme_override_font_sizes/font_size = 11
+text = "Logout"
+
+[node name="MusicAutoTrigger" type="Node" parent="." unique_id=123772304]
+script = ExtResource("4_0m3ch")
+track = ExtResource("5_fk0fn")
+metadata/_custom_type_script = "uid://dqjshejv1b1qn"

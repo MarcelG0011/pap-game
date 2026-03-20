@@ -1,0 +1,160 @@
+[gd_scene format=3 uid="uid://b34511ybbbrfv"]
+
+[ext_resource type="Script" uid="uid://bthtria35j5fs" path="res://enemy/enemy.gd" id="1_2mvqj"]
+[ext_resource type="Texture2D" uid="uid://dx1s4s1g6m88l" path="res://player/sprites/hero.png" id="2_ofsxj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofsxj"]
+size = Vector2(20, 25.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppra6"]
+size = Vector2(20, 25.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p200p"]
+size = Vector2(32, 6)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ofsxj"]
+radius = 150.0
+height = 300.0
+
+[sub_resource type="Animation" id="Animation_1wwld"]
+resource_name = "Attack"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [31, 32, 33, 34, 35, 36]
+}
+
+[sub_resource type="Animation" id="Animation_pmsee"]
+resource_name = "Death"
+
+[sub_resource type="Animation" id="Animation_ppra6"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_p200p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ofsxj"]
+resource_name = "Run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [12, 13, 14, 15, 16, 17, 18, 19]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pmsee"]
+_data = {
+&"Attack": SubResource("Animation_1wwld"),
+&"Death": SubResource("Animation_pmsee"),
+&"Idle": SubResource("Animation_ppra6"),
+&"RESET": SubResource("Animation_p200p"),
+&"Run": SubResource("Animation_ofsxj")
+}
+
+[node name="Enemy" type="CharacterBody2D" unique_id=2062794291]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_2mvqj")
+max_health = 50
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=19563447]
+modulate = Color(0.8333261, 0.5526121, 1, 1)
+self_modulate = Color(0.22717664, 0.028189514, 0.3290106, 1)
+position = Vector2(1, -40)
+texture = ExtResource("2_ofsxj")
+hframes = 16
+vframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2056664095]
+visible = false
+position = Vector2(0, -26.5)
+scale = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_ofsxj")
+
+[node name="HurtBox" type="Area2D" parent="." unique_id=2055010457]
+collision_layer = 32
+collision_mask = 0
+monitoring = false
+
+[node name="HurtBoxShape" type="CollisionShape2D" parent="HurtBox" unique_id=924154287]
+visible = false
+position = Vector2(0, -26.5)
+scale = Vector2(1, 2)
+shape = SubResource("RectangleShape2D_ppra6")
+
+[node name="HitBox" type="Area2D" parent="." unique_id=105351222]
+collision_layer = 64
+collision_mask = 16
+
+[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox" unique_id=206966675]
+visible = false
+position = Vector2(22, -19)
+shape = SubResource("RectangleShape2D_p200p")
+
+[node name="DetectionZone" type="Area2D" parent="." unique_id=677717795]
+collision_layer = 0
+collision_mask = 16
+
+[node name="DetectionShape" type="CollisionShape2D" parent="DetectionZone" unique_id=1176649419]
+visible = false
+position = Vector2(1, 3)
+shape = SubResource("CapsuleShape2D_ofsxj")
+debug_color = Color(0.76306057, 0.96615154, 1, 0.42)
+
+[node name="WallDetector" type="RayCast2D" parent="." unique_id=1624597122]
+visible = false
+target_position = Vector2(33, 0)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="FloorDetector" type="RayCast2D" parent="." unique_id=1006559312]
+visible = false
+target_position = Vector2(20, 20)
+collision_mask = 3
+collide_with_areas = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=423626939]
+libraries/ = SubResource("AnimationLibrary_pmsee")
+autoplay = &"Idle"

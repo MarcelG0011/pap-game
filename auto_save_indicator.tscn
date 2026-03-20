@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://lmnfwln6rlp0"]
+
+[ext_resource type="Script" uid="uid://vow0i0nk0wnk" path="res://auto_save_indicator.gd" id="1_2as5q"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4va07"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"AutoSave",
+"speed": 5.0
+}]
+
+[node name="AutoSaveIndicator" type="CanvasLayer" unique_id=53534589]
+script = ExtResource("1_2as5q")
+
+[node name="Control" type="Control" parent="." unique_id=368128058]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="Panel" type="PanelContainer" parent="Control" unique_id=1138539713]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -21.0
+offset_right = 19.0
+offset_bottom = 19.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Panel" unique_id=939323329]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/Panel/HBoxContainer" unique_id=1733839249]
+layout_mode = 2
+text = "Autosaving..."
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control/Panel/HBoxContainer" unique_id=1080240620]
+sprite_frames = SubResource("SpriteFrames_4va07")
+animation = &"AutoSave"

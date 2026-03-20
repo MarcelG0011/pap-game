@@ -1,0 +1,388 @@
+[gd_scene format=3 uid="uid://btcxh7ixdct1k"]
+
+[ext_resource type="Script" uid="uid://cooiivpplprau" path="res://pause_menu/scripts/pause_menu.gd" id="1_5hbt6"]
+[ext_resource type="PackedScene" uid="uid://n8at61cimge7" path="res://pause_menu/map_node.tscn" id="2_rd7dy"]
+
+[sub_resource type="FontVariation" id="FontVariation_5hbt6"]
+spacing_glyph = 5
+
+[sub_resource type="Gradient" id="Gradient_rd7dy"]
+offsets = PackedFloat32Array(0, 0.5471698, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0.68523216, 1, 1, 0, 0.6862745, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uwtdo"]
+gradient = SubResource("Gradient_rd7dy")
+width = 5
+height = 5
+fill = 1
+fill_from = Vector2(0.5058824, 0.5176471)
+fill_to = Vector2(0.44705883, 0.052941177)
+
+[sub_resource type="Animation" id="Animation_rd7dy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uwtdo"]
+resource_name = "default"
+length = 0.7
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.42765832, 0.63329065, 1, 0.81960785)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b4s0c"]
+_data = {
+&"RESET": SubResource("Animation_rd7dy"),
+&"default": SubResource("Animation_uwtdo")
+}
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=1142043219]
+process_mode = 3
+script = ExtResource("1_5hbt6")
+
+[node name="Control" type="Control" parent="." unique_id=424187536]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control" unique_id=2092593263]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13333334, 0.13333334, 0.13333334, 0.72156864)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="Control" unique_id=382237325]
+custom_minimum_size = Vector2(0, 36)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 52.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control/ColorRect2" unique_id=1646128526]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.9770833
+anchor_right = 0.9770833
+offset_left = -153.0
+offset_top = 17.0
+offset_right = -12.0
+offset_bottom = 32.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0, 0.5434627, 0.9274734, 1)
+theme_override_fonts/font = SubResource("FontVariation_5hbt6")
+text = "PAUSED"
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PauseScreen" type="Control" parent="Control" unique_id=1931300277]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="Control/PauseScreen" unique_id=512137548]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 14.0
+offset_right = 78.0
+offset_bottom = 29.0
+text = "Abilities"
+metadata/_edit_use_anchors_ = true
+
+[node name="Label2" type="Label" parent="Control/PauseScreen" unique_id=1467268703]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 14.0
+offset_right = 153.0
+offset_bottom = 30.0
+text = "Map"
+metadata/_edit_use_anchors_ = true
+
+[node name="Map" type="Control" parent="Control/PauseScreen" unique_id=527600907]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 112.0
+offset_top = 11.0
+offset_right = -16.0
+offset_bottom = -54.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MapNode" parent="Control/PauseScreen/Map" unique_id=26814464 instance=ExtResource("2_rd7dy")]
+modulate = Color(0, 0.4704017, 0.88143784, 1)
+layout_mode = 0
+offset_left = 39.0
+offset_top = 60.0
+offset_right = 53.0
+offset_bottom = 67.0
+linked_scene = "uid://cu0d68lxl31if"
+entrances_right = Array[float]([2.0])
+indicator_offset = Vector2(-16, 40)
+metadata/_edit_use_anchors_ = true
+
+[node name="MapNode2" parent="Control/PauseScreen/Map" unique_id=2146658978 instance=ExtResource("2_rd7dy")]
+modulate = Color(0, 0.4704017, 0.88143784, 1)
+layout_mode = 0
+offset_left = 54.0
+offset_top = 60.0
+offset_right = 81.0
+offset_bottom = 67.0
+linked_scene = "uid://dl8o51qpawbtb"
+entrances_top = Array[float]([22.0])
+entrances_left = Array[float]([2.0])
+indicator_offset = Vector2(-16, 32)
+metadata/_edit_use_anchors_ = true
+
+[node name="MapNode3" parent="Control/PauseScreen/Map" unique_id=1049235408 instance=ExtResource("2_rd7dy")]
+modulate = Color(0, 0.4704017, 0.88143784, 1)
+layout_mode = 0
+offset_left = 62.0
+offset_top = 51.0
+offset_right = 90.0
+offset_bottom = 59.0
+linked_scene = "uid://cvdadm5lq7bvw"
+entrances_right = Array[float]([3.0])
+entrances_left = Array[float]([2.0])
+entrances_bottom = Array[float]([13.65])
+indicator_offset = Vector2(-18, 9)
+metadata/_edit_use_anchors_ = true
+
+[node name="MapNode4" parent="Control/PauseScreen/Map" unique_id=739986814 instance=ExtResource("2_rd7dy")]
+modulate = Color(0, 0.4704017, 0.88143784, 1)
+layout_mode = 0
+offset_left = 47.0
+offset_top = 52.0
+offset_right = 61.0
+offset_bottom = 59.0
+linked_scene = "uid://boy7l3kxr32dr"
+entrances_right = Array[float]([2.0])
+indicator_offset = Vector2(-32, 8)
+metadata/_edit_use_anchors_ = true
+
+[node name="MapNode5" parent="Control/PauseScreen/Map" unique_id=1563522188 instance=ExtResource("2_rd7dy")]
+modulate = Color(0, 0.65125984, 0.07559268, 1)
+layout_mode = 0
+offset_left = 91.0
+offset_top = 51.0
+offset_right = 121.0
+offset_bottom = 59.0
+linked_scene = "uid://bom05hqvttv5c"
+entrances_left = Array[float]([3.0])
+indicator_offset = Vector2(-16, 0)
+metadata/_edit_use_anchors_ = true
+
+[node name="PlayerIndicator" type="Control" parent="Control/PauseScreen/Map" unique_id=725442694]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 61.0
+offset_right = 40.0
+offset_bottom = 61.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Control/PauseScreen/Map/PlayerIndicator" unique_id=752818260]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.9, 0.9)
+texture = SubResource("GradientTexture2D_uwtdo")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/PauseScreen/Map/PlayerIndicator" unique_id=1214420517]
+libraries/ = SubResource("AnimationLibrary_b4s0c")
+
+[node name="SystemMenuButton" type="Button" parent="Control/PauseScreen" unique_id=1618582146]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027083334
+anchor_top = 0.055045873
+anchor_right = 0.027083334
+anchor_bottom = 0.055045873
+offset_left = 372.0
+offset_top = 160.0
+offset_right = 443.0
+offset_bottom = 183.0
+text = "System"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShopButton" type="Button" parent="Control/PauseScreen" unique_id=279987268]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.15416667
+anchor_top = 0.059633028
+anchor_right = -0.15416667
+anchor_bottom = 0.059633028
+offset_left = 372.0
+offset_top = 160.0
+offset_right = 443.0
+offset_bottom = 183.0
+text = "Shop
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="System" type="Control" parent="Control" unique_id=83017248]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/System" unique_id=190962032]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -129.0
+offset_top = 20.0
+offset_right = 129.0
+offset_bottom = 188.0
+grow_horizontal = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=878839498]
+layout_mode = 2
+
+[node name="BackToMapButton" type="Button" parent="Control/System/VBoxContainer/HBoxContainer" unique_id=1283090153]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Back To Map"
+
+[node name="BackToTitleButton" type="Button" parent="Control/System/VBoxContainer/HBoxContainer" unique_id=1070198214]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+text = "Back To Title"
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer" unique_id=354141409]
+layout_mode = 2
+text = "Audio Levels"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1316160580]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer/HBoxContainer2" unique_id=828699026]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer2/Label" unique_id=1921721938]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -7.5
+offset_right = 150.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1408737853]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer/HBoxContainer3" unique_id=1520921513]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer3/Label" unique_id=575901642]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -7.5
+offset_right = 150.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Control/System/VBoxContainer" unique_id=1576833518]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/System/VBoxContainer/HBoxContainer4" unique_id=1292611887]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "UI"
+
+[node name="UISlider" type="HSlider" parent="Control/System/VBoxContainer/HBoxContainer4/Label" unique_id=1117575821]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 50.0
+offset_top = -7.5
+offset_right = 150.0
+offset_bottom = 8.5
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.05
+value = 0.5
