@@ -6,9 +6,11 @@
 [ext_resource type="Script" uid="uid://dklst3ofps4jp" path="res://player/states/jump.gd" id="4_qjkh3"]
 [ext_resource type="Script" uid="uid://5r7jbp04dye7" path="res://player/states/fall.gd" id="5_g6k8r"]
 [ext_resource type="Script" uid="uid://b7lfosyrnvdin" path="res://player/states/crouch.gd" id="6_g6k8r"]
+[ext_resource type="Script" uid="uid://crtrtm1tn5f3m" path="res://player/states/attack.gd" id="7_8t03j"]
 [ext_resource type="Texture2D" uid="uid://dx1s4s1g6m88l" path="res://player/sprites/hero.png" id="7_boad6"]
 [ext_resource type="Texture2D" uid="uid://d2bejjvwqkbjv" path="res://player/sprites/weapon_smears.png" id="8_hg6s5"]
 [ext_resource type="Script" uid="uid://ccs2ck0lfmrt2" path="res://general/scripts/attack_area.gd" id="9_hg6s5"]
+[ext_resource type="Script" uid="uid://kbvktwiocg3b" path="res://player/scripts/player_camera.gd" id="10_2ieo8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_boad6"]
 radius = 8.0
@@ -16,23 +18,6 @@ height = 46.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rgyib"]
 radius = 8.0
-
-[sub_resource type="Animation" id="Animation_yllr7"]
-resource_name = "Attack"
-length = 0.8
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [31, 32, 33, 34, 35, 36]
-}
 
 [sub_resource type="Animation" id="Animation_ebec5"]
 resource_name = "Crouch"
@@ -173,7 +158,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_kb6p2"]
 resource_name = "attack"
 length = 0.3
-loop_mode = 1
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -182,10 +166,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [31, 32, 33, 34, 35, 36]
+"values": [31, 32, 33, 35, 36]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -224,20 +208,85 @@ tracks/3/keys = {
 "values": [true]
 }
 
+[sub_resource type="Animation" id="Animation_wodsf"]
+resource_name = "attack_2"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [34, 35, 36, 35, 36]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/AttackSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/AttackSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/AttackSprite2D:show_behind_parent")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yllr7"]
 _data = {
-&"Attack": SubResource("Animation_yllr7"),
 &"Crouch": SubResource("Animation_ebec5"),
 &"Death": SubResource("Animation_boad6"),
 &"Idle": SubResource("Animation_rgyib"),
 &"Jump": SubResource("Animation_2ieo8"),
 &"RESET": SubResource("Animation_hg6s5"),
 &"Run": SubResource("Animation_8t03j"),
-&"attack": SubResource("Animation_kb6p2")
+&"attack": SubResource("Animation_kb6p2"),
+&"attack_2": SubResource("Animation_wodsf")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8t03j"]
-size = Vector2(48, 21)
+size = Vector2(64, 21)
+
+[sub_resource type="Gradient" id="Gradient_8t03j"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ieo8"]
+gradient = SubResource("Gradient_8t03j")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+metadata/_snap_enabled = true
 
 [node name="Player" type="CharacterBody2D" unique_id=1170146717 groups=["Player"]]
 z_index = 1
@@ -267,6 +316,10 @@ script = ExtResource("5_g6k8r")
 [node name="Crouch" type="Node" parent="States" unique_id=706374764]
 unique_name_in_owner = true
 script = ExtResource("6_g6k8r")
+
+[node name="Attack" type="Node" parent="States" unique_id=628448361]
+unique_name_in_owner = true
+script = ExtResource("7_8t03j")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1647728164]
 position = Vector2(1, -39)
@@ -312,18 +365,25 @@ autoplay = &"Idle"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1594140221]
 process_mode = 3
 position = Vector2(-1, -1)
+script = ExtResource("10_2ieo8")
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1192131283]
 unique_name_in_owner = true
 visible = false
-position = Vector2(0, -27)
+position = Vector2(8, -24)
 collision_layer = 0
 collision_mask = 96
 script = ExtResource("9_hg6s5")
-damage = 10.0
 metadata/_custom_type_script = "uid://ccs2ck0lfmrt2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1347066364]
-position = Vector2(24, 0)
+visible = false
+position = Vector2(28, 0)
 shape = SubResource("RectangleShape2D_8t03j")
 debug_color = Color(0.73675454, 0.010822955, 0, 0.41960785)
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1926224703]
+position = Vector2(0, -28)
+color = Color(0.9735091, 0.8309507, 0.64681196, 1)
+energy = 0.3
+texture = SubResource("GradientTexture2D_2ieo8")

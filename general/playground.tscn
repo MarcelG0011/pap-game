@@ -29,6 +29,7 @@ tile_map_data = PackedByteArray("AAACAAEAAAAHAAwAAAADAAEAAAAIAAwAAAAEAAEAAAAJAAw
 tile_set = ExtResource("3_hnnfb")
 
 [node name="props" type="Node2D" parent="." unique_id=1796293088]
+position = Vector2(3, 32)
 
 [node name="Torch2" parent="props" unique_id=1169846439 instance=ExtResource("4_ivcec")]
 z_index = 1

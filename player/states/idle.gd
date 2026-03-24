@@ -12,11 +12,12 @@ func exit() -> void :
 	
 func handle_input( _event : InputEvent ) -> PlayerState:
 
+	if _event.is_action_pressed( "attack" ):
+		return attack
 	# ↓ + JUMP → descer da plataforma
 	if _event.is_action_pressed( "jump" ):
-		if Input.is_action_pressed("down") \
+		if Input.is_action_pressed( "down" ) \
 		and player.one_way_plataform_ray_cast.is_colliding():
-			print("[IDLE] Descendo de plataforma com DOWN+JUMP")
 			player.position.y += 10
 			return fall
 		else:

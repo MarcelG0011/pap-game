@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://c5721qn6asjfk"]
+
+[ext_resource type="Texture2D" uid="uid://cqc8mpao63nfx" path="res://levels/tilesets/Mediaval_Castle/window_glass_1.png" id="1_lx3yn"]
+[ext_resource type="Script" uid="uid://bps7hks134e60" path="res://levels/props/window.gd" id="1_nnhmi"]
+
+[sub_resource type="Gradient" id="Gradient_vbgap"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nnhmi"]
+gradient = SubResource("Gradient_vbgap")
+fill_from = Vector2(0.5, 0.5411765)
+fill_to = Vector2(0.49411765, 1)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_vbgap"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nnhmi"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 98, 0)
+
+[node name="Window" type="Node2D" unique_id=1918462800]
+script = ExtResource("1_nnhmi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=167043986]
+texture = ExtResource("1_lx3yn")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=170663102]
+texture = SubResource("GradientTexture2D_nnhmi")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=8323952]
+occluder = SubResource("OccluderPolygon2D_vbgap")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=2069938538]
+process_material = SubResource("ParticleProcessMaterial_nnhmi")

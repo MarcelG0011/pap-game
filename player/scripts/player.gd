@@ -3,6 +3,7 @@ const DEBUG_JUMP_INDICATOR = preload("uid://ygjffhhiqrxf")
 
 #region /// On Ready Variables
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var attack_sprite: Sprite2D = %AttackSprite2D
 @onready var collision_stand: CollisionShape2D = $CollisionStand
 @onready var collision_crouch: CollisionShape2D = $CollisionCrouch
 @onready var one_way_plataform_ray_cast: RayCast2D = $OneWayPlataformRayCast
@@ -92,6 +93,8 @@ func _ready() -> void:
 	
 	
 func _unhandled_input( event: InputEvent ) -> void:
+	if event.is_action_released( "jump" ):
+		velocity.y *= 0.5
 	#if event.is_action_pressed( "action" ):
 		#Messages.player_interacted.emit( self )
 	#elif event.is_action_pressed( "pause" ):
@@ -100,8 +103,6 @@ func _unhandled_input( event: InputEvent ) -> void:
 		#add_child( pause_menu )
 		#return
 	#Apagar >
-	if event.is_action_pressed( "attack" ):
-		attack_area.activate()
 	if event is InputEventKey and event.pressed:
 		if event.keycode == KEY_MINUS:
 			if Input.is_key_pressed( KEY_SHIFT ):
@@ -175,9 +176,14 @@ func update_direction() -> void:
 	if prev_direction.x != direction.x:
 		attack_area.flip( direction.x )
 		if direction.x < 0:
+			#LEFT
 			sprite.flip_h = true 
+			attack_sprite.flip_h = true
+			attack_sprite.position.x = -24
 		elif direction.x > 0:
 			sprite.flip_h = false
+			attack_sprite.flip_h = false
+			attack_sprite.position.x = 24
 	pass
 	
 func update_sprite_direction() -> void:

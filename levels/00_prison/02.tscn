@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://dqjshejv1b1qn" path="res://music/music_auto_trigger.gd" id="4_kh02j"]
 [ext_resource type="TileSet" uid="uid://7ynaeuuteie2" path="res://levels/tilesets/forgotten_forest.tres" id="4_s2tn3"]
 [ext_resource type="AudioStream" uid="uid://yhr6iex7p0h" path="res://music/dungeon_01.ogg" id="5_tqdi0"]
+[ext_resource type="PackedScene" uid="uid://c67ssfmo87iw4" path="res://levels/props/torch.tscn" id="6_tqdi0"]
+[ext_resource type="Script" uid="uid://v0037wplsi01" path="res://general/player_spawn/player_spawn.gd" id="7_v0bh5"]
 
 [node name="02" type="Node2D" unique_id=28098412]
 
@@ -61,3 +63,15 @@ navigation_visibility_mode = 2
 script = ExtResource("4_kh02j")
 track = ExtResource("5_tqdi0")
 metadata/_custom_type_script = "uid://dqjshejv1b1qn"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1027402030]
+color = Color(0.14046103, 0.14144494, 0.1514448, 1)
+blend_mode = 2
+
+[node name="Torch" parent="." unique_id=418032343 instance=ExtResource("6_tqdi0")]
+position = Vector2(226, 250)
+
+[node name="PlayerSpawn" type="Node2D" parent="." unique_id=1760456700]
+position = Vector2(103, 213)
+script = ExtResource("7_v0bh5")
+metadata/_custom_type_script = "uid://v0037wplsi01"

@@ -13,6 +13,8 @@ func exit() -> void:
 	pass
 	
 func handle_input( _event : InputEvent ) -> PlayerState:
+	if _event.is_action_pressed( "attack" ):
+		return attack
 	return next_state
 	
 func process( _delta: float ) -> PlayerState:
@@ -20,6 +22,7 @@ func process( _delta: float ) -> PlayerState:
 	
 func physics_process( _delta: float ) -> PlayerState:
 	if player.is_on_floor():
+		VisualEffects.land_dust( player.global_position )
 		# Se está a segurar DOWN quando aterra, vai para crouch
 		if Input.is_action_pressed("down"):
 			return crouch

@@ -7,6 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://odjpd8pl7mci" path="res://general/player_spawn/player_spawn.tscn" id="5_bsmlx"]
 [ext_resource type="Script" uid="uid://dqjshejv1b1qn" path="res://music/music_auto_trigger.gd" id="6_sw4be"]
 [ext_resource type="AudioStream" uid="uid://yhr6iex7p0h" path="res://music/dungeon_01.ogg" id="7_ql0uu"]
+[ext_resource type="Texture2D" uid="uid://dqxxuf2rytk0k" path="res://levels/tilesets/sprites/light_stream.jpg" id="8_ql0uu"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ql0uu"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_fqtbu"]
+blend_mode = 1
+light_mode = 1
 
 [node name="03" type="Node2D" unique_id=846817403]
 
@@ -101,3 +110,97 @@ position = Vector2(43, 178)
 script = ExtResource("6_sw4be")
 track = ExtResource("7_ql0uu")
 metadata/_custom_type_script = "uid://dqjshejv1b1qn"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1394319072]
+color = Color(0.14046103, 0.14144494, 0.1514448, 1)
+blend_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1744163575]
+modulate = Color(0.366, 0.38992572, 1.164, 0.272)
+z_index = 4
+material = SubResource("CanvasItemMaterial_ql0uu")
+position = Vector2(145, 88)
+rotation = 0.05235988
+scale = Vector2(0.14715062, 0.34181818)
+texture = ExtResource("8_ql0uu")
+offset = Vector2(0, 256)
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1742551082]
+modulate = Color(0.366, 0.38992572, 1.164, 0.272)
+z_index = 4
+material = SubResource("CanvasItemMaterial_ql0uu")
+position = Vector2(337, 92.99997)
+rotation = 0.05235988
+scale = Vector2(0.14715062, 0.32226568)
+texture = ExtResource("8_ql0uu")
+offset = Vector2(0, 256)
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=338435991]
+modulate = Color(0.366, 0.38992572, 1.164, 0.272)
+z_index = 4
+material = SubResource("CanvasItemMaterial_ql0uu")
+position = Vector2(720, 85.00001)
+rotation = 0.05235988
+scale = Vector2(0.14715062, 0.33789065)
+texture = ExtResource("8_ql0uu")
+offset = Vector2(0, 256)
+
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1571496161]
+modulate = Color(0.366, 0.38992572, 1.164, 0.272)
+z_index = 4
+material = SubResource("CanvasItemMaterial_ql0uu")
+position = Vector2(912, 86)
+rotation = 0.05235988
+scale = Vector2(0.14715062, 0.33593753)
+texture = ExtResource("8_ql0uu")
+offset = Vector2(0, 256)
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=857499047]
+modulate = Color(1.164, 0.956, 0.366, 0.272)
+z_index = 4
+material = SubResource("CanvasItemMaterial_fqtbu")
+position = Vector2(529, 88)
+rotation = 0.05235988
+scale = Vector2(0.14062507, 0.38281253)
+texture = ExtResource("8_ql0uu")
+offset = Vector2(0, 256)
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=210220665]
+modulate = Color(1.164, 0.956, 0.366, 0.272)
+z_index = 4
+material = SubResource("CanvasItemMaterial_fqtbu")
+position = Vector2(416.99997, 192.99998)
+rotation = 0.05235988
+scale = Vector2(0.21093747, 0.12109375)
+texture = ExtResource("8_ql0uu")
+offset = Vector2(0, 256)
+
+[node name="Sprite2D7" type="Sprite2D" parent="." unique_id=1308340087]
+modulate = Color(1.164, 0.956, 0.366, 0.272)
+z_index = 4
+material = SubResource("CanvasItemMaterial_fqtbu")
+position = Vector2(225, 162.00002)
+rotation = 0.05235988
+scale = Vector2(0.18683128, 0.18633996)
+texture = ExtResource("8_ql0uu")
+offset = Vector2(0, 256)
+
+[node name="Sprite2D8" type="Sprite2D" parent="." unique_id=1385791895]
+modulate = Color(1.164, 0.956, 0.366, 0.272)
+z_index = 4
+material = SubResource("CanvasItemMaterial_fqtbu")
+position = Vector2(1019.9999, 33.999996)
+rotation = 0.05235988
+scale = Vector2(0.13618612, 0.44518024)
+texture = ExtResource("8_ql0uu")
+offset = Vector2(0, 256)
+
+[node name="Sprite2D9" type="Sprite2D" parent="." unique_id=665212278]
+modulate = Color(1.164, 0.956, 0.366, 0.272)
+z_index = 4
+material = SubResource("CanvasItemMaterial_fqtbu")
+position = Vector2(1083, 29.999996)
+rotation = 0.05235988
+scale = Vector2(0.081021376, 0.44518024)
+texture = ExtResource("8_ql0uu")
+offset = Vector2(0, 256)

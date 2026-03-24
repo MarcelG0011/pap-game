@@ -17,6 +17,22 @@ colors = PackedColorArray(0.8627451, 0.34117648, 0.34117648, 1, 0.84855527, 0.53
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u32a5"]
 gradient = SubResource("Gradient_32muj")
 
+[sub_resource type="GDScript" id="GDScript_l7cnt"]
+script/source = "extends Button
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pressed.connect( _on_pressed )
+	pass 
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _on_pressed() -> void:
+	VisualEffects.camera_shake( 10 )
+	pass
+"
+
 [node name="PlayerHub" type="CanvasLayer" unique_id=582929787]
 process_mode = 3
 layer = 2
@@ -66,6 +82,15 @@ rounded = true
 nine_patch_stretch = true
 texture_under = SubResource("GradientTexture2D_l7cnt")
 texture_progress = SubResource("GradientTexture2D_u32a5")
+
+[node name="Button2" type="Button" parent="Control" unique_id=506851457]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 35.0
+offset_right = 481.0
+offset_bottom = 58.0
+text = "Test Shake"
+script = SubResource("GDScript_l7cnt")
 
 [node name="CurrencyDisplay" parent="." unique_id=1741465259 instance=ExtResource("3_l7cnt")]
 offset_left = 133.0
