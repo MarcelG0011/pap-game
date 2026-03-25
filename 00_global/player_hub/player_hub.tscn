@@ -23,13 +23,11 @@ script/source = "extends Button
 
 @export var particle_settings : HitParticleSettings
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	pressed.connect( _on_pressed )
 	pass 
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_pressed() -> void:
 	var pos : Vector2 = get_tree().get_first_node_in_group(\"Player\").global_position
 	VisualEffects.hit_particles( pos, Vector2(1, 0), particle_settings )

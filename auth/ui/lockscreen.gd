@@ -15,7 +15,6 @@ var max_attempts: int = 5
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	# ✅ GARANTE QUE PREENCHE A TELA
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 	size = get_viewport_rect().size
 	position = Vector2.ZERO

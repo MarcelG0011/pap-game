@@ -5,6 +5,7 @@
 [ext_resource type="TileSet" uid="uid://7ynaeuuteie2" path="res://levels/tilesets/forgotten_forest.tres" id="3_4r5es"]
 [ext_resource type="Script" uid="uid://dqjshejv1b1qn" path="res://music/music_auto_trigger.gd" id="4_268dk"]
 [ext_resource type="AudioStream" uid="uid://yhr6iex7p0h" path="res://music/dungeon_01.ogg" id="5_sx3d2"]
+[ext_resource type="PackedScene" uid="uid://c67ssfmo87iw4" path="res://levels/props/torch.tscn" id="6_sx3d2"]
 
 [node name="04" type="Node2D" unique_id=1359721728]
 
@@ -37,3 +38,11 @@ navigation_visibility_mode = 2
 script = ExtResource("4_268dk")
 track = ExtResource("5_sx3d2")
 metadata/_custom_type_script = "uid://dqjshejv1b1qn"
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1334513931]
+position = Vector2(-8, -40)
+color = Color(0.14046103, 0.14144494, 0.1514448, 1)
+blend_mode = 2
+
+[node name="Torch" parent="." unique_id=418032343 instance=ExtResource("6_sx3d2")]
+position = Vector2(144, 216)

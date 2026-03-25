@@ -11,27 +11,23 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	# ✅ ESPERA A CAMERA EXISTIR ANTES DE CONFIGURAR
 	var _camera: Camera2D = null
 	
 	while not _camera:
 		await get_tree().process_frame
 		
-		# ✅ VERIFICA SE O VIEWPORT EXISTE
 		var viewport = get_viewport()
 		if not viewport:
 			continue
 		
 		_camera = viewport.get_camera_2d()
 	
-	# ✅ AGORA A CAMERA EXISTE, CONFIGURA OS LIMITES
 	_camera.limit_left = int(global_position.x)
 	_camera.limit_top = int(global_position.y)
 	_camera.limit_right = int(global_position.x) + width
 	_camera.limit_bottom = int(global_position.y) + height
 	
-	print("[LEVEL BOUNDS] Camera configurada - Limites: ", _camera.limit_left, ", ", _camera.limit_top, ", ", _camera.limit_right, ", ", _camera.limit_bottom)
-
+	
 func _draw() -> void:
 	if Engine.is_editor_hint():
 		# Draw a box
