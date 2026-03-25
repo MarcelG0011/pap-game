@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cht6gyqwntfmt" path="res://00_global/player_hub/health_bar_frame.png" id="1_822c7"]
 [ext_resource type="Script" uid="uid://c81hnohtkxy76" path="res://00_global/player_hub/player_hub.gd" id="1_ti8ll"]
 [ext_resource type="PackedScene" uid="uid://cmvegf2v1ebo8" path="res://economy/ui/currency_display.tscn" id="3_l7cnt"]
+[ext_resource type="Resource" uid="uid://ctuyakc1kf8ki" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_large.tres" id="4_u32a5"]
 
 [sub_resource type="Gradient" id="Gradient_ti8ll"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -20,6 +21,7 @@ gradient = SubResource("Gradient_32muj")
 [sub_resource type="GDScript" id="GDScript_l7cnt"]
 script/source = "extends Button
 
+@export var particle_settings : HitParticleSettings
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -29,7 +31,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_pressed() -> void:
-	VisualEffects.camera_shake( 10 )
+	var pos : Vector2 = get_tree().get_first_node_in_group(\"Player\").global_position
+	VisualEffects.hit_particles( pos, Vector2(1, 0), particle_settings )
 	pass
 "
 
@@ -85,12 +88,13 @@ texture_progress = SubResource("GradientTexture2D_u32a5")
 
 [node name="Button2" type="Button" parent="Control" unique_id=506851457]
 layout_mode = 0
-offset_left = 392.0
-offset_top = 35.0
-offset_right = 481.0
-offset_bottom = 58.0
-text = "Test Shake"
+offset_left = 363.0
+offset_top = 10.0
+offset_right = 471.0
+offset_bottom = 33.0
+text = "Test Particles"
 script = SubResource("GDScript_l7cnt")
+particle_settings = ExtResource("4_u32a5")
 
 [node name="CurrencyDisplay" parent="." unique_id=1741465259 instance=ExtResource("3_l7cnt")]
 offset_left = 133.0

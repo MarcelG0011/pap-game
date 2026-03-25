@@ -2,6 +2,8 @@
 extends Node
 
 const DUST_EFFECT = preload("uid://ceurnrkrxc63x")
+const HIT_PARTICLES = preload("uid://c7oh8oru210x8")
+
 signal camera_shook( strength : float)
 
 
@@ -33,9 +35,11 @@ func hit_dust( pos : Vector2 ) -> void:
 	dust.start( DustEffect.TYPE.HIT )
 	pass
 
-func hit_particles( settings :  ) -> void:
-	
-	
+func hit_particles( pos : Vector2, dir : Vector2, settings : HitParticleSettings ) -> void:
+	var p : HitParticles = HIT_PARTICLES.instantiate()
+	add_child( p )
+	p.global_position = pos
+	p.start( dir, settings )
 	pass
 
 

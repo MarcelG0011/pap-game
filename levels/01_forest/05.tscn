@@ -128,7 +128,6 @@ width = 1184
 height = 334
 
 [node name="LevelTransition" parent="." unique_id=1271988007 instance=ExtResource("2_6qrv6")]
-visible = false
 position = Vector2(-15, 258)
 size = 8
 target_level = "uid://cvdadm5lq7bvw"
