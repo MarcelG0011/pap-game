@@ -40,6 +40,7 @@ track = ExtResource("5_sx3d2")
 metadata/_custom_type_script = "uid://dqjshejv1b1qn"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1334513931]
+visible = false
 position = Vector2(-8, -40)
 color = Color(0.14046103, 0.14144494, 0.1514448, 1)
 blend_mode = 2

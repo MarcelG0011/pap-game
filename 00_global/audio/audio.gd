@@ -52,22 +52,31 @@ func get_music_player(i: int) -> AudioStreamPlayer:
 	return music_1 if i == 0 else music_2
 
 func fade_track_out(player: AudioStreamPlayer) -> void:
-	if not player.playing:
+	if not player or not player.playing:
 		return
 	
-	var tween: Tween = create_tween()
-	music_tweens.append(tween)
-	tween.tween_property(player, "volume_db", -80.0, 1.5)
-	tween.tween_callback(player.stop)
+	if is_nan( player.volume_db ):
+		player.volume_db = 0.0
+		
+	var tween : Tween = create_tween()
+	music_tweens.append( tween )
+	tween.tween_property( player, "volume_db", -80.0, 1.5 )
+	tween.tween_callback( player.stop )
 
-func fade_track_in(player: AudioStreamPlayer) -> void:
-	var tween: Tween = create_tween()
-	music_tweens.append(tween)
-	tween.tween_property(player, "volume_db", 0.0, 1.0)
-	# NÃO CHAMA player.stop() AQUI!
-
-func set_reverb(type: REVERB_TYPE) -> void:
-	var reverb_fx: AudioEffectReverb = AudioServer.get_bus_effect(1, 0)
+func fade_track_in( player : AudioStreamPlayer ) -> void:
+	if not player:
+		return
+	if is_nan( player.volume_db ):
+		player.volume_db = -80.0
+	else:
+		player.volume_db = -80.0
+		
+	var tween : Tween = create_tween()
+	music_tweens.append( tween )
+	tween.tween_property( player, "volume_db", 0.0, 1.0 )
+	
+func set_reverb( type : REVERB_TYPE ) -> void:
+	var reverb_fx: AudioEffectReverb = AudioServer.get_bus_effect( 1, 0 )
 	if not reverb_fx:
 		return
 	

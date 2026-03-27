@@ -14,9 +14,6 @@ func _create_dust_effects( pos : Vector2 ) -> DustEffect:
 	dust.global_position = pos
 	return dust
 	
-	
-	pass
-	
 #Create Jump Dust
 func jump_dust( pos : Vector2 ) -> void:
 	var dust : DustEffect = _create_dust_effects( pos )

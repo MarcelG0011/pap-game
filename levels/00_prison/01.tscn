@@ -26,6 +26,12 @@ tile_set = ExtResource("2_ecqt5")
 collision_visibility_mode = 2
 navigation_visibility_mode = 2
 
+[node name="TileMapLayer_Back2" type="TileMapLayer" parent="." unique_id=154104530]
+z_index = 2
+tile_set = ExtResource("2_ecqt5")
+collision_visibility_mode = 2
+navigation_visibility_mode = 2
+
 [node name="Player" parent="." unique_id=243029904 instance=ExtResource("3_vk4a6")]
 position = Vector2(51, 256)
 
@@ -64,5 +70,6 @@ position = Vector2(388, 259)
 position = Vector2(96, 259)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2064062289]
+visible = false
 color = Color(0.14046103, 0.14144494, 0.1514448, 1)
 blend_mode = 2
