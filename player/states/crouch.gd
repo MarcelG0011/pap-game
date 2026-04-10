@@ -8,11 +8,15 @@ func enter() -> void:
 	player.animation_player.play( "Crouch" )
 	player.collision_stand.disabled = true
 	player.collision_crouch.disabled = false
+	player.da_stand.disabled = true
+	player.da_crouch.disabled = false
 	pass
 	
 func exit() -> void :
 	player.collision_stand.disabled = false
 	player.collision_crouch.disabled = true
+	player.da_stand.disabled = false
+	player.da_crouch.disabled = true
 	pass
 	
 func handle_input(_event: InputEvent) -> PlayerState:

@@ -1,16 +1,22 @@
 class_name Player extends CharacterBody2D
 const DEBUG_JUMP_INDICATOR = preload("uid://ygjffhhiqrxf")
 
+#region /// Signals
+signal damage_taken()
+#endregion
+
 #region /// On Ready Variables
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var attack_sprite: Sprite2D = %AttackSprite2D
 @onready var collision_stand: CollisionShape2D = $CollisionStand
 @onready var collision_crouch: CollisionShape2D = $CollisionCrouch
+@onready var da_stand: CollisionShape2D = %DAStand
+@onready var da_crouch: CollisionShape2D = %DACrouch
 @onready var one_way_plataform_ray_cast: RayCast2D = $OneWayPlataformRayCast
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var camera: Camera2D = $Camera2D
 @onready var attack_area: AttackArea = %AttackArea
-
+@onready var damage_area: DamageArea = %DamageArea 
 #endregion
 
 #region /// Export Variables
@@ -35,12 +41,12 @@ var previous_state : PlayerState :
 var hp : float = 20 :
 	set( value ):
 		hp = clampf( value, 0, max_hp )
-		#Messages.player_health_changed.emit( hp, max_hp )
+		Messages.player_health_changed.emit( hp, max_hp )
 		
 var max_hp : float = 20 :
 	set( value ):
 		max_hp = value
-		#Messages.player_health_changed.emit( hp, max_hp )
+		Messages.player_health_changed.emit( hp, max_hp )
 		
 var dash : bool = false
 var double_jump : bool = false
@@ -63,58 +69,23 @@ func _ready() -> void:
 		self.queue_free()
 	initialize_states()
 	self.call_deferred("reparent", get_tree().root)
-	#Messages.player_healed.connect( _on_player_healded )
-	#Messages.back_to_title_screen.connect( queue_free )
+	Messages.player_healed.connect( _on_player_healed )
+	Messages.back_to_title_screen.connect( queue_free )
+	damage_area.damage_taken.connect( _on_damage_taken )
+	hp = max_hp
 	pass
 
-#func die() -> void:
-	#if is_dead:
-		#return
-	#
-	#is_dead = true
-	#
-	## Para a state machine
-	#if current_state:
-		#current_state.exit()
-	#states.clear()
-	#
-	#set_physics_process(false)
-	#set_process_input(false)
-	#velocity = Vector2.ZERO
-	#
-	#collision_stand.set_deferred("disabled", true)
-	#collision_crouch.set_deferred("disabled", true)
-	#
-	#animation_player.play("death")
-	#await animation_player.animation_finished
-	#
-	## Simplesmente recarrega a cena
-	#get_tree().reload_current_scene()
-	
-	
+
 func _unhandled_input( event: InputEvent ) -> void:
 	if event.is_action_released( "jump" ):
 		velocity.y *= 0.5
-	#if event.is_action_pressed( "action" ):
-		#Messages.player_interacted.emit( self )
+	if event.is_action_pressed( "attack" ):
+		Messages.player_interacted.emit( self )
 	#elif event.is_action_pressed( "pause" ):
 		#get_tree().paused = true
-		#var pause_menu : PauseMenu = load("res://pause_menu/pause_menu.tscn").instantiate()
+		#var pause_menu :  = load("res://pause_menu/pause_menu.tscn").instantiate()
 		#add_child( pause_menu )
 		#return
-	#Apagar >
-	if event is InputEventKey and event.pressed:
-		if event.keycode == KEY_MINUS:
-			if Input.is_key_pressed( KEY_SHIFT ):
-				max_hp -= 10
-			else:
-				hp -= 2 
-		elif event.keycode == KEY_EQUAL:
-			if Input.is_key_pressed( KEY_SHIFT ):
-				max_hp += 10
-			else:
-				hp += 2
-	#<Apagar
 	change_state( current_state.handle_input(event) )
 	pass
 	
@@ -194,10 +165,20 @@ func update_sprite_direction() -> void:
 		
 
 
-#func add_debug_indicator( color : Color = Color.RED) -> void:
-	#var d: Node2D = DEBUG_JUMP_INDICATOR.instantiate()
-	#get_tree().root.add_child( d )
-	#d.global_position = global_position
-	#d.modulate = color
-	#await get_tree().create_timer( 3.0 ).timeout
-	#d.queue_free()
+func add_debug_indicator( color : Color = Color.RED) -> void:
+	var d: Node2D = DEBUG_JUMP_INDICATOR.instantiate()
+	get_tree().root.add_child( d )
+	d.global_position = global_position
+	d.modulate = color
+	await get_tree().create_timer( 3.0 ).timeout
+	d.queue_free()
+
+func _on_player_healed( amount : float ) -> void:
+	hp += amount
+	pass
+
+func _on_damage_taken( attack_area : AttackArea ) -> void:
+	hp -= attack_area.damage
+	damage_taken.emit()
+	print( "Player took damage: ", hp )
+	pass

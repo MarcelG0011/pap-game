@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://c6474yks67w27"]
+
+[ext_resource type="Script" uid="uid://csgrbxc54c4fi" path="res://general/scripts/breakable.gd" id="1_bbqwk"]
+[ext_resource type="Script" uid="uid://dd7l7wwg1fb1k" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_q4xhc"]
+[ext_resource type="Resource" uid="uid://dkmc07rfmn56n" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_medium.tres" id="3_lckvl"]
+[ext_resource type="Resource" uid="uid://bhb165quor6vv" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_small.tres" id="4_tykye"]
+[ext_resource type="Resource" uid="uid://ctuyakc1kf8ki" path="res://00_global/visual_effects/hit_particle_settings/hit_wood_large.tres" id="5_udvak"]
+[ext_resource type="Script" uid="uid://dwywwp8rlosai" path="res://general/scripts/damage_area.gd" id="6_0l3to"]
+[ext_resource type="Texture2D" uid="uid://1m5ydwdpqhta" path="res://general/sprites/props_destructible.png" id="7_05adb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0pa4w"]
+size = Vector2(33, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ng2w"]
+size = Vector2(36, 32)
+
+[node name="Crate" type="Node2D" unique_id=1135868498]
+script = ExtResource("1_bbqwk")
+hit_particles = Array[ExtResource("2_q4xhc")]([ExtResource("3_lckvl")])
+destroy_particles = Array[ExtResource("2_q4xhc")]([ExtResource("3_lckvl"), ExtResource("4_tykye"), ExtResource("5_udvak")])
+metadata/_custom_type_script = "uid://csgrbxc54c4fi"
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=1201354568]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("6_0l3to")
+metadata/_custom_type_script = "uid://dwywwp8rlosai"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1692854604]
+position = Vector2(0.5, -2)
+shape = SubResource("RectangleShape2D_0pa4w")
+
+[node name="Sprite2D" type="Sprite2D" parent="DamageArea" unique_id=127413328]
+position = Vector2(-21, -19)
+texture = ExtResource("7_05adb")
+centered = false
+region_enabled = true
+region_rect = Rect2(52.31688, 27.205776, 40.55889, 36.441998)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=940986239]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=235148452]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_6ng2w")

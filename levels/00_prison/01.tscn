@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bv4pb8l1sqic6" path="res://general/level_bound.tscn" id="4_8bn0x"]
 [ext_resource type="PackedScene" uid="uid://whtu1i0mj7ln" path="res://general/level_transition/level_transition.tscn" id="4_fracu"]
 [ext_resource type="PackedScene" uid="uid://odjpd8pl7mci" path="res://general/player_spawn/player_spawn.tscn" id="6_nbuyn"]
-[ext_resource type="PackedScene" uid="uid://b34511ybbbrfv" path="res://enemy/enemy.tscn" id="6_nty0i"]
 [ext_resource type="Script" uid="uid://dqjshejv1b1qn" path="res://music/music_auto_trigger.gd" id="7_c6yj3"]
 [ext_resource type="AudioStream" uid="uid://yhr6iex7p0h" path="res://music/dungeon_01.ogg" id="8_cwrg6"]
 [ext_resource type="PackedScene" uid="uid://c67ssfmo87iw4" path="res://levels/props/torch.tscn" id="9_cwrg6"]
@@ -55,9 +54,6 @@ navigation_visibility_mode = 2
 [node name="PlayerSpawn" parent="." unique_id=1247123558 instance=ExtResource("6_nbuyn")]
 position = Vector2(40, 258)
 
-[node name="Enemy" parent="." unique_id=2062794291 instance=ExtResource("6_nty0i")]
-position = Vector2(419, 229)
-
 [node name="MusicAutoTrigger" type="Node" parent="." unique_id=1893048348]
 script = ExtResource("7_c6yj3")
 track = ExtResource("8_cwrg6")
@@ -70,6 +66,5 @@ position = Vector2(388, 259)
 position = Vector2(96, 259)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2064062289]
-visible = false
-color = Color(0.14046103, 0.14144494, 0.1514448, 1)
+color = Color(0.35277888, 0.36260712, 0.38134852, 1)
 blend_mode = 2

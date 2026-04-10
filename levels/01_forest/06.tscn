@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dqjshejv1b1qn" path="res://music/music_auto_trigger.gd" id="7_4qfge"]
 [ext_resource type="AudioStream" uid="uid://rfu41aeq5ow2" path="res://music/forest_01.ogg" id="8_4uiuk"]
 [ext_resource type="Texture2D" uid="uid://dqxxuf2rytk0k" path="res://levels/tilesets/sprites/light_stream.jpg" id="9_ejltd"]
+[ext_resource type="PackedScene" uid="uid://dk86vuiscnuor" path="res://enemy/slime/slime.tscn" id="10_7cdyp"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yg251"]
 blend_mode = 1
@@ -145,7 +146,7 @@ flip_h = true
 position = Vector2(1048, 264)
 
 [node name="PlayerSpawn" parent="." unique_id=2057240805 instance=ExtResource("6_pgss8")]
-position = Vector2(194, 252)
+position = Vector2(408, 243)
 
 [node name="MusicAutoTrigger" type="Node" parent="." unique_id=1553733751]
 script = ExtResource("7_4qfge")
@@ -207,3 +208,6 @@ rotation = 0.24113595
 scale = Vector2(0.6858258, 0.9914141)
 texture = ExtResource("9_ejltd")
 offset = Vector2(0, 256)
+
+[node name="Slime" parent="." unique_id=585226160 instance=ExtResource("10_7cdyp")]
+position = Vector2(275, 246)
