@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://dk86vuiscnuor"]
 
-[ext_resource type="Script" uid="uid://bgpy0bke7k5ny" path="res://enemy/slime/slime.gd" id="1_ci0n5"]
-[ext_resource type="AudioStream" uid="uid://lcrj7bcl5nvr" path="res://enemy/slime/slime_death.wav" id="2_dkdwu"]
-[ext_resource type="Texture2D" uid="uid://cvqktyl2ru6dt" path="res://enemy/slime/slime.png" id="2_ngdgp"]
+[ext_resource type="Script" uid="uid://bgpy0bke7k5ny" path="res://enemies/slime/slime.gd" id="1_ci0n5"]
+[ext_resource type="AudioStream" uid="uid://lcrj7bcl5nvr" path="res://enemies/slime/slime_death.wav" id="2_dkdwu"]
+[ext_resource type="Texture2D" uid="uid://cvqktyl2ru6dt" path="res://enemies/slime/slime.png" id="2_ngdgp"]
 [ext_resource type="Script" uid="uid://dbfi326cysqsk" path="res://levels/props/test_dummy/spike_dummy.gd" id="3_i1cf0"]
 [ext_resource type="Script" uid="uid://dwywwp8rlosai" path="res://general/scripts/damage_area.gd" id="4_dkdwu"]
-[ext_resource type="AudioStream" uid="uid://hne80dt2qgan" path="res://enemy/slime/slime_hit.wav" id="5_i1cf0"]
-[ext_resource type="Script" uid="uid://xyom0trgyish" path="res://enemy/slime/edge_detector.gd" id="7_e2hc1"]
+[ext_resource type="AudioStream" uid="uid://hne80dt2qgan" path="res://enemies/slime/slime_hit.wav" id="5_i1cf0"]
+[ext_resource type="Script" uid="uid://xyom0trgyish" path="res://enemies/scripts/edge_detector.gd" id="7_e2hc1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dkdwu"]
 radius = 8.0
@@ -135,4 +135,6 @@ position = Vector2(0.5, -8.5)
 shape = SubResource("RectangleShape2D_e2hc1")
 
 [node name="EdgeDetector" type="RayCast2D" parent="." unique_id=196899091]
+position = Vector2(8, -1)
+target_position = Vector2(0, 8)
 script = ExtResource("7_e2hc1")

@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dqjshejv1b1qn" path="res://music/music_auto_trigger.gd" id="7_4qfge"]
 [ext_resource type="AudioStream" uid="uid://rfu41aeq5ow2" path="res://music/forest_01.ogg" id="8_4uiuk"]
 [ext_resource type="Texture2D" uid="uid://dqxxuf2rytk0k" path="res://levels/tilesets/sprites/light_stream.jpg" id="9_ejltd"]
-[ext_resource type="PackedScene" uid="uid://dk86vuiscnuor" path="res://enemy/slime/slime.tscn" id="10_7cdyp"]
+[ext_resource type="PackedScene" uid="uid://dk86vuiscnuor" path="res://enemies/slime/slime.tscn" id="10_7cdyp"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yg251"]
 blend_mode = 1
