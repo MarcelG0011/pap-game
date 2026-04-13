@@ -29,9 +29,6 @@ func _ready() -> void:
 	# Atualiza relógio
 	update_time()
 	
-	print("[LOCKSCREEN] Tela de bloqueio ativada")
-	print("[LOCKSCREEN] Size: ", size)
-	print("[LOCKSCREEN] Position: ", position)
 
 func _process(_delta: float) -> void:
 	update_time()
@@ -83,7 +80,7 @@ func show_error(message: String) -> void:
 		lock_permanently()
 
 func lock_permanently() -> void:
-	error_label.text = "Muitas tentativas! Conta bloqueada."
+	error_label.text = "To much try's! Account locked."
 	password_input.editable = false
 	unlock_button.disabled = true
 	

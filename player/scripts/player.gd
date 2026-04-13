@@ -177,8 +177,7 @@ func _on_player_healed( amount : float ) -> void:
 	hp += amount
 	pass
 
-func _on_damage_taken( attack_area : AttackArea ) -> void:
-	hp -= attack_area.damage
+func _on_damage_taken( a : AttackArea ) -> void:
+	hp -= a.damage
 	damage_taken.emit()
-	print( "Player took damage: ", hp )
 	pass

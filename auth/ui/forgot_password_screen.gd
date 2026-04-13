@@ -19,7 +19,6 @@ var current_step: Step = Step.USERNAME
 var username: String = ""
 
 func _ready() -> void:
-	print("[FORGOT PASSWORD] Tela inicializada")
 	
 	# Conecta sinais
 	next_button.pressed.connect(_on_next_pressed)

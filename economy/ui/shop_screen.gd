@@ -9,12 +9,10 @@ extends Control
 var shop_item_scene = preload("res://economy/ui/shop_item.tscn")
 
 func _ready() -> void:
-	# ✅ ADICIONE PROCESS MODE
+	# ADICIONE PROCESS MODE
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	
-	print("[SHOP SCREEN] Loja aberta")
-	
-	# ✅ PAUSA O JOGO
+		
+	# PAUSA O JOGO
 	get_tree().paused = true
 	
 	# Conecta botão
@@ -99,7 +97,6 @@ func add_gem_package(package: Dictionary) -> void:
 	gems_shop_container.add_child(item)
 
 func _on_buy_gems_demo(package: Dictionary) -> void:
-	print("[SHOP] Abrindo popup de demonstracao...")
 	show_payment_demo(package)
 
 func show_payment_demo(package: Dictionary) -> void:
@@ -122,13 +119,11 @@ func clear_container(container: VBoxContainer) -> void:
 		child.queue_free()
 
 func _on_item_purchased(item_id: String) -> void:
-	print("[SHOP SCREEN] Item comprado: ", item_id)
 	# Atualiza a UI (re-popula)
 	populate_shop()
 
 func _on_purchase_failed(reason: String) -> void:
 	print("[SHOP SCREEN] Compra falhou: ", reason)
-	# TODO: Mostrar mensagem de erro para o usuario
 
 func _on_close_pressed() -> void:
 	queue_free()

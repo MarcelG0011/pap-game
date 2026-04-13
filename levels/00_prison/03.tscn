@@ -133,7 +133,7 @@ texture = ExtResource("8_ql0uu")
 offset = Vector2(0, 256)
 
 [node name="PlayerSpawn" parent="." unique_id=1969377171 instance=ExtResource("5_bsmlx")]
-position = Vector2(68, 680)
+position = Vector2(445, 160)
 
 [node name="MusicAutoTrigger" type="Node" parent="." unique_id=345419219]
 script = ExtResource("6_sw4be")
@@ -141,6 +141,5 @@ track = ExtResource("7_ql0uu")
 metadata/_custom_type_script = "uid://dqjshejv1b1qn"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1017978335]
-visible = false
 color = Color(0.3529412, 0.36078432, 0.38039216, 1)
 blend_mode = 2

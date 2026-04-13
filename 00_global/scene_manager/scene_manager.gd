@@ -48,7 +48,6 @@ func is_busy() -> bool:
 	return is_transitioning
 
 func _execute_transition(scene_path: String, target_area: String, player_offset: Vector2, dir: String) -> void:
-	print("[SCENE MANAGER] Iniciando transicao para: ", scene_path)
 	
 	var fade_pos = _calculate_fade_position(dir)
 	
@@ -63,14 +62,12 @@ func _execute_transition(scene_path: String, target_area: String, player_offset:
 	
 	_finalize_transition(target_area, player_offset, fade_pos)
 	
-	print("[SCENE MANAGER] Transicao completa")
 
 func _prepare_transition() -> void:
 	get_tree().paused = true
 	fade.visible = true
 
 func _change_scene(scene_path: String) -> void:
-	print("[SCENE MANAGER] Carregando: ", scene_path)
 	get_tree().change_scene_to_file(scene_path)
 	current_scene_path = scene_path
 	scene_entered.emit(scene_path)
@@ -112,7 +109,6 @@ func _resolve_scene_path(scene: String) -> String:
 func _convert_uid_to_path(uid: String) -> String:
 	var uid_value = ResourceUID.text_to_id(uid)
 	var path = ResourceUID.get_id_path(uid_value)
-	print("[SCENE MANAGER] UID convertido: ", uid, " -> ", path)
 	return path
 
 func _validate_transition_request(scene: String) -> bool:

@@ -8,7 +8,6 @@ var last_input_time: float = 0.0
 var lockscreen_instance: Node = null
 
 func _ready() -> void:
-	print("[INACTIVITY] Sistema inicializado")
 	
 	last_input_time = Time.get_ticks_msec() / 1000.0
 	
@@ -35,9 +34,7 @@ func _process(_delta: float) -> void:
 func activate_lockscreen() -> void:
 	if is_locked:
 		return
-	
-	print("[INACTIVITY] Ativando lockscreen...")
-	
+		
 	is_locked = true
 	
 	if get_tree().get_first_node_in_group("Player"):
@@ -58,11 +55,8 @@ func _on_unlock_requested(password: String) -> void:
 	
 	if password_hash == correct_hash:
 		deactivate_lockscreen()
-	else:
-		print("[INACTIVITY] Senha incorreta")
 
 func deactivate_lockscreen() -> void:
-	print("[INACTIVITY] Desbloqueando...")
 	
 	is_locked = false
 	last_input_time = Time.get_ticks_msec() / 1000.0
@@ -74,7 +68,6 @@ func deactivate_lockscreen() -> void:
 		lockscreen_instance = null
 
 func reset() -> void:
-	print("[INACTIVITY] Resetando monitor...")
 	
 	is_locked = false
 	is_enabled = false
@@ -87,7 +80,6 @@ func reset() -> void:
 	if get_tree().paused:
 		get_tree().paused = false
 	
-	print("[INACTIVITY] Monitor resetado")
 
 func load_settings() -> void:
 	if not AccountManager.is_logged_in:
@@ -104,7 +96,6 @@ func load_settings() -> void:
 		var settings = DatabaseManager.db.query_result[0]
 		is_enabled = settings["inactivity_enabled"] == 1
 		inactivity_timeout = settings["inactivity_timeout"]
-		print("[INACTIVITY] Configuracoes carregadas")
 
 func create_default_settings(user_id: int) -> void:
 	var timestamp = Time.get_unix_time_from_system()
@@ -115,7 +106,6 @@ func create_default_settings(user_id: int) -> void:
 	"""
 	DatabaseManager.db.query_with_bindings(query, [user_id, timestamp])
 	
-	print("[INACTIVITY] Configuracoes padrao criadas")
 
 func save_settings() -> void:
 	if not AccountManager.is_logged_in:
@@ -136,14 +126,11 @@ func save_settings() -> void:
 		user_id
 	])
 	
-	print("[INACTIVITY] Configuracoes salvas")
 
 func set_enabled(enabled: bool) -> void:
 	is_enabled = enabled
 	save_settings()
-	print("[INACTIVITY] Monitor ", "ativado" if enabled else "desativado")
 
 func set_timeout(minutes: float) -> void:
 	inactivity_timeout = minutes * 60
 	save_settings()
-	print("[INACTIVITY] Timeout: ", minutes, " minutos")

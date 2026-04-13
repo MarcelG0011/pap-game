@@ -4,16 +4,13 @@ var db: SQLite = null
 var db_path: String = "user://game.db"
 
 func _ready() -> void:
-	print("[DATABASE] Inicializando banco de dados...")
 	open_database()
 	create_tables()
-	print("[DATABASE] Banco de dados pronto!")
 
 func open_database() -> void:
 	db = SQLite.new()
 	db.path = db_path
 	db.open_db()
-	print("[DATABASE] Banco aberto em: ", db_path)
 
 func create_tables() -> void:
 	# Tabela de usuarios
@@ -132,9 +129,7 @@ func create_tables() -> void:
 	"""
 	db.query(user_settings_table)
 	
-	print("[DATABASE] Tabelas criadas/verificadas")
 
 func close_database() -> void:
 	if db:
 		db.close_db()
-		print("[DATABASE] Banco fechado")

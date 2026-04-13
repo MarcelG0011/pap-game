@@ -5,8 +5,13 @@
 [ext_resource type="Script" uid="uid://dbfi326cysqsk" path="res://levels/props/test_dummy/spike_dummy.gd" id="3_fnuwn"]
 [ext_resource type="Script" uid="uid://dwywwp8rlosai" path="res://general/scripts/damage_area.gd" id="4_48ey0"]
 [ext_resource type="AudioStream" uid="uid://hne80dt2qgan" path="res://enemies/slime/slime_hit.wav" id="5_ikk1f"]
-[ext_resource type="Script" uid="uid://xyom0trgyish" path="res://enemies/scripts/edge_detector.gd" id="6_4ck1q"]
 [ext_resource type="Script" uid="uid://c8ge8tgnu8nl6" path="res://enemies/scripts/enemy_state_machine.gd" id="7_48ey0"]
+[ext_resource type="Script" uid="uid://o7jsgvu386yc" path="res://enemies/scripts/states/es_walk.gd" id="8_4ck1q"]
+[ext_resource type="Script" uid="uid://bklu11k0ow4ey" path="res://enemies/scripts/decision_engines/decision_engine_basic.gd" id="8_ikk1f"]
+[ext_resource type="Script" uid="uid://4bkriykcbcn7" path="res://enemies/scripts/states/es_stun.gd" id="9_lid2w"]
+[ext_resource type="Script" uid="uid://clnqbtbsbiu88" path="res://enemies/scripts/states/es_death.gd" id="10_mkd2r"]
+[ext_resource type="AudioStream" uid="uid://lcrj7bcl5nvr" path="res://enemies/slime/slime_death.wav" id="11_mkd2r"]
+[ext_resource type="Script" uid="uid://5xvmro7qte06" path="res://enemies/scripts/sensors/edge_sensor.gd" id="12_mkd2r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p3117"]
 radius = 8.0
@@ -94,9 +99,7 @@ _data = {
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_fnuwn")
-health = null
-affected_by_gravity = null
-face_left_on_start = null
+face_left_on_start = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1873832325]
 position = Vector2(0, -14)
@@ -114,6 +117,7 @@ shape = SubResource("CapsuleShape2D_p3117")
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("3_fnuwn")
+damage = 5.0
 metadata/_custom_type_script = "uid://dbfi326cysqsk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea" unique_id=146499118]
@@ -132,14 +136,35 @@ metadata/_custom_type_script = "uid://dwywwp8rlosai"
 position = Vector2(0, -9.75)
 shape = SubResource("RectangleShape2D_hjh35")
 
-[node name="EdgeDetector" type="RayCast2D" parent="." unique_id=650109200]
-position = Vector2(9, 0)
-target_position = Vector2(0, 8)
-script = ExtResource("6_4ck1q")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=469395900]
 libraries/ = SubResource("AnimationLibrary_hjh35")
 
 [node name="EnemyStateMachine" type="Node" parent="." unique_id=650741339]
 script = ExtResource("7_48ey0")
 metadata/_custom_type_script = "uid://c8ge8tgnu8nl6"
+
+[node name="ESWalk" type="Node" parent="EnemyStateMachine" unique_id=158070764]
+unique_name_in_owner = true
+script = ExtResource("8_4ck1q")
+metadata/_custom_type_script = "uid://o7jsgvu386yc"
+
+[node name="ESStun" type="Node" parent="EnemyStateMachine" unique_id=149303691]
+unique_name_in_owner = true
+script = ExtResource("9_lid2w")
+metadata/_custom_type_script = "uid://4bkriykcbcn7"
+
+[node name="ESDeath" type="Node" parent="EnemyStateMachine" unique_id=547607570]
+unique_name_in_owner = true
+script = ExtResource("10_mkd2r")
+death_audio = ExtResource("11_mkd2r")
+metadata/_custom_type_script = "uid://clnqbtbsbiu88"
+
+[node name="DecisionEngineBasic" type="Node" parent="." unique_id=1467727858]
+script = ExtResource("8_ikk1f")
+metadata/_custom_type_script = "uid://bklu11k0ow4ey"
+
+[node name="EdgeSensor" type="RayCast2D" parent="." unique_id=1348577717]
+position = Vector2(10, -1)
+target_position = Vector2(0, 10)
+script = ExtResource("12_mkd2r")
+metadata/_custom_type_script = "uid://5xvmro7qte06"

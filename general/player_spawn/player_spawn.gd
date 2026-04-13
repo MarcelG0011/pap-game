@@ -8,10 +8,8 @@ func _ready() -> void:
 	
 	if get_tree().get_first_node_in_group( "Player" ):
 		#We have a Player!
-		print( "We have a Player" )
 		return
 		
-	print( "No Player found" )
 	#Instantiate a new instance of our player scene
 	var player : Player = load("uid://cklghektmr05n").instantiate()
 	get_tree().root.add_child( player )

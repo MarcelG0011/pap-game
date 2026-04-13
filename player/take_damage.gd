@@ -30,6 +30,8 @@ func handle_input( _event : InputEvent ) -> PlayerState:
 func process( _delta: float ) -> PlayerState:
 	time -= _delta
 	if time <= 0:
+		if player.hp <= 0:
+			return death
 		return idle
 	return null
 	
@@ -38,6 +40,8 @@ func physics_process( _delta: float ) -> PlayerState:
 	return next_state
 
 func _on_damage_taken( attack_area : AttackArea ) -> void:
+	if player.current_state == death:
+		return
 	player.change_state( self )
 	if attack_area.global_position.x < player.global_position.x:
 		dir = 1.0

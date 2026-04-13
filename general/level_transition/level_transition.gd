@@ -35,24 +35,14 @@ func _ready() -> void:
 	pass
 	
 func _on_player_entered( _n : Node2D ) -> void:
-	print("=== PLAYER ENTROU ===")
-	print("LevelTransition: ", name)
-	print("Location: ", location)
-	print("Player pos: ", _n.global_position)
-	print("Transition pos: ", global_position)
-	print("Offset calculado: ", get_offset(_n))
-	print("Target: ", target_area_name)
+	
 	SceneManager.transition_scene( target_level, target_area_name, get_offset( _n ), get_transition_direction() )
 	pass
 
 func _on_new_scene_ready(target_name : String, offset : Vector2) -> void:
-	print("=== NOVA CENA PRONTA ===")
-	print("Target name: ", target_name)
-	print("Meu name: ", name)
-	print("Offset recebido: ", offset)
+
 	if target_name == name:
 		var player : Node = get_tree().get_first_node_in_group( "Player" )
-		print("Player vai spawnar em: ", player.global_position)
 		player.global_position = global_position + offset
 	pass
 

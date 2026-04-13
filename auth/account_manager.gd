@@ -10,7 +10,6 @@ var current_user: Dictionary = {}
 var is_logged_in: bool = false
 
 func _ready() -> void:
-	print("[ACCOUNT MANAGER] Sistema de contas inicializado")
 	check_saved_session()
 
 # SIGNUP
@@ -52,7 +51,6 @@ func create_account(username: String, email: String, password: String) -> bool:
 	if not DatabaseManager.db.query_result.is_empty():
 		var user_id = DatabaseManager.db.query_result[0]["id"]
 		
-		print("[ACCOUNT] Conta criada: ", username, " (ID: ", user_id, ")")
 		
 		# Cria entrada de moedas
 		var currency_query = """
@@ -63,7 +61,6 @@ func create_account(username: String, email: String, password: String) -> bool:
 		
 		return true
 	else:
-		print("[ACCOUNT] Erro ao criar conta")
 		return false
 
 # LOGIN
@@ -95,7 +92,6 @@ func login(username_or_email: String, password: String, remember: bool = false) 
 		save_session(user["id"])
 	
 	login_successful.emit(user["username"])
-	print("[ACCOUNT] Login bem-sucedido: ", user["username"])
 	return true
 
 func logout() -> void:
@@ -105,8 +101,7 @@ func logout() -> void:
 	current_user.clear()
 	is_logged_in = false
 	logout_complete.emit()
-	print("[ACCOUNT] Logout completo")
-
+	
 func get_username() -> String:
 	return current_user.get("username", "")
 
@@ -131,8 +126,6 @@ func save_session(user_id: int) -> void:
 	"""
 	DatabaseManager.db.query_with_bindings(insert_session, [user_id, session_token, expires_at])
 	
-	print("[ACCOUNT] Sessao salva para user_id: ", user_id)
-
 func check_saved_session() -> void:
 	var current_time = Time.get_unix_time_from_system()
 	
@@ -151,7 +144,6 @@ func check_saved_session() -> void:
 		var user = DatabaseManager.db.query_result[0]
 		current_user = user
 		is_logged_in = true
-		print("[ACCOUNT] Sessao restaurada: ", user["username"])
 
 func clear_session() -> void:
 	if current_user.has("id"):
@@ -180,7 +172,6 @@ func set_security_question(question: String, answer: String) -> void:
 	"""
 	DatabaseManager.db.query_with_bindings(query, [question, answer_hash, current_user["id"]])
 	
-	print("[ACCOUNT] Pergunta de seguranca configurada")
 
 func verify_security_answer(username: String, answer: String) -> bool:
 	var answer_hash = hash_password(answer.to_lower())
@@ -199,7 +190,6 @@ func reset_password(username: String, new_password: String) -> bool:
 	var query = "UPDATE users SET password_hash = ? WHERE username = ?;"
 	DatabaseManager.db.query_with_bindings(query, [password_hash, username])
 	
-	print("[ACCOUNT] Senha resetada para: ", username)
 	return true
 
 func get_security_question(username: String) -> String:

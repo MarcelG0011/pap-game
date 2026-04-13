@@ -10,7 +10,6 @@ extends Control
 
 
 func _ready() -> void:
-	print("[SETTINGS] Tela de configuracoes inicializada")
 	
 	# Conecta sinais
 	enabled_checkbox.toggled.connect(_on_enabled_toggled)
@@ -53,10 +52,6 @@ func _on_save_pressed() -> void:
 	# Salva configurações
 	InactivityMonitor.set_enabled(enabled_checkbox.button_pressed)
 	InactivityMonitor.set_timeout(timeout_slider.value)
-	
-	print("[SETTINGS] Configuracoes salvas!")
-	print("[SETTINGS] Inatividade habilitada: ", enabled_checkbox.button_pressed)
-	print("[SETTINGS] Timeout: ", timeout_slider.value, " minutos")
 	
 	AutosaveManager.set_autosave_enabled(autosave_checkbox.button_pressed)
 	AutosaveManager.set_autosave_interval(interval_slider.value)

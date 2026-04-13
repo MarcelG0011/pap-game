@@ -12,21 +12,19 @@ var next_state : PlayerState
 @onready var crouch: PlayerStateCrouch = %Crouch
 @onready var attack: PlayerStateAttack = %Attack
 @onready var take_damage: PlayerStateTakeDamage = %TakeDamage
+@onready var death: PlayerStateDeath = %Death
 #endregion
 
 # What happens when this state is initialized?
 func init() -> void:
-	print("init! ", name)
 	pass
 	
 # What happens when this state is initialized?
 func enter() -> void:
-	print("enter: ", name)
 	pass
 	
 # What happens when we exit state?
 func exit() -> void :
-	print("exit: ", name)
 	pass
 	
 # What happens when an input is pressed?

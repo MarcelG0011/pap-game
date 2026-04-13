@@ -66,6 +66,9 @@ navigation_visibility_mode = 2
 [node name="Torch" parent="Props" unique_id=418032343 instance=ExtResource("6_tqdi0")]
 position = Vector2(226, 250)
 
+[node name="Torch2" parent="Props" unique_id=311956471 instance=ExtResource("6_tqdi0")]
+position = Vector2(816, 248)
+
 [node name="TestDummy" parent="Props" unique_id=451375653 instance=ExtResource("5_1gdvh")]
 position = Vector2(659, 252)
 

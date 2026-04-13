@@ -2,16 +2,13 @@
 @icon("res://general/icons/enemy.svg")
 class_name Enemy extends CharacterBody2D
 
-signal directioon_changed( new_dir)
+signal direction_changed( new_dir)
 signal was_hit( a : AttackArea )
 signal was_killed()
 
 @export var health : float = 3
 @export var affected_by_gravity : bool = true
 @export var face_left_on_start : bool = false
-
-@export_category( "Audio" )
-@export var death_sound : AudioStream
 
 var sprite : Sprite2D
 var animation : AnimationPlayer
@@ -70,7 +67,7 @@ func _physics_process(delta: float) -> void:
 ##change_direction - and flip sprite
 func change_dir( new_dir : float ) -> void:
 	blackboard.dir = new_dir
-	directioon_changed.emit( new_dir )
+	direction_changed.emit( new_dir )
 	if sprite:
 		if new_dir < 0:
 			sprite.flip_h = true
@@ -89,6 +86,7 @@ func play_animation( anim_name : String ) -> void:
 
 ## Handle taking damage here as central hub
 func _on_damage_taken( a : AttackArea ) -> void:
+	blackboard.damage_source = a 
 	blackboard.health -= a.damage 
 	if blackboard.health <= 0:
 		damage_area.queue_free() 

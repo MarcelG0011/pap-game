@@ -22,7 +22,6 @@ var is_saving: bool = false
 
 func _ready() -> void:
 	load_configuration()
-	print("[SAVE MANAGER] Sistema inicializado")
 	_connect_signals()
 
 func _unhandled_key_input(event: InputEvent) -> void:
@@ -70,7 +69,6 @@ func create_new_game_save(slot: int) -> bool:
 	is_saving = false
 	
 	if success:
-		print("[SAVE MANAGER] Novo jogo criado - Slot: ", slot)
 		save_completed.emit(slot)
 	else:
 		push_error("[SAVE MANAGER] Falha ao criar novo jogo")
@@ -106,7 +104,6 @@ func save_game() -> bool:
 	is_saving = false
 	
 	if success:
-		print("[SAVE MANAGER] Jogo salvo - Slot: ", current_slot, " Cena: ", scene_path)
 		save_completed.emit(current_slot)
 	else:
 		push_error("[SAVE MANAGER] Falha ao salvar")
@@ -142,7 +139,6 @@ func load_game(slot: int) -> bool:
 		load_failed.emit("Invalid scene in save")
 		return false
 	
-	print("[SAVE MANAGER] Carregando jogo - Slot: ", slot, " Cena: ", scene_path)
 	
 	_pause_game_systems()
 	
@@ -151,7 +147,6 @@ func load_game(slot: int) -> bool:
 	is_loading = false
 	
 	if load_success:
-		print("[SAVE MANAGER] Jogo carregado com sucesso")
 		load_completed.emit(slot)
 	else:
 		push_error("[SAVE MANAGER] Falha ao carregar jogo")
@@ -268,11 +263,6 @@ func _setup_player() -> bool:
 		push_error("[SAVE MANAGER] Player nao encontrado apos timeout")
 		return false
 	
-	print("[SAVE MANAGER] ===== SETUP PLAYER DEBUG =====")
-	print("[SAVE MANAGER] Save data completo: ", save_data)
-	print("[SAVE MANAGER] HP no save: ", save_data.get("hp"), "/", save_data.get("max_hp"))
-	print("[SAVE MANAGER] Position no save: (", save_data.get("position_x"), ", ", save_data.get("position_y"), ")")
-	print("[SAVE MANAGER] Scene no save: ", save_data.get("scene_path"))
 	
 	player.max_hp = save_data.get("max_hp", 20)
 	player.hp = save_data.get("hp", 20)
@@ -281,9 +271,7 @@ func _setup_player() -> bool:
 	player.ground_slam = save_data.get("ground_slam", 0) == 1
 	player.morph_roll = save_data.get("morph_roll", 0) == 1
 	
-	print("[SAVE MANAGER] Player HP configurado: ", player.hp, "/", player.max_hp)
-	print("[SAVE MANAGER] Player posição ANTES: ", player.global_position)
-	
+
 	await get_tree().process_frame
 	
 	var spawn_pos = Vector2(
@@ -291,12 +279,9 @@ func _setup_player() -> bool:
 		save_data.get("position_y", DEFAULT_SPAWN_POSITION.y)
 	)
 	
-	print("[SAVE MANAGER] Spawn pos calculado: ", spawn_pos)
 	
 	player.global_position = spawn_pos
 	
-	print("[SAVE MANAGER] Player posição DEPOIS: ", player.global_position)
-	print("[SAVE MANAGER] ===== FIM DEBUG =====")
 	
 	return true
 
@@ -346,9 +331,7 @@ func _on_scene_entered(scene_path: String) -> void:
 		return
 	
 	if not is_loading and not discovered_areas.has(scene_path):
-		discovered_areas.append(scene_path)
-		print("[SAVE MANAGER] Nova area descoberta: ", scene_path, " (", discovered_areas.size(), " total)")
-		
+		discovered_areas.append(scene_path)		
 		if _get_player() and not is_loading and not is_saving:
 			save_game()
 
@@ -418,7 +401,6 @@ func _extract_player_stats(player: Player) -> Dictionary:
 	}
 
 func _return_to_title() -> void:
-	print("[SAVE MANAGER] Retornando ao title screen")
 	get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
 
 

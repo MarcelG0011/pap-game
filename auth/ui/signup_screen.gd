@@ -11,7 +11,6 @@ extends Control
 var is_signup_processing: bool = false
 
 func _ready() -> void:
-	print("[SIGNUP] Tela de cadastro inicializada")
 	
 	# Conecta sinais
 	signup_button.pressed.connect(_on_signup_pressed)
@@ -49,13 +48,12 @@ func _on_signup_pressed() -> void:
 	AccountManager.signup(username, email, password, confirm_password)
 
 func _on_signup_successful(username: String) -> void:
-	print("[SIGNUP] Conta criada: ", username)
 	
 	# Faz login automaticamente
 	AccountManager.login(username, password_input.text, true)
 	
 	AccountManager.set_security_question(
-		"Qual o nome do seu primeiro animal de estimacao?",
+		"When is your birthday?",
 		"default"  # Resposta padrão (usuário pode mudar depois)
 	)
 	
@@ -67,7 +65,6 @@ func _on_signup_successful(username: String) -> void:
 	go_to_title_screen()
 
 func _on_signup_failed(error: String) -> void:
-	print("[SIGNUP] Falhou: ", error)
 	
 	is_signup_processing = false
 	signup_button.disabled = false

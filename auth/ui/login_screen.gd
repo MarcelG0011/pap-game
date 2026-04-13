@@ -12,7 +12,6 @@ extends Control
 var is_login_processing: bool = false
 
 func _ready() -> void:
-	print("[LOGIN] Tela de login inicializada")
 	
 	hide_game_huds()
 	
@@ -34,7 +33,6 @@ func _ready() -> void:
 	
 	# Verifica auto-login
 	if AccountManager.is_logged_in:
-		print("[LOGIN] Usuario ja logado, indo para title screen")
 		go_to_title_screen()
 
 func hide_game_huds() -> void:
@@ -73,7 +71,6 @@ func _on_login_pressed() -> void:
 	AccountManager.login(username, password, remember)
 
 func _on_login_successful(username: String) -> void:
-	print("[LOGIN] Login bem-sucedido: ", username)
 	
 	# Animação de sucesso
 	var tween = create_tween()
@@ -83,7 +80,6 @@ func _on_login_successful(username: String) -> void:
 	go_to_title_screen()
 
 func _on_login_failed(error: String) -> void:
-	print("[LOGIN] Login falhou: ", error)
 	
 	is_login_processing = false
 	login_button.disabled = false
@@ -94,14 +90,12 @@ func _on_login_failed(error: String) -> void:
 	password_input.grab_focus()
 
 func _on_signup_pressed() -> void:
-	print("[LOGIN] Indo para tela de cadastro")
 	
 	var signup_screen = load("res://auth/ui/signup_screen.tscn").instantiate()
 	get_tree().root.add_child(signup_screen)
 	queue_free()
 
 func _on_forgot_password_pressed() -> void:
-	print("[LOGIN] Indo para recuperacao de senha")
 	
 	var forgot_screen = load("res://auth/ui/forgot_password_screen.tscn").instantiate()
 	get_tree().root.add_child(forgot_screen)

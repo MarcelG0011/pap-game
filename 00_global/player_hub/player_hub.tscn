@@ -29,8 +29,9 @@ func _ready() -> void:
 	pass 
 
 func _on_pressed() -> void:
-	var pos : Vector2 = get_tree().get_first_node_in_group(\"Player\").global_position
-	VisualEffects.hit_particles( pos, Vector2(1, 0), particle_settings )
+	#var pos : Vector2 = get_tree().get_first_node_in_group(\"Player\").global_position
+	#VisualEffects.hit_particles( pos, Vector2(1, 0), particle_settings )
+	PlayerHub.show_game_over()
 	pass
 "
 
@@ -86,16 +87,78 @@ texture_progress = SubResource("GradientTexture2D_u32a5")
 
 [node name="Button2" type="Button" parent="Control" unique_id=506851457]
 layout_mode = 0
-offset_left = 363.0
-offset_top = 10.0
+offset_left = 342.0
+offset_top = 11.0
 offset_right = 471.0
-offset_bottom = 33.0
-text = "Test Particles"
+offset_bottom = 34.0
+text = "Test Game Over"
 script = SubResource("GDScript_l7cnt")
 particle_settings = ExtResource("4_u32a5")
 
-[node name="CurrencyDisplay" parent="." unique_id=1741465259 instance=ExtResource("3_l7cnt")]
+[node name="CurrencyDisplay" parent="Control" unique_id=1741465259 instance=ExtResource("3_l7cnt")]
+layout_mode = 0
 offset_left = 133.0
 offset_top = 2.0
 offset_right = 133.0
 offset_bottom = 2.0
+
+[node name="GameOver" type="Control" parent="Control" unique_id=1307714221]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control/GameOver" unique_id=829603853]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.87100005)
+
+[node name="Label" type="Label" parent="Control/GameOver" unique_id=1680398160]
+modulate = Color(0.47369397, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -7.5
+offset_right = 20.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/GameOver" unique_id=1222973331]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = 31.0
+offset_right = 151.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadButton" type="Button" parent="Control/GameOver/HBoxContainer" unique_id=1427912272]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "load last save"
+
+[node name="QuitButton" type="Button" parent="Control/GameOver/HBoxContainer" unique_id=1670337952]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "quit to main menu"
