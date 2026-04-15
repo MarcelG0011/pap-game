@@ -29,9 +29,16 @@ func _ready() -> void:
 	pass 
 
 func _on_pressed() -> void:
+	#Test Particles
 	#var pos : Vector2 = get_tree().get_first_node_in_group(\"Player\").global_position
 	#VisualEffects.hit_particles( pos, Vector2(1, 0), particle_settings )
-	PlayerHub.show_game_over()
+	
+	#Test Game Over
+	#PlayerHub.show_game_over()
+	
+	#Test Dash
+	var player : Player = get_tree().get_first_node_in_group( \"player\" )
+	player.dash = !player.dash
 	pass
 "
 
@@ -91,7 +98,7 @@ offset_left = 342.0
 offset_top = 11.0
 offset_right = 471.0
 offset_bottom = 34.0
-text = "Test Game Over"
+text = "Test Dash"
 script = SubResource("GDScript_l7cnt")
 particle_settings = ExtResource("4_u32a5")
 

@@ -1,90 +1,66 @@
-#lockscreen.gd
-extends Control
+# res://auth/lockscreen.gd
+extends CanvasLayer
 
 signal unlock_requested(password: String)
 
-@onready var time_label: Label = %TimeLabel
-@onready var date_label: Label = %DateLabel
 @onready var password_input: LineEdit = %PasswordInput
 @onready var unlock_button: Button = %UnlockButton
 @onready var error_label: Label = %ErrorLabel
-
-var failed_attempts: int = 0
-var max_attempts: int = 5
+@onready var background: ColorRect = %Background  # Fundo que cobre tudo
 
 func _ready() -> void:
+	# Process mode ALWAYS para funcionar pausado
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	set_anchors_preset(Control.PRESET_FULL_RECT)
-	size = get_viewport_rect().size
-	position = Vector2.ZERO
+	# PAUSA O JOGO
+	get_tree().paused = true
+	
+	# Garante que está visível
+	visible = true
 	
 	# Conecta sinais
-	unlock_button.pressed.connect(_on_unlock_pressed)
-	password_input.text_submitted.connect(_on_password_submitted)
+	if unlock_button:
+		unlock_button.pressed.connect(_on_unlock_pressed)
 	
-	# Foco no input
-	password_input.grab_focus()
+	if password_input:
+		password_input.text_submitted.connect(_on_password_submitted)
+		password_input.grab_focus()
 	
-	# Atualiza relógio
-	update_time()
-	
-
-func _process(_delta: float) -> void:
-	update_time()
-
-func update_time() -> void:
-	var time_dict = Time.get_datetime_dict_from_system()
-	
-	# Hora
-	time_label.text = "%02d:%02d" % [time_dict.hour, time_dict.minute]
-	
-	# Data
-	var months = ["January", "February", "March", "April", "May", "June",
-				  "July", "August", "September", "October", "November", "December"]
-	date_label.text = "%s %d, %d" % [months[time_dict.month - 1], time_dict.day, time_dict.year]
+	print("[LOCKSCREEN] Tela de bloqueio ativada - Jogo pausado")
 
 func _on_unlock_pressed() -> void:
-	attempt_unlock()
+	if password_input:
+		_attempt_unlock(password_input.text)
 
-func _on_password_submitted(_text: String) -> void:
-	attempt_unlock()
+func _on_password_submitted(password: String) -> void:
+	_attempt_unlock(password)
 
-func attempt_unlock() -> void:
-	var password = password_input.text
-	
+func _attempt_unlock(password: String) -> void:
 	if password.is_empty():
-		show_error("Digite sua senha")
+		_show_error("Digite a senha")
 		return
 	
 	unlock_requested.emit(password)
 
 func show_error(message: String) -> void:
-	failed_attempts += 1
-	
-	error_label.text = "%s (%d/%d)" % [message, failed_attempts, max_attempts]
-	error_label.visible = true
-	
-	password_input.text = ""
-	password_input.grab_focus()
-	
-	# Shake animation
-	var tween = create_tween()
-	tween.tween_property(password_input, "position:x", password_input.position.x + 10, 0.05)
-	tween.tween_property(password_input, "position:x", password_input.position.x - 10, 0.05)
-	tween.tween_property(password_input, "position:x", password_input.position.x + 10, 0.05)
-	tween.tween_property(password_input, "position:x", password_input.position.x, 0.05)
-	
-	# Bloqueia permanentemente após max tentativas
-	if failed_attempts >= max_attempts:
-		lock_permanently()
+	_show_error(message)
 
-func lock_permanently() -> void:
-	error_label.text = "To much try's! Account locked."
-	password_input.editable = false
-	unlock_button.disabled = true
+func _show_error(message: String) -> void:
+	if error_label:
+		error_label.text = message
+		error_label.visible = true
+		
+		await get_tree().create_timer(3.0).timeout
+		
+		if error_label:
+			error_label.visible = false
 	
-	# Logout automático após 5 segundos
-	await get_tree().create_timer(5.0).timeout
-	AccountManager.logout()
-	get_tree().change_scene_to_file("res://auth/ui/login_screen.tscn")
+	if password_input:
+		password_input.clear()
+		password_input.grab_focus()
+
+func close() -> void:
+	# DESPAUSA O JOGO
+	get_tree().paused = false
+	queue_free()
+	print("[LOCKSCREEN] Tela desbloqueada - Jogo despausado")

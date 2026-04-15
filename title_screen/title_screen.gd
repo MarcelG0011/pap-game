@@ -30,7 +30,11 @@ var is_creating_game: bool = false
 func _ready() -> void:
 	
 	_initialize()
+	if settings_button:
+		settings_button.pressed.connect(_open_settings)
 
+
+	
 func _initialize() -> void:
 	_hide_game_huds()
 	
@@ -263,10 +267,19 @@ func _open_leaderboard() -> void:
 	)
 
 func _open_settings() -> void:
-	print("[TITLE] Abrindo configuracoes...")
+	# Carrega a cena
+	var settings_scene = load("res://ui/settings/settings_screen.tscn")
 	
-	var settings = load("res://auth/ui/settings_screen.tscn").instantiate()
-	add_child(settings)
+	if not settings_scene:
+		push_error("[TITLE] Settings scene não encontrada!")
+		return
+	
+	var settings = settings_scene.instantiate()
+	
+	# Adiciona como filho do root (não da title screen)
+	get_tree().root.add_child(settings)
+	
+	print("[TITLE] Settings aberto")
 
 func _validate_user_logged_in() -> bool:
 	if not AccountManager or not AccountManager.is_logged_in:

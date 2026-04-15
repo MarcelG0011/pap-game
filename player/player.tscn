@@ -13,6 +13,8 @@
 [ext_resource type="Script" uid="uid://ccs2ck0lfmrt2" path="res://general/scripts/attack_area.gd" id="9_hg6s5"]
 [ext_resource type="Script" uid="uid://ck5vvl73hb8ea" path="res://player/states/death.gd" id="9_kb6p2"]
 [ext_resource type="Script" uid="uid://kbvktwiocg3b" path="res://player/scripts/player_camera.gd" id="10_2ieo8"]
+[ext_resource type="Script" uid="uid://bjnf24ep47cpt" path="res://player/states/dash.gd" id="10_wodsf"]
+[ext_resource type="Script" uid="uid://bsanl3w7gqxuu" path="res://player/scripts/player_sprite.gd" id="12_32hag"]
 [ext_resource type="Script" uid="uid://dwywwp8rlosai" path="res://general/scripts/damage_area.gd" id="12_ebec5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_boad6"]
@@ -264,6 +266,23 @@ tracks/3/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_32hag"]
+resource_name = "dash"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [29]
+}
+
 [sub_resource type="Animation" id="Animation_yllr7"]
 resource_name = "take_damage"
 length = 0.3
@@ -291,6 +310,7 @@ _data = {
 &"Run": SubResource("Animation_8t03j"),
 &"attack": SubResource("Animation_kb6p2"),
 &"attack_2": SubResource("Animation_wodsf"),
+&"dash": SubResource("Animation_32hag"),
 &"take_damage": SubResource("Animation_yllr7")
 }
 
@@ -359,11 +379,16 @@ script = ExtResource("8_yllr7")
 unique_name_in_owner = true
 script = ExtResource("9_kb6p2")
 
+[node name="Dash" type="Node" parent="States" unique_id=5684072]
+unique_name_in_owner = true
+script = ExtResource("10_wodsf")
+
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1647728164]
 position = Vector2(1, -39)
 texture = ExtResource("7_boad6")
 hframes = 16
 vframes = 4
+script = ExtResource("12_32hag")
 
 [node name="AttackSprite2D" type="Sprite2D" parent="Sprite2D" unique_id=384727541]
 unique_name_in_owner = true
@@ -408,7 +433,6 @@ script = ExtResource("10_2ieo8")
 
 [node name="AttackArea" type="Area2D" parent="." unique_id=1192131283]
 unique_name_in_owner = true
-visible = false
 position = Vector2(8, -24)
 collision_layer = 0
 collision_mask = 96

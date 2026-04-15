@@ -13,6 +13,7 @@ var next_state : PlayerState
 @onready var attack: PlayerStateAttack = %Attack
 @onready var take_damage: PlayerStateTakeDamage = %TakeDamage
 @onready var death: PlayerStateDeath = %Death
+@onready var dash: PlayerStateDash = %Dash
 #endregion
 
 # What happens when this state is initialized?

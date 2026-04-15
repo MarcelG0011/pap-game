@@ -30,14 +30,8 @@ func exit() -> void :
 func handle_input( _event : InputEvent ) -> PlayerState:
 	if _event.is_action_pressed( "attack" ):
 		timer = combo_time_window
-	## ↓ + JUMP → descer da plataforma
-	#if _event.is_action_pressed( "jump" ):
-		#if Input.is_action_pressed("down") \
-		#and player.one_way_plataform_ray_cast.is_colliding():
-			#player.position.y += 10
-			#return fall
-		#else:
-			#return jump
+	if _event.is_action_pressed( "dash" ) and player.can_dash() :
+		return dash
 	return next_state
 	
 func process( delta: float ) -> PlayerState:

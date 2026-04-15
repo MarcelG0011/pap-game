@@ -1,69 +1,90 @@
-extends Control
+# res://ui/settings/settings_screen.gd
+extends CanvasLayer
 
-@onready var enabled_checkbox: CheckBox = %EnabledCheckbox
-@onready var timeout_slider: HSlider = %TimeoutSlider
-@onready var timeout_value: Label = %TimeoutValue
-@onready var save_button: Button = %SaveButton
-@onready var back_button: Button = %BackButton
+# Referencias aos controles
+@onready var music_slider: HSlider = %MusicSlider
+@onready var sfx_slider: HSlider = %SFXSlider
+@onready var ui_slider: HSlider = %UISlider
 @onready var autosave_checkbox: CheckBox = %AutosaveCheckbox
-@onready var interval_slider: HSlider = %IntervalSlider
-
+@onready var autosave_interval_spinbox: SpinBox = %AutosaveIntervalSpinbox
+@onready var inactivity_checkbox: CheckBox = %InactivityCheckbox
+@onready var inactivity_timeout_spinbox: SpinBox = %InactivityTimeoutSpinbox
+@onready var back_button: Button = %BackButton
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	
-	# Conecta sinais
-	enabled_checkbox.toggled.connect(_on_enabled_toggled)
-	timeout_slider.value_changed.connect(_on_timeout_changed)
-	save_button.pressed.connect(_on_save_pressed)
-	back_button.pressed.connect(_on_back_pressed)
+	# Conecta sliders de áudio (SEMPRE existem)
+	if music_slider:
+		music_slider.value_changed.connect(_on_music_changed)
+		music_slider.value = AudioServer.get_bus_volume_db(2)
 	
-	# Conecta autosave
-	autosave_checkbox.toggled.connect(_on_autosave_toggled)
-	interval_slider.value_changed.connect(_on_interval_changed)
+	if sfx_slider:
+		sfx_slider.value_changed.connect(_on_sfx_changed)
+		sfx_slider.value = AudioServer.get_bus_volume_db(3)
 	
-	# Carrega configurações atuais
-	load_current_settings()
+	if ui_slider:
+		ui_slider.value_changed.connect(_on_ui_changed)
+		ui_slider.value = AudioServer.get_bus_volume_db(4)
+	
+	# Conecta autosave (SE EXISTIR)
+	if autosave_checkbox:
+		autosave_checkbox.toggled.connect(_on_autosave_toggled)
+		autosave_checkbox.button_pressed = AutosaveManager.autosave_enabled
+	else:
+		push_warning("[SETTINGS] AutosaveCheckbox não encontrado")
+	
+	if autosave_interval_spinbox:
+		autosave_interval_spinbox.value_changed.connect(_on_autosave_interval_changed)
+		autosave_interval_spinbox.value = AutosaveManager.autosave_interval / 60.0
+	
+	# Conecta inactividade (SE EXISTIR)
+	if inactivity_checkbox:
+		inactivity_checkbox.toggled.connect(_on_inactivity_toggled)
+		if InactivityMonitor:
+			inactivity_checkbox.button_pressed = InactivityMonitor.inactivity_enabled
+	
+	if inactivity_timeout_spinbox:
+		inactivity_timeout_spinbox.value_changed.connect(_on_inactivity_timeout_changed)
+		if InactivityMonitor:
+			inactivity_timeout_spinbox.value = InactivityMonitor.inactivity_timeout / 60.0
+	
+	# Botão voltar
+	if back_button:
+		back_button.pressed.connect(_on_back_pressed)
+	
+	print("[SETTINGS] Inicializado com sucesso")
 
-func load_current_settings() -> void:
-	enabled_checkbox.button_pressed = InactivityMonitor.is_enabled
-	timeout_slider.value = InactivityMonitor.inactivity_timeout / 60.0  # Converte segundos para minutos
-	autosave_checkbox.button_pressed = AutosaveManager.autosave_enabled
-	interval_slider.value = AutosaveManager.autosave_interval / 60.0
-	_update_timeout_label(timeout_slider.value)
+# Audio callbacks
+func _on_music_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(2, value)
+	SaveManager.save_configuration()
 
+func _on_sfx_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(3, value)
+	SaveManager.save_configuration()
+
+func _on_ui_changed(value: float) -> void:
+	AudioServer.set_bus_volume_db(4, value)
+	SaveManager.save_configuration()
+
+# Autosave callbacks
 func _on_autosave_toggled(enabled: bool) -> void:
-	interval_slider.editable = enabled
+	if AutosaveManager:
+		AutosaveManager.set_autosave_enabled(enabled)
 
-func _on_interval_changed(value: float) -> void:
-	# Atualiza label preview
-	pass
+func _on_autosave_interval_changed(minutes: float) -> void:
+	if AutosaveManager:
+		AutosaveManager.set_autosave_interval(minutes)
 
+# Inactivity callbacks
+func _on_inactivity_toggled(enabled: bool) -> void:
+	if InactivityMonitor:
+		InactivityMonitor.set_inactivity_enabled(enabled)
 
-func _on_enabled_toggled(enabled: bool) -> void:
-	timeout_slider.editable = enabled
-
-func _on_timeout_changed(value: float) -> void:
-	_update_timeout_label(value)
-
-func _update_timeout_label(minutes: float) -> void:
-	timeout_value.text = "%d min" % int(minutes)
-
-func _on_save_pressed() -> void:
-	# Salva configurações
-	InactivityMonitor.set_enabled(enabled_checkbox.button_pressed)
-	InactivityMonitor.set_timeout(timeout_slider.value)
-	
-	AutosaveManager.set_autosave_enabled(autosave_checkbox.button_pressed)
-	AutosaveManager.set_autosave_interval(interval_slider.value)
-	
-	# Feedback visual
-	save_button.text = "SAVED!"
-	save_button.disabled = true
-	
-	await get_tree().create_timer(1.0).timeout
-	
-	save_button.text = "SAVE SETTINGS"
-	save_button.disabled = false
+func _on_inactivity_timeout_changed(minutes: float) -> void:
+	if InactivityMonitor:
+		InactivityMonitor.set_inactivity_timeout(minutes)
 
 func _on_back_pressed() -> void:
 	queue_free()

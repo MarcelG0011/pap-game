@@ -5,6 +5,7 @@ func init() -> void:
 	
 func enter() -> void:
 	player.animation_player.play( "Idle" )
+	player.dash_count = 0
 	pass
 	
 func exit() -> void :
@@ -12,6 +13,8 @@ func exit() -> void :
 	
 func handle_input( _event : InputEvent ) -> PlayerState:
 
+	if _event.is_action_pressed( "dash" ) and player.can_dash():
+		return dash
 	if _event.is_action_pressed( "attack" ):
 		return attack
 	# ↓ + JUMP → descer da plataforma

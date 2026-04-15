@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://dqjshejv1b1qn" path="res://music/music_auto_trigger.gd" id="6_sw4be"]
 [ext_resource type="AudioStream" uid="uid://yhr6iex7p0h" path="res://music/dungeon_01.ogg" id="7_ql0uu"]
 [ext_resource type="Texture2D" uid="uid://dqxxuf2rytk0k" path="res://levels/tilesets/sprites/light_stream.jpg" id="8_ql0uu"]
+[ext_resource type="Script" uid="uid://csgrbxc54c4fi" path="res://general/scripts/breakable.gd" id="9_qgyou"]
+[ext_resource type="Script" uid="uid://dwywwp8rlosai" path="res://general/scripts/damage_area.gd" id="10_k6jl0"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ql0uu"]
 blend_mode = 1
@@ -16,6 +18,9 @@ light_mode = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yg251"]
 blend_mode = 1
 light_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unafu"]
+size = Vector2(113, 136)
 
 [node name="03" type="Node2D" unique_id=846817403]
 
@@ -33,7 +38,7 @@ target_area_name = "LevelTransition2"
 
 [node name="LevelTransition2" parent="." unique_id=2084264272 instance=ExtResource("2_bsmlx")]
 z_index = 1
-position = Vector2(737, 32)
+position = Vector2(736, 16)
 size = 4
 location = 2
 target_level = "uid://boy7l3kxr32dr"
@@ -141,5 +146,29 @@ track = ExtResource("7_ql0uu")
 metadata/_custom_type_script = "uid://dqjshejv1b1qn"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1017978335]
+visible = false
 color = Color(0.3529412, 0.36078432, 0.38039216, 1)
 blend_mode = 2
+
+[node name="Breakable" type="Node2D" parent="." unique_id=816230794]
+script = ExtResource("9_qgyou")
+metadata/_custom_type_script = "uid://csgrbxc54c4fi"
+
+[node name="TML_Ground2" type="TileMapLayer" parent="Breakable" unique_id=2004074085]
+z_index = 1
+position = Vector2(-5, 0)
+tile_map_data = PackedByteArray("AAAQAAAAZQAFAAAAAAAQAAEAZwAAAAAAAAAQAAMAZwAAAAAAAAAQAAIAZwAAAAAAAAAQAAQAZwAAAAAAAAATAAAAZQAEAAAAAAATAAEAZgAAAAAAAAATAAMAZgAAAAAAAAATAAIAZgAAAAAAAAATAAQAZgAAAAAAAAARAAAAAQAAAAAAAAASAAAAAQAAAAAAAAASAAEAAQAAAAAAAAARAAEAAQAAAAAAAAARAAIAAQAAAAAAAAASAAIAAQAAAAAAAAASAAMAAQAAAAAAAAARAAMAAQAAAAAAAAARAAQAAQAAAAAAAAASAAQAAQAAAAAAAAAQAAUAZQAFAAAAACATAAUAZQAEAAAAACARAAUAAQAAAAAAAAASAAUAAQAAAAAAAAA=")
+tile_set = ExtResource("4_sw4be")
+collision_visibility_mode = 2
+navigation_visibility_mode = 2
+
+[node name="DamageArea" type="Area2D" parent="Breakable" unique_id=1271770032]
+z_index = 1
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("10_k6jl0")
+metadata/_custom_type_script = "uid://dwywwp8rlosai"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable/DamageArea" unique_id=1971446134]
+position = Vector2(569, 97)
+shape = SubResource("RectangleShape2D_unafu")

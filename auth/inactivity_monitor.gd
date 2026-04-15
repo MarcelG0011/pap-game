@@ -5,6 +5,8 @@ var is_enabled: bool = true
 var inactivity_timeout: float = 120.0
 var last_input_time: float = 0.0
 
+var lockscreen : Node = null
+var lockscreen_active : bool = false
 var lockscreen_instance: Node = null
 
 func _ready() -> void:
@@ -50,11 +52,55 @@ func activate_lockscreen() -> void:
 	lockscreen.unlock_requested.connect(_on_unlock_requested)
 
 func _on_unlock_requested(password: String) -> void:
-	var password_hash = AccountManager.hash_password(password)
-	var correct_hash = AccountManager.current_user.get("password_hash", "")
+	print("[INACTIVITY] Tentativa de unlock...")
 	
-	if password_hash == correct_hash:
-		deactivate_lockscreen()
+	if not AccountManager.is_logged_in:
+		if lockscreen:
+			lockscreen.show_error("Não há usuário logado")
+		return
+	
+	# Verifica senha
+	var username = AccountManager.get_username()
+	var is_valid = AccountManager.verify_password(username, password)
+	
+	if is_valid:
+		print("[INACTIVITY] Senha correta - Desbloqueando")
+		_unlock_screen()
+	else:
+		print("[INACTIVITY] Senha incorreta")
+		if lockscreen:
+			lockscreen.show_error("Senha incorreta")
+
+func _show_lockscreen() -> void:
+	if lockscreen_active:
+		return
+	
+	print("[INACTIVITY] Mostrando lockscreen...")
+	
+	var lockscreen_scene = load("res://auth/lockscreen.tscn")
+	if not lockscreen_scene:
+		push_error("[INACTIVITY] Lockscreen scene não encontrada!")
+		return
+	
+	lockscreen = lockscreen_scene.instantiate()
+	
+	# ADICIONA AO ROOT (não ao InactivityMonitor)
+	get_tree().root.add_child(lockscreen)
+	
+	lockscreen_active = true
+	lockscreen.unlock_requested.connect(_on_unlock_requested)
+	
+	print("[INACTIVITY] Lockscreen ativo")
+
+func _unlock_screen() -> void:
+	if lockscreen:
+		lockscreen.close()  # Já despausa o jogo
+		lockscreen = null
+	
+	lockscreen_active = false
+	#_reset_timer()
+	
+	print("[INACTIVITY] Desbloqueado com sucesso")
 
 func deactivate_lockscreen() -> void:
 	
@@ -134,3 +180,5 @@ func set_enabled(enabled: bool) -> void:
 func set_timeout(minutes: float) -> void:
 	inactivity_timeout = minutes * 60
 	save_settings()
+
+# res://auth/inactivity_monitor.gd
