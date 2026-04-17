@@ -24,15 +24,14 @@ signal game_loaded(slot: int)
 const FIRST_LEVEL_PATH: String = "res://levels/00_prison/01.tscn"
 const MAX_SLOTS: int = 3
 
+var _settings_loading : bool = false
+
 var is_loading_game: bool = false
 var is_creating_game: bool = false
 
 func _ready() -> void:
 	
 	_initialize()
-	if settings_button:
-		settings_button.pressed.connect(_open_settings)
-
 
 	
 func _initialize() -> void:
@@ -100,7 +99,16 @@ func _on_leaderboard_button_pressed() -> void:
 	_open_leaderboard()
 
 func _on_settings_button_pressed() -> void:
+	# 1. Trava de segurança: se já estiver a carregar ou se o nó já existir, sai fora
+	if _settings_loading or get_tree().root.has_node("SettingsScreen"):
+		return
+	
+	_settings_loading = true
 	_open_settings()
+	
+	# 2. Pequeno delay para evitar múltiplos cliques rápidos
+	await get_tree().create_timer(0.2).timeout
+	_settings_loading = false
 
 func _on_logout_button_pressed() -> void:
 	await _perform_logout()
@@ -267,20 +275,20 @@ func _open_leaderboard() -> void:
 	)
 
 func _open_settings() -> void:
-	# Carrega a cena
-	var settings_scene = load("res://ui/settings/settings_screen.tscn")
+	var settings_path = "res://auth/ui/settings_screen.tscn"
+	var settings_scene = load(settings_path)
 	
-	if not settings_scene:
-		push_error("[TITLE] Settings scene não encontrada!")
-		return
-	
-	var settings = settings_scene.instantiate()
-	
-	# Adiciona como filho do root (não da title screen)
-	get_tree().root.add_child(settings)
-	
-	print("[TITLE] Settings aberto")
-
+	if settings_scene:
+		var settings_instance = settings_scene.instantiate()
+		
+		# IMPORTANTE: Definir o nome exato para a verificação 'has_node'
+		settings_instance.name = "SettingsScreen"
+		
+		get_tree().root.add_child(settings_instance)
+		print("[TITLE] Settings aberto com sucesso")
+	else:
+		printerr("[TITLE] Erro: Não foi possível carregar a cena de Settings!")
+		
 func _validate_user_logged_in() -> bool:
 	if not AccountManager or not AccountManager.is_logged_in:
 		push_error("[TITLE] Usuario nao logado! Voltando para login...")

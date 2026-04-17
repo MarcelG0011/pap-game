@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://df0c5rse7mlsh" path="res://auth/ui/settings_screen.gd" id="1_4ww47"]
 
 [node name="SettingsScreen" type="CanvasLayer" unique_id=624851275]
+layer = 20
 script = ExtResource("1_4ww47")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1781272844]
@@ -110,14 +111,28 @@ text = "Enable Autosave"
 layout_mode = 2
 text = "Autosave interval (minutes):"
 
-[node name="IntervalSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=152674582]
+[node name="AutosaveIntervalSpinBox" type="SpinBox" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=263511050]
 unique_name_in_owner = true
 layout_mode = 2
-min_value = 1.0
-max_value = 10.0
-value = 3.0
 
 [node name="Spacer2" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=122328868]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="InactivityLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=607364853]
+layout_mode = 2
+text = "Inactivity Lock (minutes):"
+
+[node name="InactivityCheckBox" type="CheckBox" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=810626260]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Enable"
+
+[node name="InactivityTimeoutSpinBox" type="SpinBox" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1744720337]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spacer3" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1903447902]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
@@ -126,6 +141,7 @@ layout_mode = 2
 text = "Music"
 
 [node name="MusicSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1354679115]
+unique_name_in_owner = true
 layout_mode = 2
 value = 30.0
 
@@ -134,6 +150,7 @@ layout_mode = 2
 text = "SFX"
 
 [node name="SFXSlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1291341495]
+unique_name_in_owner = true
 layout_mode = 2
 value = 40.0
 
@@ -142,6 +159,7 @@ layout_mode = 2
 text = "UI"
 
 [node name="UISlider" type="HSlider" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=453129722]
+unique_name_in_owner = true
 layout_mode = 2
 value = 60.0
 

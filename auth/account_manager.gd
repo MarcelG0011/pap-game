@@ -235,3 +235,16 @@ func is_valid_email(email: String) -> bool:
 
 func hash_password(password: String) -> String:
 	return password.sha256_text()
+
+func verify_password(username: String, password: String) -> bool:
+	var password_hash = hash_password(password)
+	
+	var query = """
+	SELECT id FROM users 
+	WHERE username = ? AND password_hash = ?;
+	"""
+	
+	DatabaseManager.db.query_with_bindings(query, [username, password_hash])
+	
+	# Se o resultado não estiver vazio, a password está correta
+	return not DatabaseManager.db.query_result.is_empty()

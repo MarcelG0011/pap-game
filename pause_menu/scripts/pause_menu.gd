@@ -1,8 +1,5 @@
-# class_name PauseMenu
 extends CanvasLayer
 
-func _init() -> void:
-	print( " PAUSE MANAGER")
 #region // On Ready Variables
 @onready var pause_screen: Control = %PauseScreen
 @onready var system: Control = %System
@@ -15,39 +12,38 @@ func _init() -> void:
 @onready var shop_button: Button = %ShopButton
 #endregion
 
-var player: Player
 var player_position : Vector2
 
-
 func _ready() -> void:
-	
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	add_to_group("PauseMenu") # Necessário para o InactivityMonitor
 	hide()
+	
 	if system_menu_button:
 		system_menu_button.pressed.connect(show_system_menu)
 		
-	Audio.setup_button_audio( self )
-	
+	Audio.setup_button_audio(self)
 	setup_system_menu()
+	
 	if shop_button:
 		shop_button.pressed.connect(_show_shop)
-	var player : Node2D = get_tree().get_first_node_in_group( "Player" )
-	if player:
-		player_position = player.global_position
+		
+	var _player = get_tree().get_first_node_in_group("Player")
+	if _player:
+		player_position = _player.global_position
 
-func _input(event: InputEvent) -> void:	
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
+		# VERIFICA SE O LOCKSCREEN ESTÁ NO TOPO
+		if InactivityMonitor and InactivityMonitor.is_lockscreen_active():
+			get_viewport().set_input_as_handled()
+			return
+		
 		get_viewport().set_input_as_handled()
 		toggle_pause()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if pause_screen and pause_screen.visible:
-		if event.is_action_pressed("right") or event.is_action_pressed("down"): 
-			if system_menu_button:
-				system_menu_button.grab_focus()
-
 func toggle_pause() -> void:
-	if get_tree().paused:
+	if visible:
 		unpause_game()
 	else:
 		pause_game()
@@ -60,60 +56,53 @@ func pause_game() -> void:
 		system_menu_button.grab_focus()
 
 func unpause_game() -> void:
-	get_tree().paused = false
 	hide()
+	# Só retoma o tempo do motor se o lockscreen não estiver a forçar a pausa
+	if InactivityMonitor and not InactivityMonitor.is_lockscreen_active():
+		get_tree().paused = false
 
 func show_pause_screen() -> void:
-	if pause_screen:
-		pause_screen.visible = true
-	if system:
-		system.visible = false
+	if pause_screen: pause_screen.show()
+	if system: system.hide()
 
 func show_system_menu() -> void:
-	if pause_screen:
-		pause_screen.visible = false
-	if system:
-		system.visible = true
-	if back_to_map_button:
-		back_to_map_button.grab_focus()
+	if pause_screen: pause_screen.hide()
+	if system: system.show()
+	if back_to_map_button: back_to_map_button.grab_focus()
 
 func setup_system_menu() -> void:
-	music_slider.value = AudioServer.get_bus_volume_linear( 2 )
-	sfx_slider.value = AudioServer.get_bus_volume_linear( 3 )
-	ui_slider.value = AudioServer.get_bus_volume_linear( 4 )
+	# Configurações iniciais dos sliders
+	music_slider.value = AudioServer.get_bus_volume_linear(2)
+	sfx_slider.value = AudioServer.get_bus_volume_linear(3)
+	ui_slider.value = AudioServer.get_bus_volume_linear(4)
 
-	music_slider.value_changed.connect( _on_music_slider_changed )
-	sfx_slider.value_changed.connect( _on_sfx_slider_changed )
-	ui_slider.value_changed.connect( _on_ui_slider_changed )
+	music_slider.value_changed.connect(_on_music_slider_changed)
+	sfx_slider.value_changed.connect(_on_sfx_slider_changed)
+	ui_slider.value_changed.connect(_on_ui_slider_changed)
 
 	if back_to_title_button:
 		back_to_title_button.pressed.connect(_on_back_to_title_pressed)
 	if back_to_map_button:
 		back_to_map_button.pressed.connect(show_pause_screen)
 
-func _on_music_slider_changed( v : float ) -> void:
-	AudioServer.set_bus_volume_linear( 2, v )
+func _on_music_slider_changed(v: float) -> void:
+	AudioServer.set_bus_volume_linear(2, v)
 	SaveManager.save_configuration()
 	Audio.ui_focus_change()
-	pass
-	
-func _on_sfx_slider_changed( v : float ) -> void:
-	AudioServer.set_bus_volume_linear( 3, v )
-	Audio.play_spatial_sound( Audio.ui_focus_audio, player_position )
+
+func _on_sfx_slider_changed(v: float) -> void:
+	AudioServer.set_bus_volume_linear(3, v)
+	Audio.play_spatial_sound(Audio.ui_focus_audio, player_position)
 	SaveManager.save_configuration()
-	pass
-	
-func _on_ui_slider_changed( v : float ) -> void:
-	AudioServer.set_bus_volume_linear( 4, v )
+
+func _on_ui_slider_changed(v: float) -> void:
+	AudioServer.set_bus_volume_linear(4, v)
 	Audio.ui_focus_change()
 	SaveManager.save_configuration()
-	pass
-	
+
 func _show_shop() -> void:
-	print("[PAUSE] Abrindo loja...")
 	var shop = load("res://economy/ui/shop_screen.tscn").instantiate()
 	add_child(shop)
-
 
 func _on_back_to_title_pressed() -> void:
 	get_tree().paused = false

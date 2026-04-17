@@ -78,6 +78,9 @@ func _ready() -> void:
 
 
 func _unhandled_input( event: InputEvent ) -> void:
+	if get_tree().paused:
+		return
+		
 	if event.is_action_released( "jump" ):
 		velocity.y *= 0.5
 	if event.is_action_pressed( "attack" ):
@@ -125,6 +128,9 @@ func initialize_states() -> void:
 			$Label.text = current_state.name
 
 func change_state( new_state : PlayerState ) -> void:
+	if new_state == null:
+		return
+	
 	if new_state == null:
 		return
 	elif new_state == current_state:
@@ -188,3 +194,31 @@ func can_dash( ) -> bool:
 	if dash == false or dash_count > 0:
 		return false
 	return true
+	
+func trigger_instant_death() -> void:
+	if is_dead: return
+	
+	is_dead = true
+	hp = 0
+	
+	# Tentativa 1: Procurar pelo nome do nó (Garante que o nó se chama "Death" no editor)
+	var death_state = $States/Death 
+	
+	# Tentativa 2: Se o nome não for "Death", tenta encontrar na array
+	if not death_state:
+		for s in states:
+			if s is PlayerStateDeath:
+				death_state = s
+				break
+				
+	if death_state:
+		change_state(death_state)
+	else:
+		# Se chegar aqui, o nó não está debaixo do $States ou o script não tem class_name
+		printerr("ERRO CRÍTICO: Estado de morte não encontrado no nó $States!")
+# Função auxiliar para encontrar o estado correto
+func _find_state_by_class(state_class) -> PlayerState:
+	for s in states:
+		if is_instance_of(s, state_class):
+			return s
+	return null

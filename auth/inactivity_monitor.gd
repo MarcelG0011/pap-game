@@ -5,12 +5,10 @@ var is_enabled: bool = true
 var inactivity_timeout: float = 120.0
 var last_input_time: float = 0.0
 
-var lockscreen : Node = null
-var lockscreen_active : bool = false
-var lockscreen_instance: Node = null
+var lockscreen: CanvasLayer = null
 
 func _ready() -> void:
-	
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	last_input_time = Time.get_ticks_msec() / 1000.0
 	
 	if AccountManager:
@@ -33,98 +31,68 @@ func _process(_delta: float) -> void:
 	if inactive_time >= inactivity_timeout:
 		activate_lockscreen()
 
+func is_lockscreen_active() -> bool:
+	return is_locked and lockscreen != null
+
 func activate_lockscreen() -> void:
 	if is_locked:
 		return
 		
 	is_locked = true
 	
+	# Autosave antes do bloqueio
 	if get_tree().get_first_node_in_group("Player"):
-		AutosaveManager.trigger_autosave("inatividade")
-		await get_tree().create_timer(0.5).timeout
+		if has_node("/root/AutosaveManager"):
+			get_node("/root/AutosaveManager").trigger_autosave("inatividade")
 	
 	get_tree().paused = true
 	
-	var lockscreen = load("res://auth/ui/lockscreen.tscn").instantiate()
+	var lockscreen_scene = load("res://auth/ui/lockscreen.tscn")
+	if not lockscreen_scene:
+		push_error("[INACTIVITY] Cena lockscreen não encontrada no caminho especificado!")
+		return
+		
+	lockscreen = lockscreen_scene.instantiate()
 	get_tree().root.add_child(lockscreen)
-	lockscreen_instance = lockscreen
 	
-	lockscreen.unlock_requested.connect(_on_unlock_requested)
+	# Conexão segura do sinal
+	if lockscreen.has_signal("unlock_requested"):
+		lockscreen.unlock_requested.connect(_on_unlock_requested)
+	
+	print("[INACTIVITY] Lockscreen Ativado")
 
 func _on_unlock_requested(password: String) -> void:
-	print("[INACTIVITY] Tentativa de unlock...")
-	
 	if not AccountManager.is_logged_in:
-		if lockscreen:
-			lockscreen.show_error("Não há usuário logado")
 		return
-	
-	# Verifica senha
+
+	# Obtemos o username do utilizador que está atualmente logado
 	var username = AccountManager.get_username()
-	var is_valid = AccountManager.verify_password(username, password)
 	
-	if is_valid:
-		print("[INACTIVITY] Senha correta - Desbloqueando")
+	# Agora a função verify_password já existe no AccountManager!
+	if AccountManager.verify_password(username, password):
+		print("[INACTIVITY] Desbloqueio autorizado.")
 		_unlock_screen()
 	else:
-		print("[INACTIVITY] Senha incorreta")
+		print("[INACTIVITY] Senha falhou.")
 		if lockscreen:
-			lockscreen.show_error("Senha incorreta")
-
-func _show_lockscreen() -> void:
-	if lockscreen_active:
-		return
-	
-	print("[INACTIVITY] Mostrando lockscreen...")
-	
-	var lockscreen_scene = load("res://auth/lockscreen.tscn")
-	if not lockscreen_scene:
-		push_error("[INACTIVITY] Lockscreen scene não encontrada!")
-		return
-	
-	lockscreen = lockscreen_scene.instantiate()
-	
-	# ADICIONA AO ROOT (não ao InactivityMonitor)
-	get_tree().root.add_child(lockscreen)
-	
-	lockscreen_active = true
-	lockscreen.unlock_requested.connect(_on_unlock_requested)
-	
-	print("[INACTIVITY] Lockscreen ativo")
+			lockscreen.show_error("Senha Incorreta")
 
 func _unlock_screen() -> void:
 	if lockscreen:
-		lockscreen.close()  # Já despausa o jogo
+		lockscreen.close()
 		lockscreen = null
 	
-	lockscreen_active = false
-	#_reset_timer()
-	
-	print("[INACTIVITY] Desbloqueado com sucesso")
-
-func deactivate_lockscreen() -> void:
-	
 	is_locked = false
 	last_input_time = Time.get_ticks_msec() / 1000.0
 	
-	get_tree().paused = false
-	
-	if lockscreen_instance:
-		lockscreen_instance.queue_free()
-		lockscreen_instance = null
-
-func reset() -> void:
-	
-	is_locked = false
-	is_enabled = false
-	last_input_time = Time.get_ticks_msec() / 1000.0
-	
-	if lockscreen_instance:
-		lockscreen_instance.queue_free()
-		lockscreen_instance = null
-	
-	if get_tree().paused:
+	# Só despausa o jogo se o Menu de Pausa não estiver aberto
+	var pause_menu = get_tree().get_first_node_in_group("PauseMenu")
+	if pause_menu and pause_menu.visible:
+		get_tree().paused = true
+		print("[INACTIVITY] Desbloqueado, mas mantendo pausa devido ao Menu.")
+	else:
 		get_tree().paused = false
+		print("[INACTIVITY] Desbloqueado e Retomado.")
 	
 
 func load_settings() -> void:
@@ -180,5 +148,3 @@ func set_enabled(enabled: bool) -> void:
 func set_timeout(minutes: float) -> void:
 	inactivity_timeout = minutes * 60
 	save_settings()
-
-# res://auth/inactivity_monitor.gd
