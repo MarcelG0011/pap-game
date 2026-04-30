@@ -35,7 +35,6 @@ target_level = "uid://cvdadm5lq7bvw"
 target_area_name = "LevelTransition2"
 
 [node name="LevelTransition2" parent="." unique_id=623607916 instance=ExtResource("2_4r5es")]
-visible = false
 position = Vector2(1742, 20)
 size = 4
 location = 2
@@ -72,7 +71,6 @@ script = ExtResource("4_oiura")
 metadata/_custom_type_script = "uid://ditlt0vv0ksn0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayers/TML_DeathZone/InstantDeathArea" unique_id=1007389683]
-visible = false
 position = Vector2(723, -2)
 shape = SubResource("RectangleShape2D_oiura")
 debug_color = Color(0.70196074, 0.060771435, 0, 0.41960785)
@@ -92,7 +90,6 @@ script = ExtResource("4_oiura")
 metadata/_custom_type_script = "uid://ditlt0vv0ksn0"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayers/TML_DeathZone2/InstantDeathArea2" unique_id=1816233945]
-visible = false
 position = Vector2(627, 0)
 shape = SubResource("RectangleShape2D_44rkg")
 debug_color = Color(0.70196074, 0.0055397158, 0, 0.41960785)

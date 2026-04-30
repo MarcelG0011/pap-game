@@ -1,4 +1,6 @@
 class_name PlayerStateJump extends PlayerState
+
+const JUMP = preload("uid://exk0uqqlcbeg")
 @export var jump_velocity: float = 450.0
 
 func init() -> void:
@@ -9,6 +11,7 @@ func enter() -> void:
 	player.animation_player.play( "Jump" )
 	#player.add_debug_indicator( Color.LIME_GREEN )
 	player.velocity.y = -jump_velocity
+	
 	
 	# Check if this is a buffer jump
 	if player.previous_state == fall and not Input.is_action_pressed("jump"):
@@ -41,3 +44,15 @@ func physics_process( _delta: float ) -> PlayerState:
 		return fall
 	player.velocity.x = player.direction.x * player.move_speed
 	return next_state
+
+
+#func do_jump() -> void:
+	#if player.jump_count > 0:
+		#if player.double_jump == false:
+			#return 
+		#elif player.jump_count > 1:
+			#return 
+		#player.jump_count += 1
+		#player.velocity.y = -jump_velocity
+		#Audio.play_spatial_sound( JUMP, player.global_position, false, true, 0.25 )
+	#pass

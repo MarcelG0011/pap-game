@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 const DEBUG_JUMP_INDICATOR = preload("uid://ygjffhhiqrxf")
 
+
 #region /// Signals
 signal damage_taken()
 #endregion

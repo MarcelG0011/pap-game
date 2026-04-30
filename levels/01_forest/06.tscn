@@ -23,7 +23,7 @@ width = 1184
 height = 334
 
 [node name="LevelTransition" parent="." unique_id=1271988007 instance=ExtResource("2_7cdyp")]
-position = Vector2(-25, 257)
+position = Vector2(-34, 257)
 size = 8
 target_level = "uid://bom05hqvttv5c"
 target_area_name = "LevelTransition2"
@@ -92,6 +92,7 @@ tile_map_data = PackedByteArray("AAAdAAAAAAAdAAYAAAAcAAAAAAAcAAYAAAAbAAAAAAAbAAY
 tile_set = ExtResource("3_3mfyy")
 
 [node name="Foreground" type="Parallax2D" parent="." unique_id=795049749]
+visible = false
 modulate = Color(0, 0, 0, 1)
 z_index = 10
 scroll_scale = Vector2(1.4, 1)

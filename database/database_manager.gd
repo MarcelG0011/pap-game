@@ -129,6 +129,13 @@ func create_tables() -> void:
 	"""
 	db.query(user_settings_table)
 	
+func create_index() -> void:
+	
+	var idx_leaderboard = """ 
+	CREATE INDEX idx_leaderboard_time 
+		ON leaderboard(time_ms ASC);
+	"""
+	db.query(idx_leaderboard)
 
 func close_database() -> void:
 	if db:

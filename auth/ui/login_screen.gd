@@ -12,7 +12,6 @@ extends Control
 var is_login_processing: bool = false
 
 func _ready() -> void:
-	
 	hide_game_huds()
 	
 	# Conecta sinais
@@ -71,7 +70,6 @@ func _on_login_pressed() -> void:
 	AccountManager.login(username, password, remember)
 
 func _on_login_successful(username: String) -> void:
-	
 	# Animação de sucesso
 	var tween = create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.3)
@@ -80,7 +78,6 @@ func _on_login_successful(username: String) -> void:
 	go_to_title_screen()
 
 func _on_login_failed(error: String) -> void:
-	
 	is_login_processing = false
 	login_button.disabled = false
 	login_button.text = "LOGIN"
@@ -90,13 +87,11 @@ func _on_login_failed(error: String) -> void:
 	password_input.grab_focus()
 
 func _on_signup_pressed() -> void:
-	
 	var signup_screen = load("res://auth/ui/signup_screen.tscn").instantiate()
 	get_tree().root.add_child(signup_screen)
 	queue_free()
 
 func _on_forgot_password_pressed() -> void:
-	
 	var forgot_screen = load("res://auth/ui/forgot_password_screen.tscn").instantiate()
 	get_tree().root.add_child(forgot_screen)
 	queue_free()
@@ -121,9 +116,9 @@ func hide_error() -> void:
 	error_label.visible = false
 
 func go_to_title_screen() -> void:
+	print("[LOGIN] Indo para title screen...")
 	get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")
 
 func _input(event: InputEvent) -> void:
-	# ESC para sair (opcional)
 	if event.is_action_pressed("ui_cancel"):
 		get_tree().quit()

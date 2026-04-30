@@ -3720,7 +3720,6 @@ blend_mode = 1
 light_mode = 1
 
 [node name="TitleScreen" type="CanvasLayer" unique_id=2028893718]
-layer = 5
 script = ExtResource("1_nqviy")
 
 [node name="Control" type="Control" parent="." unique_id=2135288588]
@@ -3739,6 +3738,7 @@ offset_left = 168.0
 offset_top = -12.0
 offset_right = 312.0
 offset_bottom = 220.0
+focus_mode = 2
 theme_override_constants/separation = 10
 
 [node name="Logo" type="Control" parent="Control/MainMenu" unique_id=1712934345]
@@ -3746,6 +3746,7 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/MainMenu/Logo" unique_id=1762560664]
+position = Vector2(56, 35)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Control/MainMenu/Logo/Sprite2D" unique_id=1418212393]
 
@@ -3760,20 +3761,24 @@ text = "SoulBound"
 
 [node name="NewGameButton" type="Button" parent="Control/MainMenu" unique_id=1361885005]
 layout_mode = 2
+mouse_filter = 1
 text = "New Game"
 
 [node name="LoadGameButton" type="Button" parent="Control/MainMenu" unique_id=170022118]
 layout_mode = 2
+mouse_filter = 1
 text = "Load Game"
 
 [node name="LeaderboardButton" type="Button" parent="Control/MainMenu" unique_id=2123516707]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Leaderboard"
 
 [node name="SettingsButton" type="Button" parent="Control/MainMenu" unique_id=1277186749]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 1
 text = "Settings"
 
 [node name="NewGameMenu" type="VBoxContainer" parent="Control" unique_id=1726007805]
@@ -3792,6 +3797,7 @@ offset_right = 76.0
 offset_bottom = 109.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
@@ -3836,6 +3842,7 @@ offset_right = 76.0
 offset_bottom = 109.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 

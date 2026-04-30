@@ -1,5 +1,8 @@
 class_name PlayerStateFall extends PlayerState
 
+const LAND = preload("uid://bxmlb0amyf4jj")
+
+
 func init() -> void:
 	pass
 	
@@ -34,6 +37,7 @@ func process( _delta: float ) -> PlayerState:
 func physics_process( _delta: float ) -> PlayerState:
 	if player.is_on_floor():
 		VisualEffects.land_dust( player.global_position )
+		Audio.play_spatial_sound( LAND, player.global_position, false, true, 0.5 )
 		# Se está a segurar DOWN quando aterra, vai para crouch
 		if Input.is_action_pressed("down"):
 			return crouch

@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://yhr6iex7p0h" path="res://music/dungeon_01.ogg" id="8_cwrg6"]
 [ext_resource type="PackedScene" uid="uid://c67ssfmo87iw4" path="res://levels/props/torch.tscn" id="9_cwrg6"]
 [ext_resource type="PackedScene" uid="uid://bs382f67sa4nw" path="res://enemies/slime2/slime_2.tscn" id="9_xj1cd"]
+[ext_resource type="PackedScene" uid="uid://don8f5mnlmgyo" path="res://general/health_pickup/health_pickup.tscn" id="10_xj1cd"]
 
 [node name="01" type="Node2D" unique_id=1341166125]
 
@@ -67,8 +68,12 @@ position = Vector2(388, 259)
 position = Vector2(96, 259)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=2064062289]
+visible = false
 color = Color(0.35277888, 0.36260712, 0.38134852, 1)
 blend_mode = 2
 
 [node name="Slime2" parent="." unique_id=968982645 instance=ExtResource("9_xj1cd")]
 position = Vector2(203, 231)
+
+[node name="HealthPickup" parent="." unique_id=822741992 instance=ExtResource("10_xj1cd")]
+position = Vector2(140, 245)

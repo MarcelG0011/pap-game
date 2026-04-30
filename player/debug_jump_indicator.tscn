@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://ygjffhhiqrxf"]
+[gd_scene format=3 uid="uid://ygjffhhiqrxf"]
 
 [sub_resource type="Gradient" id="Gradient_qjkh3"]
 offsets = PackedFloat32Array(0.41558442, 1)
@@ -20,11 +20,11 @@ gradient = SubResource("Gradient_g6k8r")
 width = 12
 height = 1
 
-[node name="Debug Jump Indicator" type="Node2D"]
+[node name="Debug Jump Indicator" type="Node2D" unique_id=1311886351]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1456926848]
 texture = SubResource("GradientTexture2D_g6k8r")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=787845348]
 modulate = Color(1, 1, 1, 0.654902)
 texture = SubResource("GradientTexture2D_boad6")

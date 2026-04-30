@@ -30,10 +30,9 @@ var is_loading_game: bool = false
 var is_creating_game: bool = false
 
 func _ready() -> void:
-	
+
 	_initialize()
 
-	
 func _initialize() -> void:
 	_hide_game_huds()
 	
@@ -99,14 +98,12 @@ func _on_leaderboard_button_pressed() -> void:
 	_open_leaderboard()
 
 func _on_settings_button_pressed() -> void:
-	# 1. Trava de segurança: se já estiver a carregar ou se o nó já existir, sai fora
 	if _settings_loading or get_tree().root.has_node("SettingsScreen"):
 		return
 	
 	_settings_loading = true
 	_open_settings()
 	
-	# 2. Pequeno delay para evitar múltiplos cliques rápidos
 	await get_tree().create_timer(0.2).timeout
 	_settings_loading = false
 
@@ -168,7 +165,6 @@ func _load_and_start_game(slot: int) -> void:
 	
 	_show_game_huds()
 	
-	
 	var success = await SaveManager.load_game(slot)
 	
 	is_loading_game = false
@@ -183,7 +179,6 @@ func _perform_logout() -> void:
 	print("[TITLE] ========== LOGOUT INICIADO ==========")
 	
 	_stop_speedrun()
-	_reset_inactivity()
 	_unpause_game()
 	_hide_all_huds()
 	
@@ -253,9 +248,9 @@ func _stop_speedrun() -> void:
 	if SpeedrunTimer:
 		SpeedrunTimer.cancel_run()
 
-func _reset_inactivity() -> void:
-	if InactivityMonitor:
-		InactivityMonitor.reset()
+#func _reset_inactivity() -> void:
+	#
+	#pass
 
 func _unpause_game() -> void:
 	get_tree().paused = false
@@ -280,8 +275,6 @@ func _open_settings() -> void:
 	
 	if settings_scene:
 		var settings_instance = settings_scene.instantiate()
-		
-		# IMPORTANTE: Definir o nome exato para a verificação 'has_node'
 		settings_instance.name = "SettingsScreen"
 		
 		get_tree().root.add_child(settings_instance)

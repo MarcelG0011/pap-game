@@ -14,7 +14,7 @@ extends DecisionEngine
 
 func _ready() -> void:
 	await super()#Maintains important setup code & timing
-	#Implement my script
+	
 	pass
 	
 #All the conditions for making decisions go in this function

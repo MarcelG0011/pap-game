@@ -49,7 +49,7 @@ script = ExtResource("5_2i16e")
 metadata/_custom_type_script = "uid://csgrbxc54c4fi"
 
 [node name="PlayerSpawn" parent="." unique_id=1247123558 instance=ExtResource("4_fe6ir")]
-position = Vector2(657, 215)
+position = Vector2(203, 229)
 
 [node name="Breakable" type="Node2D" parent="." unique_id=981782189]
 script = ExtResource("5_2i16e")

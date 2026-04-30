@@ -7,17 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://odjpd8pl7mci" path="res://general/player_spawn/player_spawn.tscn" id="5_bsmlx"]
 [ext_resource type="Script" uid="uid://dqjshejv1b1qn" path="res://music/music_auto_trigger.gd" id="6_sw4be"]
 [ext_resource type="AudioStream" uid="uid://yhr6iex7p0h" path="res://music/dungeon_01.ogg" id="7_ql0uu"]
-[ext_resource type="Texture2D" uid="uid://dqxxuf2rytk0k" path="res://levels/tilesets/sprites/light_stream.jpg" id="8_ql0uu"]
 [ext_resource type="Script" uid="uid://csgrbxc54c4fi" path="res://general/scripts/breakable.gd" id="9_qgyou"]
 [ext_resource type="Script" uid="uid://dwywwp8rlosai" path="res://general/scripts/damage_area.gd" id="10_k6jl0"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ql0uu"]
-blend_mode = 1
-light_mode = 1
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yg251"]
-blend_mode = 1
-light_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unafu"]
 size = Vector2(113, 136)
@@ -89,54 +80,6 @@ position = Vector2(0, 32)
 tile_set = ExtResource("4_sw4be")
 navigation_visibility_mode = 2
 
-[node name="Light" type="Node2D" parent="." unique_id=1448627462]
-visible = false
-
-[node name="Sprite2D" type="Sprite2D" parent="Light" unique_id=1744163575]
-modulate = Color(0, 0.04162786, 1.2322804, 0.64400005)
-z_index = 4
-material = SubResource("CanvasItemMaterial_ql0uu")
-position = Vector2(145, 76)
-scale = Vector2(0.14715062, 0.36525568)
-texture = ExtResource("8_ql0uu")
-offset = Vector2(0, 256)
-
-[node name="Sprite2D2" type="Sprite2D" parent="Light" unique_id=1742551082]
-modulate = Color(0, 0.04162786, 1.2322804, 0.64400005)
-z_index = 4
-material = SubResource("CanvasItemMaterial_ql0uu")
-position = Vector2(337, 74)
-scale = Vector2(0.14715062, 0.359375)
-texture = ExtResource("8_ql0uu")
-offset = Vector2(0, 256)
-
-[node name="Sprite2D3" type="Sprite2D" parent="Light" unique_id=338435991]
-modulate = Color(0, 0.04162786, 1.2322804, 0.64400005)
-z_index = 4
-material = SubResource("CanvasItemMaterial_ql0uu")
-position = Vector2(720, 75.00001)
-scale = Vector2(0.14715062, 0.35742193)
-texture = ExtResource("8_ql0uu")
-offset = Vector2(0, 256)
-
-[node name="Sprite2D4" type="Sprite2D" parent="Light" unique_id=1571496161]
-modulate = Color(0, 0.04162786, 1.2322804, 0.64400005)
-z_index = 4
-material = SubResource("CanvasItemMaterial_ql0uu")
-position = Vector2(912, 74)
-scale = Vector2(0.14715062, 0.35937503)
-texture = ExtResource("8_ql0uu")
-offset = Vector2(0, 256)
-
-[node name="Sprite2D5" type="Sprite2D" parent="Light" unique_id=1973134256]
-modulate = Color(1.164, 0.956, 0.366, 0.121)
-z_index = 4
-material = SubResource("CanvasItemMaterial_yg251")
-position = Vector2(529, 73.00001)
-scale = Vector2(0.14453116, 0.42013162)
-texture = ExtResource("8_ql0uu")
-offset = Vector2(0, 256)
-
 [node name="PlayerSpawn" parent="." unique_id=1969377171 instance=ExtResource("5_bsmlx")]
 position = Vector2(445, 160)
 
@@ -146,7 +89,6 @@ track = ExtResource("7_ql0uu")
 metadata/_custom_type_script = "uid://dqjshejv1b1qn"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=1017978335]
-visible = false
 color = Color(0.3529412, 0.36078432, 0.38039216, 1)
 blend_mode = 2
 
