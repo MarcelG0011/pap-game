@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://kn71ohfgvrvh"]
+
+[ext_resource type="Script" uid="uid://csgrbxc54c4fi" path="res://general/scripts/breakable.gd" id="2_4v6dl"]
+[ext_resource type="Script" uid="uid://dd7l7wwg1fb1k" path="res://00_global/visual_effects/hit_particle_settings.gd" id="2_ccscl"]
+[ext_resource type="Texture2D" uid="uid://bwismwe2oeb5f" path="res://levels/tilesets/sprites/Animated Decorations/chest/chest_1.png" id="3_coq7n"]
+[ext_resource type="Script" uid="uid://dwywwp8rlosai" path="res://general/scripts/damage_area.gd" id="3_sjx7s"]
+[ext_resource type="Script" uid="uid://c3r6ickip437" path="res://general/scripts/loot_dropper.gd" id="4_sjx7s"]
+[ext_resource type="Script" uid="uid://cu17pvlsnx50e" path="res://general/scripts/loot_data.gd" id="5_ccscl"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0vvce"]
+load_path = "res://.godot/imported/props_destructible.png-f1d05037d5d5fd1767d271e5f5cebf40.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_27gsq"]
+atlas = SubResource("CompressedTexture2D_0vvce")
+region = Rect2(119.569534, 11.442167, 5.2090073, 5.209009)
+
+[sub_resource type="Resource" id="Resource_yv4b6"]
+script = ExtResource("2_ccscl")
+count = 12
+texture = SubResource("AtlasTexture_27gsq")
+metadata/_custom_type_script = "uid://dd7l7wwg1fb1k"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_odau5"]
+load_path = "res://.godot/imported/props_destructible.png-f1d05037d5d5fd1767d271e5f5cebf40.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j3ewi"]
+atlas = SubResource("CompressedTexture2D_odau5")
+region = Rect2(119.569534, 11.442167, 5.2090073, 5.209009)
+
+[sub_resource type="Resource" id="Resource_hwaub"]
+script = ExtResource("2_ccscl")
+count = 12
+texture = SubResource("AtlasTexture_j3ewi")
+metadata/_custom_type_script = "uid://dd7l7wwg1fb1k"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_c72nf"]
+load_path = "res://.godot/imported/props_destructible.png-f1d05037d5d5fd1767d271e5f5cebf40.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i0ff1"]
+atlas = SubResource("CompressedTexture2D_c72nf")
+region = Rect2(120.33, 6.213458, 3.4032211, 3.8199396)
+
+[sub_resource type="Resource" id="Resource_27mbs"]
+script = ExtResource("2_ccscl")
+count = 18
+texture = SubResource("AtlasTexture_i0ff1")
+metadata/_custom_type_script = "uid://dd7l7wwg1fb1k"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gvarw"]
+load_path = "res://.godot/imported/props_destructible.png-f1d05037d5d5fd1767d271e5f5cebf40.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pyw3y"]
+atlas = SubResource("CompressedTexture2D_gvarw")
+region = Rect2(111.1561, 6.3094463, 7.7093353, 10.578077)
+
+[sub_resource type="Resource" id="Resource_w0jio"]
+script = ExtResource("2_ccscl")
+texture = SubResource("AtlasTexture_pyw3y")
+metadata/_custom_type_script = "uid://dd7l7wwg1fb1k"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v6dl"]
+size = Vector2(32, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjx7s"]
+size = Vector2(32, 20)
+
+[sub_resource type="Resource" id="Resource_vim62"]
+script = ExtResource("5_ccscl")
+item = "uid://dfudougpit5bv"
+minimum = 10
+maximum = 55
+drop_chance = 1.0
+metadata/_custom_type_script = "uid://cu17pvlsnx50e"
+
+[node name="Chest" type="Node2D" unique_id=677777421]
+script = ExtResource("2_4v6dl")
+hp = 5.0
+hit_particles = Array[ExtResource("2_ccscl")]([SubResource("Resource_yv4b6")])
+destroy_particles = Array[ExtResource("2_ccscl")]([SubResource("Resource_hwaub"), SubResource("Resource_27mbs"), SubResource("Resource_w0jio")])
+metadata/_custom_type_script = "uid://csgrbxc54c4fi"
+
+[node name="DamageArea" type="Area2D" parent="." unique_id=730852355]
+collision_layer = 64
+collision_mask = 0
+script = ExtResource("3_sjx7s")
+metadata/_custom_type_script = "uid://dwywwp8rlosai"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=2106938450]
+position = Vector2(-2, -10)
+shape = SubResource("RectangleShape2D_4v6dl")
+
+[node name="Sprite2D" type="Sprite2D" parent="DamageArea" unique_id=471847940]
+position = Vector2(0, -11)
+texture = ExtResource("3_coq7n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1858158090]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2024148681]
+position = Vector2(-2, -10)
+shape = SubResource("RectangleShape2D_sjx7s")
+
+[node name="LootDropper" type="Marker2D" parent="." unique_id=1107654866]
+script = ExtResource("4_sjx7s")
+items = Array[ExtResource("5_ccscl")]([SubResource("Resource_vim62")])
+metadata/_custom_type_script = "uid://c3r6ickip437"

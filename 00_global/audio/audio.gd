@@ -30,10 +30,9 @@ func _ready() -> void:
 		audio_pool.append( audio_player )
 		pass
 	pass
+	
 func play_music(audio: AudioStream) -> void:
 	var current_player: AudioStreamPlayer = get_music_player(current_track)
-	
-	# Se já está a tocar esta música, não faz nada
 	if current_player.stream == audio and current_player.playing:
 		return
 	
@@ -42,7 +41,6 @@ func play_music(audio: AudioStream) -> void:
 	
 	# Configura a próxima música
 	next_player.stream = audio
-	next_player.volume_db = linear_to_db(0.0)  # Começa mudo
 	next_player.play()
 	
 	# Para tweens antigos
@@ -57,40 +55,28 @@ func play_music(audio: AudioStream) -> void:
 	
 	# Atualiza track atual
 	current_track = next_track
+	pass
 
 func get_music_player(i: int) -> AudioStreamPlayer:
 	return music_1 if i == 0 else music_2
 
 func fade_track_out(player: AudioStreamPlayer) -> void:
-	if not player or not player.playing:
-		return
-	
-	if is_nan( player.volume_db ):
-		player.volume_db = 0.0
-		
 	var tween : Tween = create_tween()
 	music_tweens.append( tween )
-	tween.tween_property( player, "volume_db", -80.0, 1.5 )
+	tween.tween_property( player, "volume_linear", 0.0, 1.5 )
 	tween.tween_callback( player.stop )
 
 func fade_track_in( player : AudioStreamPlayer ) -> void:
-	if not player:
-		return
-	if is_nan( player.volume_db ):
-		player.volume_db = -80.0
-	else:
-		player.volume_db = -80.0
-		
 	var tween : Tween = create_tween()
 	music_tweens.append( tween )
-	tween.tween_property( player, "volume_db", 0.0, 1.0 )
+	tween.tween_property( player, "volume_linear", 1.0, 1.0 )
 	
 func set_reverb( type : REVERB_TYPE ) -> void:
 	var reverb_fx: AudioEffectReverb = AudioServer.get_bus_effect( 1, 0 )
 	if not reverb_fx:
 		return
 	
-	AudioServer.set_bus_effect_enabled(1, 0, true)
+	AudioServer.set_bus_effect_enabled( 1, 0, true )
 	
 	match type:
 		REVERB_TYPE.NONE:
@@ -103,33 +89,42 @@ func set_reverb( type : REVERB_TYPE ) -> void:
 			reverb_fx.room_size = 0.8
 	pass
 
-
-func play_spatial_sound(
-	audio: AudioStream,
-	pos: Vector2,
-	ignore_pool : bool = false,
-	was_player : bool = false,
-	volume : float = 0.5
-	 ) -> void:
-	if ignore_pool:
-		var ap: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-		add_child( ap )
-		ap.bus = "SFX"
-		ap.global_position = pos
-		ap.stream = audio
-		ap.finished.connect(ap.queue_free)
-		ap.play()
-	else:
-		var ap: AudioStreamPlayer2D = audio_pool[ audio_index ]
-		ap.global_position = pos
-		ap.stream = audio
-		ap.play()
-		audio_index = wrapi( audio_index + 1, 0, 32 )
-		pass
-		
-	if was_player:
-		player_made_sound.emit( pos, volume )
+func play_spatial_sound( audio : AudioStream, pos : Vector2 ) -> void:
+	var ap : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+	add_child( ap )
+	ap.bus = "SFX"
+	ap.global_position = pos
+	ap.stream = audio
+	ap.finished.connect( ap.queue_free )
+	ap.play()
 	pass
+
+#func play_spatial_sound(
+	#audio: AudioStream,
+	#pos: Vector2,
+	#ignore_pool : bool = false,
+	#was_player : bool = false,
+	#volume : float = 0.5
+	 #) -> void:
+	#if ignore_pool:
+		#var ap: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		#add_child( ap )
+		#ap.bus = "SFX"
+		#ap.global_position = pos
+		#ap.stream = audio
+		#ap.finished.connect(ap.queue_free)
+		#ap.play()
+	#else:
+		#var ap: AudioStreamPlayer2D = audio_pool[ audio_index ]
+		#ap.global_position = pos
+		#ap.stream = audio
+		#ap.play()
+		#audio_index = wrapi( audio_index + 1, 0, 32 )
+		#pass
+		#
+	#if was_player:
+		#player_made_sound.emit( pos, volume )
+	#pass
 	
 func play_ui_audio(audio: AudioStream) -> void:
 	if ui_audio_player:
@@ -142,22 +137,26 @@ func setup_button_audio(node: Node) -> void:
 			c.pressed.connect(ui_select)
 		if not c.focus_entered.is_connected(ui_focus_change):
 			c.focus_entered.connect(ui_focus_change)
-
+	pass
 #region UI Functions
 
 func ui_focus_change() -> void:
 	play_ui_audio(ui_focus_audio)
-
+	pass
+	
 func ui_select() -> void:
 	play_ui_audio(ui_select_audio)
-
+	pass
+	
 func ui_cancel() -> void:
 	play_ui_audio(ui_cancel_audio)
-
+	pass
+	
 func ui_success() -> void:
 	play_ui_audio(ui_success_audio)
-
+	pass
+	
 func ui_error() -> void:
 	play_ui_audio(ui_error_audio)
-
+	pass
 #endregion

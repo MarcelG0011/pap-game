@@ -16,6 +16,7 @@ var player_position : Vector2
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	Audio.setup_button_audio( self )
 	add_to_group("PauseMenu") # Necessário para o InactivityMonitor
 	hide()
 	
@@ -31,6 +32,7 @@ func _ready() -> void:
 	var _player = get_tree().get_first_node_in_group("Player")
 	if _player:
 		player_position = _player.global_position
+	pass
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):

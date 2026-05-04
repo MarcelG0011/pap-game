@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dfudougpit5bv"]
+
+[ext_resource type="Script" uid="uid://d0qtpekxm1y2w" path="res://general/soul_pickup/soul_pickup.gd" id="1_opytm"]
+[ext_resource type="Texture2D" uid="uid://w5jnmn5vmb2s" path="res://economy/coin.png" id="2_d4v5j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d4v5j"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opytm"]
+
+[node name="SoulPickup" type="CharacterBody2D" unique_id=1483313384]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_opytm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=868805921]
+shape = SubResource("CircleShape2D_d4v5j")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1342844791]
+texture = ExtResource("2_d4v5j")
+hframes = 12
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=90344367]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1754308217]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1947310814]
+shape = SubResource("CircleShape2D_opytm")

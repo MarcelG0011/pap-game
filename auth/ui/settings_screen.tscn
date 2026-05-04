@@ -14,6 +14,13 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.36103386, 0.36103386, 0.43760642, 1)
 
+[node name="CloseButton" type="Button" parent="." unique_id=604678774]
+unique_name_in_owner = true
+offset_left = 406.0
+offset_top = 4.0
+offset_right = 414.0
+offset_bottom = 12.0
+
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=4066560]
 custom_minimum_size = Vector2(0, 250)
 anchors_preset = 5
@@ -25,6 +32,7 @@ offset_bottom = 250.0
 grow_horizontal = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=957299011]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(360, 0)
 layout_mode = 2
 

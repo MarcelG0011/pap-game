@@ -18,7 +18,7 @@ func enter() -> void:
 	player.animation_player.play( "take_damage" )
 	time = player.animation_player.current_animation_length
 	damage_area.make_invulnerable( invulnerable_duration )
-	Audio.play_spatial_sound( AARGH, player.global_position, false, true, 0.45 )
+	#Audio.play_spatial_sound( AARGH, player.global_position, false, true, 0.45 )
 	VisualEffects.camera_shake( 2.0 )
 	pass
 	

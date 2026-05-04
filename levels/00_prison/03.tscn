@@ -11,7 +11,7 @@
 [ext_resource type="Script" uid="uid://dwywwp8rlosai" path="res://general/scripts/damage_area.gd" id="10_k6jl0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unafu"]
-size = Vector2(113, 136)
+size = Vector2(122, 136)
 
 [node name="03" type="Node2D" unique_id=846817403]
 
@@ -112,5 +112,5 @@ script = ExtResource("10_k6jl0")
 metadata/_custom_type_script = "uid://dwywwp8rlosai"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Breakable/DamageArea" unique_id=1971446134]
-position = Vector2(569, 97)
+position = Vector2(571, 97)
 shape = SubResource("RectangleShape2D_unafu")

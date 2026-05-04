@@ -30,8 +30,8 @@ var is_loading_game: bool = false
 var is_creating_game: bool = false
 
 func _ready() -> void:
-
 	_initialize()
+	pass
 
 func _initialize() -> void:
 	_hide_game_huds()
@@ -45,7 +45,8 @@ func _initialize() -> void:
 	_update_slot_buttons()
 	
 	show_main_menu()
-
+	pass
+	
 func _connect_button_signals() -> void:
 	new_game_button.pressed.connect(_on_new_game_button_pressed)
 	load_game_button.pressed.connect(_on_load_game_button_pressed)
@@ -60,6 +61,9 @@ func _connect_button_signals() -> void:
 	load_slot_01.pressed.connect(_on_load_game_slot_pressed.bind(0))
 	load_slot_02.pressed.connect(_on_load_game_slot_pressed.bind(1))
 	load_slot_03.pressed.connect(_on_load_game_slot_pressed.bind(2))
+	Audio.setup_button_audio( self )
+	pass
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):

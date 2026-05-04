@@ -1,0 +1,82 @@
+[gd_resource type="Theme" format=3 uid="uid://cdeiuwdjh6myy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lma1w"]
+bg_color = Color(0.7977378, 0.95468724, 1.121871, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1.0832684, 1.2282239, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_53a5a"]
+bg_color = Color(0.735357, 0.85430586, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9083316, 1.0026329, 1.1587777, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty8m4"]
+bg_color = Color(0.5469392, 0.6577283, 0.7889085, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.85430586, 0.95468724, 1.121871, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3rn6c"]
+bg_color = Color(0.46135613, 0.46135613, 0.5370987, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.9063318, 1.0832684, 1.2282239, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsmoa"]
+bg_color = Color(0.58383155, 0.58383155, 0.6651851, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5544485, 0.5544485, 0.6461707, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i55g6"]
+bg_color = Color(0.4767941, 0.4767941, 0.5746727, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.6025507, 0.6025507, 0.6862881, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_size = 10
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxFlat_lma1w")
+Button/styles/normal = SubResource("StyleBoxFlat_53a5a")
+Button/styles/pressed = SubResource("StyleBoxFlat_ty8m4")
+LineEdit/styles/focus = SubResource("StyleBoxFlat_3rn6c")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_jsmoa")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_i55g6")

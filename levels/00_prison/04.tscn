@@ -9,12 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://c67ssfmo87iw4" path="res://levels/props/torch.tscn" id="6_sx3d2"]
 [ext_resource type="PackedScene" uid="uid://odjpd8pl7mci" path="res://general/player_spawn/player_spawn.tscn" id="7_67dh2"]
 [ext_resource type="Texture2D" uid="uid://dqxxuf2rytk0k" path="res://levels/tilesets/sprites/light_stream.jpg" id="8_oc7a4"]
+[ext_resource type="PackedScene" uid="uid://bs382f67sa4nw" path="res://enemies/slime2/slime_2.tscn" id="10_44rkg"]
+[ext_resource type="PackedScene" uid="uid://kn71ohfgvrvh" path="res://levels/props/chest.tscn" id="11_fhx7w"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oiura"]
 size = Vector2(1626, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_44rkg"]
-size = Vector2(1436, 20)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oiura"]
 blend_mode = 1
@@ -75,28 +74,9 @@ position = Vector2(723, -2)
 shape = SubResource("RectangleShape2D_oiura")
 debug_color = Color(0.70196074, 0.060771435, 0, 0.41960785)
 
-[node name="TML_DeathZone2" type="TileMapLayer" parent="TileMapLayers" unique_id=329927887]
-position = Vector2(36, 12)
-tile_map_data = PackedByteArray("AAADAAcAJQAAAAAAAAAEAAcAJQAAAAAAAAAFAAcAJQAAAAAAAAAGAAcAJQAAAAAAAAAHAAcAJQAAAAAAAAAIAAcAJQAAAAAAAAAJAAcAJQAAAAAAAAAKAAcAJQAAAAAAAAALAAcAJQAAAAAAAAAMAAcAJQAAAAAAAAANAAcAJQAAAAAAAAAOAAcAJQAAAAAAAAAPAAcAJQAAAAAAAAAQAAcAJQAAAAAAAAARAAcAJQAAAAAAAAASAAcAJQAAAAAAAAATAAcAJQAAAAAAAAAUAAcAJQAAAAAAAAAVAAcAJQAAAAAAAAAWAAcAJQAAAAAAAAAXAAcAJQAAAAAAAAAYAAcAJQAAAAAAAAAZAAcAJQAAAAAAAAAaAAcAJQAAAAAAAAAbAAcAJQAAAAAAAAAcAAcAJQAAAAAAAAAdAAcAJQAAAAAAAAAeAAcAJQAAAAAAAAAfAAcAJQAAAAAAAAAgAAcAJQAAAAAAAAAhAAcAJQAAAAAAAAAiAAcAJQAAAAAAAAAjAAcAJQAAAAAAAAAkAAcAJQAAAAAAAAAlAAcAJQAAAAAAAAAmAAcAJQAAAAAAAAAnAAcAJQAAAAAAAAAoAAcAJQAAAAAAAAApAAcAJQAAAAAAAAAqAAcAJQAAAAAAAAArAAcAJQAAAAAAAAAsAAcAJQAAAAAAAAAtAAcAJQAAAAAAAAACAAcAJQAAAAAAAAAuAAcAJQAAAAAAAAA=")
-tile_set = ExtResource("3_4r5es")
-collision_visibility_mode = 2
-navigation_visibility_mode = 2
-
-[node name="InstantDeathArea2" type="Area2D" parent="TileMapLayers/TML_DeathZone2" unique_id=2106916817]
-position = Vector2(154, 236)
-collision_layer = 4
-collision_mask = 48
-script = ExtResource("4_oiura")
-metadata/_custom_type_script = "uid://ditlt0vv0ksn0"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMapLayers/TML_DeathZone2/InstantDeathArea2" unique_id=1816233945]
-position = Vector2(627, 0)
-shape = SubResource("RectangleShape2D_44rkg")
-debug_color = Color(0.70196074, 0.0055397158, 0, 0.41960785)
-
 [node name="TML_OWP" type="TileMapLayer" parent="TileMapLayers" unique_id=1813200808]
 position = Vector2(16, 24)
-tile_map_data = PackedByteArray("AAA0AAsAAAAQAAYAAAA1AAsAAAARAAYAAAA2AAsAAAASAAYAAAA3AAsAAAATAAYAAAA0AAgAAAAQAAYAAAA1AAgAAAARAAYAAAA2AAgAAAASAAYAAAA3AAgAAAATAAYAAAA0AAUAAAAQAAYAAAA1AAUAAAARAAYAAAA2AAUAAAASAAYAAAA3AAUAAAATAAYAAAA0AAIAAAAQAAYAAAA1AAIAAAARAAYAAAA2AAIAAAASAAYAAAA3AAIAAAATAAYAAAAtAAUAAAARAAsAAAAuAAUAAAASAAsAAAAoAAUAAAARAAsAAAApAAUAAAASAAsAAAAfAAUAAAASAAsAAAAgAAUAAAATAAsAAAAZAAUAAAARAAsAAAAaAAUAAAASAAsAAAAbAAUAAAATAAsAAAARAAUAAAATAAsAAAATAAUAAAAQAAsAAAAUAAUAAAARAAsAAAAFAAUAAAARAAsAAAAGAAUAAAASAAsAAAAHAAUAAAATAAsAAAAvAAUAAAARAAsAAAAqAAUAAAATAAsAAAAjAAUAAAARAAsAAAAkAAUAAAASAAsAAAAlAAUAAAATAAsAAAAeAAUAAAARAAsAAAAVAAUAAAASAAsAAAAWAAUAAAATAAsAAAAYAAUAAAAQAAsAAAAOAAUAAAAQAAsAAAAPAAUAAAARAAsAAAAQAAUAAAASAAsAAAAJAAUAAAAQAAsAAAAKAAUAAAARAAsAAAALAAUAAAASAAsAAAAMAAUAAAATAAsAAAAEAAUAAAAQAAsAAAAdAAUAAAAQAAsAAAAiAAUAAAAQAAsAAAAnAAUAAAAQAAsAAAAsAAUAAAAQAAsAAAAwAAUAAAASAAsAAAA=")
+tile_map_data = PackedByteArray("AAA0AAsAAAAQAAYAAAA1AAsAAAARAAYAAAA2AAsAAAASAAYAAAA3AAsAAAATAAYAAAA0AAgAAAAQAAYAAAA1AAgAAAARAAYAAAA2AAgAAAASAAYAAAA3AAgAAAATAAYAAAA0AAUAAAAQAAYAAAA1AAUAAAARAAYAAAA2AAUAAAASAAYAAAA3AAUAAAATAAYAAAA0AAIAAAAQAAYAAAA1AAIAAAARAAYAAAA2AAIAAAASAAYAAAA3AAIAAAATAAYAAAA=")
 tile_set = ExtResource("3_4r5es")
 collision_visibility_mode = 2
 navigation_visibility_mode = 2
@@ -143,7 +123,7 @@ color = Color(0.3529412, 0.36078432, 0.38039216, 1)
 blend_mode = 2
 
 [node name="PlayerSpawn" parent="." unique_id=1247123558 instance=ExtResource("7_67dh2")]
-position = Vector2(200, 448)
+position = Vector2(32, 91)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1887638377]
 modulate = Color(0.81633973, 1.131483, 1.1561875, 0.167)
@@ -153,3 +133,44 @@ position = Vector2(1742, 7)
 scale = Vector2(0.7597652, 0.9296875)
 texture = ExtResource("8_oc7a4")
 offset = Vector2(0, 256)
+
+[node name="Slime2" parent="." unique_id=968982645 instance=ExtResource("10_44rkg")]
+position = Vector2(151, 244)
+face_left_on_start = false
+
+[node name="Slime3" parent="." unique_id=1061877763 instance=ExtResource("10_44rkg")]
+position = Vector2(211, 244)
+
+[node name="Slime4" parent="." unique_id=1516580633 instance=ExtResource("10_44rkg")]
+position = Vector2(276, 242)
+
+[node name="Slime5" parent="." unique_id=851984256 instance=ExtResource("10_44rkg")]
+position = Vector2(352, 243)
+face_left_on_start = false
+
+[node name="Slime6" parent="." unique_id=1678246717 instance=ExtResource("10_44rkg")]
+position = Vector2(457, 238)
+
+[node name="Slime7" parent="." unique_id=528057384 instance=ExtResource("10_44rkg")]
+position = Vector2(665, 230)
+
+[node name="Slime8" parent="." unique_id=1068415106 instance=ExtResource("10_44rkg")]
+position = Vector2(774, 218)
+
+[node name="Slime9" parent="." unique_id=952882264 instance=ExtResource("10_44rkg")]
+position = Vector2(926, 237)
+face_left_on_start = false
+
+[node name="Slime10" parent="." unique_id=754526341 instance=ExtResource("10_44rkg")]
+position = Vector2(1114, 224)
+face_left_on_start = false
+
+[node name="Slime11" parent="." unique_id=856592603 instance=ExtResource("10_44rkg")]
+position = Vector2(1258, 229)
+face_left_on_start = false
+
+[node name="Slime12" parent="." unique_id=216284787 instance=ExtResource("10_44rkg")]
+position = Vector2(1388, 233)
+
+[node name="Chest" parent="." unique_id=900338358 instance=ExtResource("11_fhx7w")]
+position = Vector2(54.000004, 154)

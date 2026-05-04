@@ -3,17 +3,11 @@
 [ext_resource type="Script" uid="uid://brkfxv15jwo3g" path="res://economy/ui/shop_screen.gd" id="1_y87g8"]
 [ext_resource type="PackedScene" uid="uid://cmvegf2v1ebo8" path="res://economy/ui/currency_display.tscn" id="2_flpq3"]
 
-[node name="ShopScreen" type="Control" unique_id=655433687]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="ShopScreen" type="CanvasLayer" unique_id=130477088]
+layer = 10
 script = ExtResource("1_y87g8")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1516840240]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -23,7 +17,6 @@ color = Color(0, 0, 0, 1)
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=657308587]
 custom_minimum_size = Vector2(0, 250)
-layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -65,7 +58,20 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=600478472]
 layout_mode = 2
 
+[node name="SoulLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=869349647]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="GemsLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1721708047]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="CloseLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=2023362074]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="CurrencyDisplay2" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1741465259 instance=ExtResource("2_flpq3")]
+visible = false
 layout_mode = 2
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=404692739]
@@ -102,3 +108,10 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 36)
 layout_mode = 2
 text = "Close"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=734736527]
+layout_mode = 2
+
+[node name="ItemsContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ScrollContainer" unique_id=1639676455]
+unique_name_in_owner = true
+layout_mode = 2

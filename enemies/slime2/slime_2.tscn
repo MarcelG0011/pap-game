@@ -110,12 +110,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-func _physics_process(delta: float) -> void:
-	text = \"\"
-	text = \"target = \"
-	text += slime_2.blackboard.target.name if slime_2.blackboard.target else \"\"
-	text = \"\\n dist = \"
-	text += str( slime_2.blackboard.distance_to_target )
+func _physics_process(_delta: float) -> void:
 	pass
 "
 
@@ -152,6 +147,13 @@ metadata/_custom_type_script = "uid://dd7l7wwg1fb1k"
 script = ExtResource("17_wnmrr")
 item = "uid://don8f5mnlmgyo"
 maximum = 6
+metadata/_custom_type_script = "uid://cu17pvlsnx50e"
+
+[sub_resource type="Resource" id="Resource_1uh3u"]
+script = ExtResource("17_wnmrr")
+item = "uid://dfudougpit5bv"
+maximum = 4
+drop_chance = 1.0
 metadata/_custom_type_script = "uid://cu17pvlsnx50e"
 
 [node name="Slime2" type="CharacterBody2D" unique_id=968982645]
@@ -253,5 +255,5 @@ metadata/_custom_type_script = "uid://bubuja0hl6jj6"
 [node name="LootDropper" type="Marker2D" parent="." unique_id=979195487]
 position = Vector2(0, -10)
 script = ExtResource("16_tekfa")
-items = Array[ExtResource("17_wnmrr")]([SubResource("Resource_wnmrr")])
+items = Array[ExtResource("17_wnmrr")]([SubResource("Resource_wnmrr"), SubResource("Resource_1uh3u")])
 metadata/_custom_type_script = "uid://c3r6ickip437"

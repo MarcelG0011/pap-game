@@ -7,7 +7,7 @@ func init() -> void:
 	
 func enter() -> void:
 	player.animation_player.play( "Death" )
-	Audio.play_spatial_sound( DEATH_AUDIO, player.global_position, true )
+	#Audio.play_spatial_sound( DEATH_AUDIO, player.global_position, true )
 	Audio.play_music( null )
 	var timer = player.get_tree().create_timer(2.5)
 	timer.timeout.connect(_on_timeout_backup)

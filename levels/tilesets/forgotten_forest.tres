@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://djfnt6cy7sak8" path="res://levels/tilesets/Mediaval_Castle/window_tall_3.png" id="7_yi7wr"]
 [ext_resource type="Texture2D" uid="uid://003t3ld5tdrf" path="res://levels/tilesets/sprites/prison_cells.png" id="9_8mm41"]
 [ext_resource type="Texture2D" uid="uid://c88enbyrc4lbk" path="res://levels/tilesets/Mediaval_Castle/floor.png" id="9_il87m"]
+[ext_resource type="Texture2D" uid="uid://bwismwe2oeb5f" path="res://levels/tilesets/sprites/Animated Decorations/chest/chest_1.png" id="11_lgx1n"]
+[ext_resource type="Texture2D" uid="uid://dhu10vyd0h18e" path="res://levels/tilesets/sprites/Animated Decorations/chest/chest_2.png" id="13_l3aam"]
 [ext_resource type="Texture2D" uid="uid://bqmyxdp7bne6q" path="res://levels/tilesets/Mediaval_Castle/window_tall_1.png" id="14_8mm41"]
 [ext_resource type="Texture2D" uid="uid://bp7yvbi2dglxd" path="res://levels/tilesets/Mediaval_Castle/spikes.png" id="34_0lqrh"]
 [ext_resource type="Texture2D" uid="uid://dswtu27d2dq53" path="res://levels/tilesets/Mediaval_Castle/windown.png" id="74_eon4q"]
@@ -608,6 +610,10 @@ texture_region_size = Vector2i(32, 32)
 18:0/0 = 0
 19:0/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_disc7"]
+texture = ExtResource("11_lgx1n")
+texture_region_size = Vector2i(32, 32)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rcr6e"]
 texture = ExtResource("3_mclc0")
 texture_region_size = Vector2i(32, 32)
@@ -615,6 +621,10 @@ texture_region_size = Vector2i(32, 32)
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tpsat"]
+texture = ExtResource("13_l3aam")
+texture_region_size = Vector2i(32, 32)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_m2vds"]
 texture = ExtResource("4_t8j3r")
@@ -787,4 +797,6 @@ sources/2 = SubResource("TileSetAtlasSource_8mm41")
 sources/3 = SubResource("TileSetAtlasSource_f4wis")
 sources/8 = SubResource("TileSetAtlasSource_lgx1n")
 sources/4 = SubResource("TileSetAtlasSource_l3aam")
+sources/5 = SubResource("TileSetAtlasSource_disc7")
+sources/6 = SubResource("TileSetAtlasSource_tpsat")
 pattern_0 = SubResource("TileMapPattern_uh0r3")
