@@ -3,11 +3,11 @@ extends Area2D
 @export var soul_value: int = 10  # Quanto vale
 
 var velocity: Vector2 = Vector2.ZERO
-var fall_gravity: float = 400.0  # ✅ RENOMEADO de gravity para fall_gravity
+var fall_gravity: float = 400.0  
 var bounce_damping: float = 0.6
 var collected: bool = false
 
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D  # ✅ CORRIGIDO para AnimatedSprite2D
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D  
 
 func _ready() -> void:
 	# Toca animação (crie uma animação "idle" ou "spin")
@@ -31,7 +31,7 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	# Física simples - moeda cai e quica
-	velocity.y += fall_gravity * delta  # ✅ USA fall_gravity
+	velocity.y += fall_gravity * delta  
 	position += velocity * delta
 	
 	# Simula quique (chão em y = 0 local)

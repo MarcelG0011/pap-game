@@ -18,7 +18,6 @@ func _ready() -> void:
 	simulate_button.pressed.connect(_on_simulate_pressed)
 	cancel_button.pressed.connect(_on_cancel_pressed)
 	
-	# ✅ NÃO pausa aqui - a loja já pausou
 	# get_tree().paused = true  ← REMOVA
 
 func setup(package: Dictionary) -> void:
@@ -92,7 +91,6 @@ func show_success(gems: int) -> void:
 func _on_cancel_pressed() -> void:
 	print("[PAYMENT DEMO] Fechando popup")
 	
-	# ✅ NÃO despausa - a loja ainda está aberta
 	# get_tree().paused = false  ← JÁ REMOVIDO
 	
 	cancelled.emit()

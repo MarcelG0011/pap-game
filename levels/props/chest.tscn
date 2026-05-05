@@ -58,10 +58,10 @@ script = ExtResource("2_ccscl")
 texture = SubResource("AtlasTexture_pyw3y")
 metadata/_custom_type_script = "uid://dd7l7wwg1fb1k"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v6dl"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjx7s"]
 size = Vector2(32, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sjx7s"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4v6dl"]
 size = Vector2(32, 20)
 
 [sub_resource type="Resource" id="Resource_vim62"]
@@ -79,6 +79,16 @@ hit_particles = Array[ExtResource("2_ccscl")]([SubResource("Resource_yv4b6")])
 destroy_particles = Array[ExtResource("2_ccscl")]([SubResource("Resource_hwaub"), SubResource("Resource_27mbs"), SubResource("Resource_w0jio")])
 metadata/_custom_type_script = "uid://csgrbxc54c4fi"
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=471847940]
+position = Vector2(0, -11)
+texture = ExtResource("3_coq7n")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1858158090]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2024148681]
+position = Vector2(-2, -10)
+shape = SubResource("RectangleShape2D_sjx7s")
+
 [node name="DamageArea" type="Area2D" parent="." unique_id=730852355]
 collision_layer = 64
 collision_mask = 0
@@ -88,16 +98,6 @@ metadata/_custom_type_script = "uid://dwywwp8rlosai"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=2106938450]
 position = Vector2(-2, -10)
 shape = SubResource("RectangleShape2D_4v6dl")
-
-[node name="Sprite2D" type="Sprite2D" parent="DamageArea" unique_id=471847940]
-position = Vector2(0, -11)
-texture = ExtResource("3_coq7n")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1858158090]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=2024148681]
-position = Vector2(-2, -10)
-shape = SubResource("RectangleShape2D_sjx7s")
 
 [node name="LootDropper" type="Marker2D" parent="." unique_id=1107654866]
 script = ExtResource("4_sjx7s")

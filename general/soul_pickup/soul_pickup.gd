@@ -2,9 +2,9 @@
 class_name SoulPickup
 extends CharacterBody2D
 
-#const SOUL_PICKUP_AUDIO = preload("res://audio/sfx/soul_pickup.ogg")  # ← ajusta path
+#const SOUL_PICKUP_AUDIO = preload("res://audio/sfx/soul_pickup.ogg")  # 
 
-@export var soul_amount: int = 5
+@export var soul_amount: int = 1
 
 var bounce_count: int = 8
 

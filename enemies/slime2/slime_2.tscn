@@ -146,14 +146,14 @@ metadata/_custom_type_script = "uid://dd7l7wwg1fb1k"
 [sub_resource type="Resource" id="Resource_wnmrr"]
 script = ExtResource("17_wnmrr")
 item = "uid://don8f5mnlmgyo"
-maximum = 6
+maximum = 3
 metadata/_custom_type_script = "uid://cu17pvlsnx50e"
 
 [sub_resource type="Resource" id="Resource_1uh3u"]
 script = ExtResource("17_wnmrr")
 item = "uid://dfudougpit5bv"
-maximum = 4
-drop_chance = 1.0
+maximum = 2
+drop_chance = 0.3
 metadata/_custom_type_script = "uid://cu17pvlsnx50e"
 
 [node name="Slime2" type="CharacterBody2D" unique_id=968982645]
