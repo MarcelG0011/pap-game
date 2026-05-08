@@ -6,12 +6,14 @@ var db_path: String = "user://game.db"
 func _ready() -> void:
 	open_database()
 	create_tables()
-
+	pass
+	
 func open_database() -> void:
 	db = SQLite.new()
 	db.path = db_path
 	db.open_db()
-
+	pass
+	
 func create_tables() -> void:
 	# Tabela de usuarios
 	var users_table = """
@@ -129,6 +131,20 @@ func create_tables() -> void:
 	"""
 	db.query(user_settings_table)
 	
+	#Tabela para tutoriais vistos
+	var create_user_tutorials = """
+	CREATE TABLE IF NOT EXISTS user_tutorials (
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		user_id INTEGER NOT NULL,
+		tutorial_id TEXT NOT NULL,
+		seen_at INTEGER NOT NULL,
+		UNIQUE(user_id, tutorial_id),
+		FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+	);
+	"""
+	db.query(create_user_tutorials)
+	pass
+	
 func create_index() -> void:
 	
 	var idx_leaderboard = """ 
@@ -136,7 +152,33 @@ func create_index() -> void:
 		ON leaderboard(time_ms ASC);
 	"""
 	db.query(idx_leaderboard)
+	pass
+	
+# Função para verificar se tutorial foi visto
+func has_seen_tutorial(user_id: int, tutorial_id: String) -> bool:
+	var query = "SELECT id FROM user_tutorials WHERE user_id = ? AND tutorial_id = ?;"
+	db.query_with_bindings(query, [user_id, tutorial_id])
+	return not db.query_result.is_empty()
 
+# Função para marcar tutorial como visto
+func mark_tutorial_as_seen(user_id: int, tutorial_id: String) -> void:
+	var timestamp = Time.get_unix_time_from_system()
+	var query = """
+	INSERT OR IGNORE INTO user_tutorials (user_id, tutorial_id, seen_at)
+	VALUES (?, ?, ?);
+	"""
+	db.query_with_bindings(query, [user_id, tutorial_id, timestamp])
+	print("[DATABASE] Tutorial '", tutorial_id, "' marcado como visto")
+	pass
+	
+# Função para resetar tutoriais ( para testes)
+func reset_tutorials(user_id: int) -> void:
+	var query = "DELETE FROM user_tutorials WHERE user_id = ?;"
+	db.query_with_bindings(query, [user_id])
+	print("[DATABASE] Tutoriais resetados para user_id: ", user_id)
+	pass
+	
 func close_database() -> void:
 	if db:
 		db.close_db()
+	pass

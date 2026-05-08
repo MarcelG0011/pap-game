@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="SoulBound"
+config/name="SoulBound : Echoes of Destiny"
 run/main_scene="uid://bjj7g2i6xqslh"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://chx05ital67vn"
@@ -31,6 +31,7 @@ SaveManager="*uid://bgscoplfsxlkf"
 PauseManager="*uid://btcxh7ixdct1k"
 Messages="*uid://p055317qxas6"
 InactivityMonitor="*uid://337paet3pm47"
+TutorialManager="*uid://bwsv0xikryk88"
 SpeedrunTimer="*uid://bkms103iie8ry"
 LeaderboardManager="*uid://bqguosw4ocivl"
 SpeedrunHub="*uid://byeks2w1cub2e"
