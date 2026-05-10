@@ -8,7 +8,7 @@ extends Control
 @onready var signup_button: Button = %SignupButton
 @onready var forgot_password_button: Button = %ForgotPasswordButton
 @onready var error_label: Label = %ErrorLabel
-@onready var login_panel: PanelContainer = $CenterContainer/LoginPanel
+@onready var login_panel: PanelContainer = %LoginPanel
 
 var is_login_processing: bool = false
 

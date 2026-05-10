@@ -14,24 +14,89 @@ func _ready() -> void:
 
 # SIGNUP
 
-func signup(username: String, email: String, password: String, confirm_password: String) -> void:
-	# Valida dados
-	var validation_error = validate_signup(username, email, password, confirm_password)
+func signup(username: String, email: String, password: String, security_question: String, security_answer: String) -> void:
+	print("[ACCOUNT] Tentando criar conta: ", username)
 	
-	if validation_error != "":
-		signup_failed.emit(validation_error)
+	# Hash da senha
+	var password_hash = password.sha256_text()
+	
+	# Hash da resposta de segurança (case-insensitive)
+	var security_answer_hash = security_answer.to_lower().strip_edges().sha256_text()
+	
+	# Timestamp
+	var timestamp = Time.get_unix_time_from_system()
+	
+	# Tenta inserir no banco
+	var query = """
+	INSERT INTO users (username, email, password_hash, security_question, security_answer_hash, created_at)
+	VALUES (?, ?, ?, ?, ?, ?);
+	"""
+	
+	DatabaseManager.db.query_with_bindings(query, [
+		username,
+		email,
+		password_hash,
+		security_question,
+		security_answer_hash,
+		timestamp
+	])
+	
+	# Verifica se inseriu
+	if DatabaseManager.db.query_result.is_empty():
+		# Verifica se username já existe
+		var check_username = "SELECT id FROM users WHERE username = ?;"
+		DatabaseManager.db.query_with_bindings(check_username, [username])
+		
+		if not DatabaseManager.db.query_result.is_empty():
+			signup_failed.emit("Username already exists")
+			return
+		
+		# Verifica se email já existe
+		var check_email = "SELECT id FROM users WHERE email = ?;"
+		DatabaseManager.db.query_with_bindings(check_email, [email])
+		
+		if not DatabaseManager.db.query_result.is_empty():
+			signup_failed.emit("Email already in use")
+			return
+		
+		signup_failed.emit("Failed to create account")
 		return
 	
-	# Cria conta
-	var success = create_account(username, email, password)
+	# Sucesso!
+	print("[ACCOUNT] Conta criada com sucesso!")
 	
-	if success:
-		signup_successful.emit(username)
+	# Busca o user_id
+	var get_id = "SELECT id FROM users WHERE username = ?;"
+	DatabaseManager.db.query_with_bindings(get_id, [username])
+	
+	if not DatabaseManager.db.query_result.is_empty():
+		var user_id = DatabaseManager.db.query_result[0]["id"]
 		
-		# Auto-login apos criar conta
-		login(username, password, true)
-	else:
-		signup_failed.emit("Erro ao criar conta. Username ou email ja existe.")
+		# Inicializa currency
+		_initialize_user_currency(user_id)
+		
+		# Inicializa settings
+		_initialize_user_settings(user_id)
+	
+	signup_successful.emit(username)
+	pass
+	
+func _initialize_user_currency(user_id: int) -> void:
+	var timestamp = Time.get_unix_time_from_system()
+	var query = """
+	INSERT INTO user_currency (user_id, soul, gems, updated_at)
+	VALUES (?, 0, 0, ?);
+	"""
+	DatabaseManager.db.query_with_bindings(query, [user_id, timestamp])
+
+func _initialize_user_settings(user_id: int) -> void:
+	var timestamp = Time.get_unix_time_from_system()
+	var query = """
+	INSERT INTO user_settings (user_id, inactivity_enabled, inactivity_timeout, autosave_enabled, autosave_interval, updated_at)
+	VALUES (?, 1, 120, 1, 180, ?);
+	"""
+	DatabaseManager.db.query_with_bindings(query, [user_id, timestamp])
+	pass
 
 func create_account(username: String, email: String, password: String) -> bool:
 	var password_hash = hash_password(password)

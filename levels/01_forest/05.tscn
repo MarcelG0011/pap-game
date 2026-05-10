@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://rfu41aeq5ow2" path="res://music/forest_01.ogg" id="8_h2ed3"]
 [ext_resource type="Texture2D" uid="uid://dqxxuf2rytk0k" path="res://levels/tilesets/sprites/light_stream.jpg" id="9_t5564"]
 [ext_resource type="Material" uid="uid://b0lfbnycigucg" path="res://materials_and_shaders/fog_fade_material.tres" id="11_2wtl0"]
+[ext_resource type="Script" uid="uid://c10mlmbdah2oi" path="res://00_global/tutorial/tutorial_trigger.gd" id="12_3sjnj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yg251"]
 blend_mode = 1
@@ -30,6 +31,9 @@ color_ramp = SubResource("Gradient_6qrv6")
 seamless = true
 normalize = false
 seamless_blend_skirt = 0.3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3sjnj"]
+size = Vector2(66, 234)
 
 [node name="05" type="Node2D" unique_id=1473453218]
 
@@ -314,7 +318,6 @@ track = ExtResource("8_h2ed3")
 metadata/_custom_type_script = "uid://dqjshejv1b1qn"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="." unique_id=216535217]
-visible = false
 rotation = 0.43405253
 color = Color(0.513153, 0.513153, 0.513153, 1)
 blend_mode = 2
@@ -331,3 +334,16 @@ repeat_times = 2
 material = ExtResource("11_2wtl0")
 position = Vector2(540, 360)
 texture = SubResource("NoiseTexture2D_2wtl0")
+
+[node name="TutorialTrigger" type="Area2D" parent="." unique_id=2091818073]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("12_3sjnj")
+tutorial_id = "tutorial_attack"
+title = "Attack"
+media_path = "uid://mhwn61xs2drs"
+metadata/_custom_type_script = "uid://c10mlmbdah2oi"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialTrigger" unique_id=1566349379]
+position = Vector2(815, 561)
+shape = SubResource("RectangleShape2D_3sjnj")

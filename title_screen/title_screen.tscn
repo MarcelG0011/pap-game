@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://el26ixiwf5en" path="res://levels/tilesets/sprites/forgotten_forest_example_tileset.png" id="10_uiiip"]
 [ext_resource type="Texture2D" uid="uid://dqxxuf2rytk0k" path="res://levels/tilesets/sprites/light_stream.jpg" id="11_p7x7j"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oqrgu"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p7x7j"]
 texture = ExtResource("4_fk0fn")
 0:0/0 = 0
 1:0/0 = 0
@@ -33,7 +33,7 @@ texture = ExtResource("4_fk0fn")
 2:3/0 = 0
 3:3/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fh6ay"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4h7y4"]
 texture = ExtResource("5_fv0o7")
 0:0/0 = 0
 1:0/0 = 0
@@ -756,7 +756,7 @@ texture = ExtResource("5_fv0o7")
 34:19/0 = 0
 35:19/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jabur"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3eqcd"]
 texture = ExtResource("6_1oos5")
 25:2/0 = 0
 26:2/0 = 0
@@ -1169,7 +1169,7 @@ texture = ExtResource("6_1oos5")
 34:19/0 = 0
 35:19/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4h7y4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mag7y"]
 texture = ExtResource("7_jabur")
 0:0/0 = 0
 1:0/0 = 0
@@ -1892,7 +1892,7 @@ texture = ExtResource("7_jabur")
 34:19/0 = 0
 35:19/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3eqcd"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3d3o2"]
 texture = ExtResource("8_uiiip")
 15:3/0 = 0
 16:3/0 = 0
@@ -2037,7 +2037,7 @@ texture = ExtResource("8_uiiip")
 19:15/0 = 0
 20:15/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mag7y"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47vnn"]
 texture = ExtResource("9_p7x7j")
 8:12/0 = 0
 12:12/0 = 0
@@ -2241,7 +2241,7 @@ texture = ExtResource("9_p7x7j")
 34:19/0 = 0
 35:19/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p7x7j"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_u0nof"]
 texture = ExtResource("10_uiiip")
 0:0/0 = 0
 1:0/0 = 0
@@ -3707,13 +3707,13 @@ texture = ExtResource("10_uiiip")
 61:31/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_fv0o7"]
-sources/0 = SubResource("TileSetAtlasSource_oqrgu")
-sources/1 = SubResource("TileSetAtlasSource_fh6ay")
-sources/2 = SubResource("TileSetAtlasSource_jabur")
-sources/3 = SubResource("TileSetAtlasSource_4h7y4")
-sources/4 = SubResource("TileSetAtlasSource_3eqcd")
-sources/5 = SubResource("TileSetAtlasSource_mag7y")
-sources/7 = SubResource("TileSetAtlasSource_p7x7j")
+sources/0 = SubResource("TileSetAtlasSource_p7x7j")
+sources/1 = SubResource("TileSetAtlasSource_4h7y4")
+sources/2 = SubResource("TileSetAtlasSource_3eqcd")
+sources/3 = SubResource("TileSetAtlasSource_mag7y")
+sources/4 = SubResource("TileSetAtlasSource_3d3o2")
+sources/5 = SubResource("TileSetAtlasSource_47vnn")
+sources/7 = SubResource("TileSetAtlasSource_u0nof")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4h7y4"]
 blend_mode = 1

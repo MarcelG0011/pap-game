@@ -1,40 +1,99 @@
 [gd_scene format=3 uid="uid://dsickcpdww2ry"]
 
 [ext_resource type="Script" uid="uid://crl4g4ao7l5m5" path="res://00_global/tutorial/tutorial_popup.gd" id="1_iffvg"]
+[ext_resource type="Shader" uid="uid://bqqj82ki7yni" path="res://00_global/tutorial/shaders/corner_decoration.gdshader" id="2_ev4lw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cckid"]
+shader = ExtResource("2_ev4lw")
+shader_parameter/line_color = Color(0.392, 0.549, 0.863, 0.7)
+shader_parameter/line_width = 2.0
+shader_parameter/corner_type = 0
 
 [node name="TutorialPopup" type="CanvasLayer" unique_id=566641060]
-layer = 50
+process_mode = 3
+layer = 100
 script = ExtResource("1_iffvg")
 
-[node name="DarkOverlay" type="ColorRect" parent="." unique_id=702574119]
+[node name="Panel" type="Panel" parent="." unique_id=1996188746]
+material = SubResource("ShaderMaterial_cckid")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.33333334)
 
-[node name="CenterContainer" type="CenterContainer" parent="DarkOverlay" unique_id=783978242]
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1476469438]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 
-[node name="PanelContainer" type="PanelContainer" parent="DarkOverlay/CenterContainer" unique_id=1302082890]
-custom_minimum_size = Vector2(450, 0)
+[node name="CenterContainer" type="CenterContainer" parent="Panel/MarginContainer" unique_id=885272926]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/CenterContainer" unique_id=1627253527]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="TitleLabel" type="Label" parent="Panel/MarginContainer/CenterContainer/VBoxContainer" unique_id=1108245707]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+text = "TUTORIAL"
+
+[node name="MediaVBox" type="VBoxContainer" parent="Panel/MarginContainer/CenterContainer/VBoxContainer" unique_id=1580356761]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DarkOverlay/CenterContainer/PanelContainer" unique_id=478300048]
+[node name="ImageRect" type="TextureRect" parent="Panel/MarginContainer/CenterContainer/VBoxContainer/MediaVBox" unique_id=1035808911]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 150)
 layout_mode = 2
-theme_override_constants/separation = 0
+expand_mode = 1
+stretch_mode = 5
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="DarkOverlay/CenterContainer/PanelContainer" unique_id=999012386]
+[node name="VideoPlayer" type="VideoStreamPlayer" parent="Panel/MarginContainer/CenterContainer/VBoxContainer/MediaVBox" unique_id=569070980]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 150)
 layout_mode = 2
+loop = true
 
-[node name="HeaderBar" type="PanelContainer" parent="DarkOverlay/CenterContainer/PanelContainer/VBoxContainer2" unique_id=609995451]
+[node name="BodyLabel" type="RichTextLabel" parent="Panel/MarginContainer/CenterContainer/VBoxContainer" unique_id=1311343132]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DarkOverlay/CenterContainer/PanelContainer/VBoxContainer2/HeaderBar" unique_id=850575106]
+[node name="ProgressLabel" type="Label" parent="Panel/MarginContainer/CenterContainer/VBoxContainer" unique_id=1737481268]
+unique_name_in_owner = true
 layout_mode = 2
+text = "Step 1 of 3"
+horizontal_alignment = 1
+
+[node name="ButtonHBox" type="HBoxContainer" parent="Panel/MarginContainer/CenterContainer/VBoxContainer" unique_id=701547517]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="SkipButton" type="Button" parent="Panel/MarginContainer/CenterContainer/VBoxContainer/ButtonHBox" unique_id=1542173183]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Skip All"
+
+[node name="Spacer" type="Control" parent="Panel/MarginContainer/CenterContainer/VBoxContainer/ButtonHBox" unique_id=363150557]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContinueButton" type="Button" parent="Panel/MarginContainer/CenterContainer/VBoxContainer/ButtonHBox" unique_id=16171093]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(120, 35)
+layout_mode = 2
+text = "Continue"

@@ -1,3 +1,4 @@
+# res://00_global/database_manager.gd
 extends Node
 
 var db: SQLite = null
@@ -6,14 +7,12 @@ var db_path: String = "user://game.db"
 func _ready() -> void:
 	open_database()
 	create_tables()
-	pass
-	
+
 func open_database() -> void:
 	db = SQLite.new()
 	db.path = db_path
 	db.open_db()
-	pass
-	
+
 func create_tables() -> void:
 	# Tabela de usuarios
 	var users_table = """
@@ -131,7 +130,7 @@ func create_tables() -> void:
 	"""
 	db.query(user_settings_table)
 	
-	#Tabela para tutoriais vistos
+	# Tabela para tutoriais vistos
 	var create_user_tutorials = """
 	CREATE TABLE IF NOT EXISTS user_tutorials (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -143,24 +142,66 @@ func create_tables() -> void:
 	);
 	"""
 	db.query(create_user_tutorials)
-	pass
-	
+
 func create_index() -> void:
-	
 	var idx_leaderboard = """ 
-	CREATE INDEX idx_leaderboard_time 
+	CREATE INDEX IF NOT EXISTS idx_leaderboard_time 
 		ON leaderboard(time_ms ASC);
 	"""
 	db.query(idx_leaderboard)
-	pass
+
+# ========================================
+# FUNÇÕES DE USUÁRIO
+# ========================================
+
+# Busca usuário por username
+func get_user_by_username(username: String) -> Dictionary:
+	var query = "SELECT * FROM users WHERE username = ?;"
+	db.query_with_bindings(query, [username])
 	
-# Função para verificar se tutorial foi visto
+	if db.query_result.is_empty():
+		return {}
+	
+	return db.query_result[0]
+
+# Busca usuário por email
+func get_user_by_email(email: String) -> Dictionary:
+	var query = "SELECT * FROM users WHERE email = ?;"
+	db.query_with_bindings(query, [email])
+	
+	if db.query_result.is_empty():
+		return {}
+	
+	return db.query_result[0]
+
+# Busca usuário por ID
+func get_user_by_id(user_id: int) -> Dictionary:
+	var query = "SELECT * FROM users WHERE id = ?;"
+	db.query_with_bindings(query, [user_id])
+	
+	if db.query_result.is_empty():
+		return {}
+	
+	return db.query_result[0]
+
+# Atualiza password
+func update_password(user_id: int, password_hash: String) -> bool:
+	var query = "UPDATE users SET password_hash = ? WHERE id = ?;"
+	db.query_with_bindings(query, [password_hash, user_id])
+	print("[DATABASE] Password atualizada para user_id: ", user_id)
+	return true
+
+# ========================================
+# FUNÇÕES DE TUTORIAIS
+# ========================================
+
+# Verifica se tutorial foi visto
 func has_seen_tutorial(user_id: int, tutorial_id: String) -> bool:
 	var query = "SELECT id FROM user_tutorials WHERE user_id = ? AND tutorial_id = ?;"
 	db.query_with_bindings(query, [user_id, tutorial_id])
 	return not db.query_result.is_empty()
 
-# Função para marcar tutorial como visto
+# Marca tutorial como visto
 func mark_tutorial_as_seen(user_id: int, tutorial_id: String) -> void:
 	var timestamp = Time.get_unix_time_from_system()
 	var query = """
@@ -169,16 +210,17 @@ func mark_tutorial_as_seen(user_id: int, tutorial_id: String) -> void:
 	"""
 	db.query_with_bindings(query, [user_id, tutorial_id, timestamp])
 	print("[DATABASE] Tutorial '", tutorial_id, "' marcado como visto")
-	pass
-	
-# Função para resetar tutoriais ( para testes)
+
+# Reseta tutoriais (para testes)
 func reset_tutorials(user_id: int) -> void:
 	var query = "DELETE FROM user_tutorials WHERE user_id = ?;"
 	db.query_with_bindings(query, [user_id])
 	print("[DATABASE] Tutoriais resetados para user_id: ", user_id)
-	pass
-	
+
+# ========================================
+# FECHAR DATABASE
+# ========================================
+
 func close_database() -> void:
 	if db:
 		db.close_db()
-	pass
