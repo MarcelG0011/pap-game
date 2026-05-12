@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dgh1a87m0ftr8"]
 
 [ext_resource type="Script" uid="uid://flibcgqu4lrj" path="res://economy/ui/payment_demo_popup.gd" id="1_5u6gx"]
+[ext_resource type="Texture2D" uid="uid://cs3th8nnh8cg" path="res://economy/ui/trancar.png" id="2_e4btw"]
 
 [node name="PaymentDemoPopup" type="Control" unique_id=366651618]
 process_mode = 3
@@ -12,150 +13,150 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5u6gx")
 
-[node name="Background" type="ColorRect" parent="." unique_id=2098495781]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1903062261]
+custom_minimum_size = Vector2(400, 250)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 1)
+color = Color(0.047058824, 0.047058824, 0.09411765, 1)
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=344066752]
-custom_minimum_size = Vector2(0, 250)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Panel" type="Panel" parent="." unique_id=291036297]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=454336616]
-custom_minimum_size = Vector2(480, 0)
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=1986577385]
+custom_minimum_size = Vector2(480, 270)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.5
+offset_bottom = -1.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1987680895]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=289473333]
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=2124757849]
+[node name="TextureRect" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1890899821]
 layout_mode = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
+texture = ExtResource("2_e4btw")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1023873905]
-custom_minimum_size = Vector2(0, 220)
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=157339794]
 layout_mode = 2
-horizontal_scroll_mode = 0
+theme_override_font_sizes/font_size = 22
+text = "Payment Details"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer" unique_id=1422415903]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 12
-
-[node name="Title" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=628917669]
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "PAYMENT DEMONSTRATION"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1587401745]
+[node name="HSeparator3" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=1948246718]
 layout_mode = 2
 
-[node name="InfoIcon" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1596041331]
+[node name="PackageLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=1639392990]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 0.9117143, 0, 1)
-theme_override_font_sizes/font_size = 18
-text = "Demo Mode"
-horizontal_alignment = 1
+theme_override_font_sizes/font_size = 16
+text = "Package: 100 Gems"
 
-[node name="InfoLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1683482966]
-custom_minimum_size = Vector2(0, 35)
+[node name="PriceLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=950746904]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6118008, 0.6118008, 0.6118008, 1)
+theme_override_font_sizes/font_size = 14
+text = "EUR 0.99"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=513458005]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=641670429]
 layout_mode = 2
 theme_override_font_sizes/font_size = 12
-text = "This is a demonstration of the payment system"
-horizontal_alignment = 1
-autowrap_mode = 2
+text = "Card Number"
 
-[node name="Spacer1" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=916495516]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="TechList" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=858190201]
-layout_mode = 2
-
-[node name="Tech1" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TechList" unique_id=553126127]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Stripe API"
-
-[node name="Tech2" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TechList" unique_id=847857593]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Supabase"
-
-[node name="Tech3" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TechList" unique_id=1741613765]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "PostgreSQL"
-
-[node name="Tech4" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/TechList" unique_id=1383455534]
-layout_mode = 2
-theme_override_font_sizes/font_size = 11
-text = "Webhook Security"
-
-[node name="Spacer2" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=183266962]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-
-[node name="HSeparator2" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1467344914]
-layout_mode = 2
-
-[node name="PackageInfo" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1317315633]
+[node name="CardNumberInput" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer" unique_id=734816354]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "Package: 500 gems"
-horizontal_alignment = 1
+placeholder_text = "1234 5678 9012 3456"
 
-[node name="PriceInfo" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=880980260]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=873228163]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1016187311]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=488619061]
+layout_mode = 2
+text = "Expiry"
+
+[node name="ExpiryInput" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=939968249]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.116138935, 1)
-theme_override_font_sizes/font_size = 14
-text = "Price: EUR 3.99"
-horizontal_alignment = 1
+placeholder_text = "MM/AA"
 
-[node name="Spacer3" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=701008332]
-custom_minimum_size = Vector2(0, 10)
+[node name="VBoxContainer2" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=184588776]
 layout_mode = 2
 
-[node name="CostDetails" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1815221620]
+[node name="Label5" type="Label" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" unique_id=1255539503]
 layout_mode = 2
+text = "CVV"
 
-[node name="Cost1" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/CostDetails" unique_id=859723997]
-layout_mode = 2
-text = "0-1000 users"
-
-[node name="HSeparator3" type="HSeparator" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1309385881]
-layout_mode = 2
-
-[node name="ButtonsContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1372404622]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_constants/separation = 15
-
-[node name="SimulateButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ButtonsContainer" unique_id=515348433]
+[node name="CvvInput" type="LineEdit" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer2/VBoxContainer2" unique_id=1384360814]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(150, 40)
 layout_mode = 2
-text = "SIMULATE PURCHASE"
+placeholder_text = "CVV"
 
-[node name="CancelButton" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer/ButtonsContainer" unique_id=1656992612]
+[node name="HSeparator2" type="HSeparator" parent="Panel/MarginContainer/VBoxContainer" unique_id=2062001879]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=756533287]
+layout_mode = 2
+
+[node name="CancelButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=398415986]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 40)
 layout_mode = 2
 text = "Cancel"
 
-[node name="ResultLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=191705995]
+[node name="PayButton" type="Button" parent="Panel/MarginContainer/VBoxContainer/HBoxContainer3" unique_id=992765782]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 1, 0.06598425, 1)
-theme_override_font_sizes/font_size = 12
-horizontal_alignment = 1
+text = "Pay Now"
+
+[node name="SuccessOverlay" type="ColorRect" parent="." unique_id=1628387829]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SuccessLabel" type="Label" parent="SuccessOverlay" unique_id=1087713133]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -7.5
+offset_right = 20.0
+offset_bottom = 7.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HTTPRequest" type="HTTPRequest" parent="." unique_id=237542658]

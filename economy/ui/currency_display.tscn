@@ -64,7 +64,6 @@ layout_mode = 2
 theme_override_constants/separation = 5
 
 [node name="SoulIcon" type="AnimatedSprite2D" parent="VBoxContainer/SoulContainer" unique_id=1492741180]
-modulate = Color(0.9735091, 0.9735091, 0.9735091, 1)
 position = Vector2(-7, 8)
 sprite_frames = SubResource("SpriteFrames_u2837")
 animation = &"Soul"

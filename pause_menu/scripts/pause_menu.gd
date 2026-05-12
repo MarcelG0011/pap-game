@@ -104,8 +104,9 @@ func _on_ui_slider_changed(v: float) -> void:
 
 func _show_shop() -> void:
 	var shop = load("res://economy/ui/shop_screen.tscn").instantiate()
-	add_child(shop)
-
+	get_tree().root.add_child(shop)
+	shop.setup("gems")
+	
 func _on_back_to_title_pressed() -> void:
 	get_tree().paused = false
 	SceneManager.transition_scene("res://title_screen/title_screen.tscn", "", Vector2.ZERO, "up")

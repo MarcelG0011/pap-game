@@ -18,13 +18,10 @@ func load_shop_catalog() -> void:
 	# ── Upgrades (Soul) ──────────────────────────────
 	_add_upgrade("upgrade_max_hp_1", "Max HP +5",
 		"Increases max HP by 5.", 100, "max_hp", 5, 5)
-
 	_add_upgrade("upgrade_max_hp_2", "Max HP +10",
 		"Increases max HP by 10.", 250, "max_hp", 10, 5)
-
 	_add_upgrade("upgrade_damage", "Damage +1",
 		"Increases base damage by 1.", 150, "damage", 1, 5)
-
 	_add_upgrade("upgrade_speed", "Speed +10%",
 		"Increases speed by 10%.", 200, "speed", 0.1, 5)
 
@@ -78,27 +75,27 @@ func get_items_by_currency(currency: String) -> Array:
 func get_item(item_id: String) -> Dictionary:
 	return shop_items.get(item_id, {})
 
-# ── Purchase ──────────────────────────────────────
-func purchase_item(item_id: String) -> bool:
-	if not shop_items.has(item_id):
-		purchase_failed.emit("Item not found")
+# ── Purchase with Soul ─────────────────────
+func purchase_with_soul(item_id: String, cost: int) -> bool:
+	if not CurrencyManager.has_soul(cost):
+		purchase_failed.emit("Not enough Soul")
 		return false
-
-	var item = shop_items[item_id]
-	var price = item.price
-	var currency = item.currency
-
-	var has_enough = CurrencyManager.has_soul(price) if currency == "soul" else CurrencyManager.has_gems(price)
-	if not has_enough:
-		purchase_failed.emit("Not enough currency")
-		print("[SHOP] Purchase failed – not enough ", currency)
-		return false
-
-	var success = CurrencyManager.remove_soul(price) if currency == "soul" else CurrencyManager.remove_gems(price)
-	if success:
-		apply_item_effect(item_id, item)
+	if CurrencyManager.remove_soul(cost):
+		if shop_items.has(item_id):
+			apply_item_effect(item_id, shop_items[item_id])
 		item_purchased.emit(item_id)
-		print("[SHOP] Item purchased: ", item["name"])
+		return true
+	return false
+
+# ── Purchase with Gems ─────────────────────
+func purchase_with_gems(item_id: String, cost: int) -> bool:
+	if not CurrencyManager.has_gems(cost):
+		purchase_failed.emit("Not enough Gems")
+		return false
+	if CurrencyManager.remove_gems(cost):
+		if shop_items.has(item_id):
+			apply_item_effect(item_id, shop_items[item_id])
+		item_purchased.emit(item_id)
 		return true
 	return false
 
@@ -134,11 +131,9 @@ func unlock_skin(item_id: String, item: Dictionary) -> void:
 	if not AccountManager.is_logged_in:
 		print("[SHOP] User not logged in")
 		return
-
 	if is_skin_unlocked(item_id):
 		print("[SHOP] Skin already unlocked: ", item["name"])
 		return
-
 	var user_id = AccountManager.get_user_id()
 	var timestamp = Time.get_unix_time_from_system()
 	var query = """
@@ -165,3 +160,12 @@ func get_upgrade_level(item_id: String) -> int:
 	if not DatabaseManager.db.query_result.is_empty():
 		return DatabaseManager.db.query_result[0]["level"]
 	return 1
+	
+
+func get_gem_packages() -> Array:
+	return [
+		{"gems": 100, "price": "0.99", "bonus": ""},
+		{"gems": 500, "price": "3.99", "bonus": "+50 Bonus!"},
+		{"gems": 1000, "price": "6.99", "bonus": "+200 Bonus!"},
+		{"gems": 2500, "price": "14.99", "bonus": "+500 Bonus!"}
+	]

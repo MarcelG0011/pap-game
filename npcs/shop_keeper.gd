@@ -19,10 +19,11 @@ func _on_body_exited(body: Node2D) -> void:
 		interact_label.visible = false
 
 func _input(event: InputEvent) -> void:
-	if player_nearby and event.is_action_pressed("ui_accept"):  # E ou Enter
+	if player_nearby and event.is_action_pressed("ui_accept"):
 		open_shop()
 
 func open_shop() -> void:
-	print("[SHOP KEEPER] Abrindo loja...")
+	print("[SHOP KEEPER] Opening Soul shop...")
 	var shop = load("res://economy/ui/shop_screen.tscn").instantiate()
 	get_tree().root.add_child(shop)
+	shop.setup("soul")
