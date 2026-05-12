@@ -102,7 +102,6 @@ hframes = 6
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=403805226]
-visible = false
 position = Vector2(0, -9)
 rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_dkdwu")
@@ -112,7 +111,6 @@ root_node = NodePath("../Sprite2D")
 libraries/ = SubResource("AnimationLibrary_dv1p3")
 
 [node name="HazardArea" type="Area2D" parent="." unique_id=628005053]
-visible = false
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("3_i1cf0")
@@ -123,7 +121,6 @@ position = Vector2(0.5, -8.5)
 shape = SubResource("RectangleShape2D_e2hc1")
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=757732091]
-visible = false
 collision_layer = 32
 collision_mask = 0
 script = ExtResource("4_dkdwu")
@@ -135,7 +132,6 @@ position = Vector2(0.5, -8.5)
 shape = SubResource("RectangleShape2D_e2hc1")
 
 [node name="EdgeDetector" type="RayCast2D" parent="." unique_id=196899091]
-visible = false
 position = Vector2(8, -1)
 target_position = Vector2(0, 8)
 script = ExtResource("7_e2hc1")

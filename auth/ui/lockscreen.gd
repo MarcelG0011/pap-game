@@ -21,7 +21,7 @@ func _ready() -> void:
 		# Foco diferido para garantir que o LineEdit está pronto
 		password_input.grab_focus.call_deferred()
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	# Se o evento for uma tecla e o PasswordInput estiver com o foco, 
 	# deixamos o Godot processar normalmente para escrever.
 	if password_input.has_focus():

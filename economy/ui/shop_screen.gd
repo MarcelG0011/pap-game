@@ -27,9 +27,9 @@ func _ready() -> void:
 
 func _setup_tabs() -> void:
 	if tab_container:
-		tab_container.set_tab_title(0, "🗡️ UPGRADES")
-		tab_container.set_tab_title(1, "👕 COSMETICS")
-		tab_container.set_tab_title(2, "⭐ SPECIAL")
+		tab_container.set_tab_title(0, " UPGRADES")
+		tab_container.set_tab_title(1, " COSMETICS")
+		tab_container.set_tab_title(2, " SPECIAL")
 
 func _populate_shop() -> void:
 	_clear_items()
@@ -120,8 +120,9 @@ func _create_shop_item_ui(data: Dictionary) -> PanelContainer:
 	var style = StyleBoxFlat.new()
 	style.bg_color = Color(0.1, 0.1, 0.15, 0.9)
 	style.border_color = Color(0.3, 0.3, 0.4)
-	style.border_width_all = 2
-	style.corner_radius_all = 8
+	style.set_border_width_all(2) #= 2
+	
+	style.set_corner_radius_all(8) #= 8
 	panel.add_theme_stylebox_override("panel", style)
 	
 	# Margin
@@ -178,9 +179,9 @@ func _create_shop_item_ui(data: Dictionary) -> PanelContainer:
 	buy_button.custom_minimum_size = Vector2(150, 50)
 	
 	if data.has("cost_soul"):
-		buy_button.text = "💎 %d Soul" % data.cost_soul
+		buy_button.text = " %d Soul" % data.cost_soul
 	elif data.has("cost_gems"):
-		buy_button.text = "💠 %d Gems" % data.cost_gems
+		buy_button.text = " %d Gems" % data.cost_gems
 	
 	buy_button.pressed.connect(func(): _attempt_purchase(data))
 	
@@ -229,9 +230,9 @@ func _shake_screen() -> void:
 	
 func _update_currency_display() -> void:
 	if soul_label:
-		soul_label.text = "💎 %d" % CurrencyManager.get_soul()
+		soul_label.text = " %d" % CurrencyManager.get_soul()
 	if gems_label:
-		gems_label.text = "💠 %d" % CurrencyManager.get_gems()
+		gems_label.text = " %d" % CurrencyManager.get_gems()
 
 func _clear_items() -> void:
 	for child in items_container.get_children():

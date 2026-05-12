@@ -1,0 +1,282 @@
+[gd_scene format=3 uid="uid://wa18m6ps7n5g"]
+
+[node name="Pause" type="CanvasLayer" unique_id=775149919]
+
+[node name="Root" type="Control" parent="." unique_id=1132289222]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1018515910]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8)
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=254309700]
+custom_minimum_size = Vector2(480, 270)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CornerTL" type="ColorRect" parent="PanelContainer" unique_id=65335282]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="CornerTR" type="ColorRect" parent="PanelContainer" unique_id=1997708751]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="CornerBL" type="ColorRect" parent="PanelContainer" unique_id=323992179]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="CornerBR" type="ColorRect" parent="PanelContainer" unique_id=1424130692]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=1494362789]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SideBar" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=340587180]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="SideBarHeader" type="MarginContainer" parent="PanelContainer/HBoxContainer/SideBar" unique_id=1217428622]
+layout_mode = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/SideBar/SideBarHeader" unique_id=930815444]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="PanelContainer/HBoxContainer/SideBar/SideBarHeader/VBoxContainer" unique_id=2064573271]
+unique_name_in_owner = true
+layout_mode = 2
+text = "SoulBound"
+
+[node name="GameSub" type="Label" parent="PanelContainer/HBoxContainer/SideBar/SideBarHeader/VBoxContainer" unique_id=1361843529]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Echoes of Eternity"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/HBoxContainer/SideBar" unique_id=2123488350]
+layout_mode = 2
+
+[node name="NavMap" type="Button" parent="PanelContainer/HBoxContainer/SideBar" unique_id=1129765040]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Map"
+
+[node name="NavProgress" type="Button" parent="PanelContainer/HBoxContainer/SideBar" unique_id=390512327]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Progress"
+
+[node name="NavSettings" type="Button" parent="PanelContainer/HBoxContainer/SideBar" unique_id=135750028]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Settings"
+
+[node name="NavSystem" type="Button" parent="PanelContainer/HBoxContainer/SideBar" unique_id=924900847]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "System"
+
+[node name="Spacer" type="Control" parent="PanelContainer/HBoxContainer/SideBar" unique_id=762386405]
+layout_mode = 2
+size_flags_vertical = 6
+
+[node name="HSeparator2" type="HSeparator" parent="PanelContainer/HBoxContainer/SideBar" unique_id=1101797348]
+layout_mode = 2
+
+[node name="SideBarFooter" type="MarginContainer" parent="PanelContainer/HBoxContainer/SideBar" unique_id=2125614118]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ResumeButton" type="Button" parent="PanelContainer/HBoxContainer/SideBar/SideBarFooter" unique_id=653015894]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume Game"
+
+[node name="ContentArea" type="MarginContainer" parent="PanelContainer/HBoxContainer" unique_id=523067977]
+layout_mode = 2
+theme_override_constants/margin_left = 26
+theme_override_constants/margin_top = 28
+theme_override_constants/margin_right = 26
+theme_override_constants/margin_bottom = 22
+
+[node name="ContentStack" type="Control" parent="PanelContainer/HBoxContainer/ContentArea" unique_id=1671354965]
+layout_mode = 2
+
+[node name="PanelMap" type="Control" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack" unique_id=1573540882]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelMap" unique_id=1156530648]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PanelTitle" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelMap/VBoxContainer" unique_id=782222092]
+unique_name_in_owner = true
+layout_mode = 2
+text = "World Map"
+
+[node name="PanelSub" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelMap/VBoxContainer" unique_id=565261092]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Discovered areas"
+
+[node name="MapContainer" type="Control" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelMap/VBoxContainer" unique_id=777217380]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelProgress" type="Control" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack" unique_id=1876878288]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelProgress" unique_id=1195477380]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelProgress/VBoxContainer" unique_id=1561559483]
+layout_mode = 2
+text = "Soul Chronicle"
+
+[node name="PanelSettings" type="Control" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack" unique_id=646116249]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings" unique_id=206073674]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 16
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer" unique_id=1165775063]
+layout_mode = 2
+text = "Settings"
+
+[node name="AudioGroup" type="VBoxContainer" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer" unique_id=1359049404]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup" unique_id=122921823]
+layout_mode = 2
+text = "Audio"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup" unique_id=1252878004]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup/HBoxContainer" unique_id=2070765734]
+layout_mode = 2
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup/HBoxContainer" unique_id=1248300795]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup" unique_id=1726853856]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup/HBoxContainer2" unique_id=233816551]
+layout_mode = 2
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup/HBoxContainer2" unique_id=966906782]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup" unique_id=974901711]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup/HBoxContainer3" unique_id=1092463873]
+layout_mode = 2
+text = "UI"
+
+[node name="UISlider" type="HSlider" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSettings/VBoxContainer/AudioGroup/HBoxContainer3" unique_id=1334504062]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PanelSystem" type="Control" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack" unique_id=719093596]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSystem" unique_id=1227352806]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 8
+
+[node name="Label" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSystem/VBoxContainer" unique_id=1214228714]
+layout_mode = 2
+text = "System"
+
+[node name="ActionGrid" type="GridContainer" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSystem/VBoxContainer" unique_id=923137835]
+layout_mode = 2
+columns = 2
+
+[node name="ShopButton" type="Button" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSystem/VBoxContainer/ActionGrid" unique_id=1961674784]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Shop"
+
+[node name="SaveButton" type="Button" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSystem/VBoxContainer/ActionGrid" unique_id=1747741186]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Save Game"
+
+[node name="BackToTitleButton" type="Button" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSystem/VBoxContainer/ActionGrid" unique_id=1342338615]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back To Menu"
+
+[node name="SaveInfo" type="Label" parent="PanelContainer/HBoxContainer/ContentArea/ContentStack/PanelSystem/VBoxContainer" unique_id=1798888894]
+layout_mode = 2
+text = "Slot 1 autosaved"

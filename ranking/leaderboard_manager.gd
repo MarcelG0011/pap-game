@@ -22,7 +22,7 @@ func update_player_name() -> void:
 	else:
 		player_name = "Guest"
 
-func submit_score(time_ms: int, checkpoints: Dictionary = {}) -> void:
+func submit_score(time_ms: int, _checkpoints: Dictionary = {}) -> void:
 	if not AccountManager.is_logged_in:
 		print("[LEADERBOARD] Usuario nao logado, score nao salvo")
 		return

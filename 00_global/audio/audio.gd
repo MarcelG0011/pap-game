@@ -89,42 +89,42 @@ func set_reverb( type : REVERB_TYPE ) -> void:
 			reverb_fx.room_size = 0.8
 	pass
 
-func play_spatial_sound( audio : AudioStream, pos : Vector2 ) -> void:
-	var ap : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-	add_child( ap )
-	ap.bus = "SFX"
-	ap.global_position = pos
-	ap.stream = audio
-	ap.finished.connect( ap.queue_free )
-	ap.play()
-	pass
-
-#func play_spatial_sound(
-	#audio: AudioStream,
-	#pos: Vector2,
-	#ignore_pool : bool = false,
-	#was_player : bool = false,
-	#volume : float = 0.5
-	 #) -> void:
-	#if ignore_pool:
-		#var ap: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
-		#add_child( ap )
-		#ap.bus = "SFX"
-		#ap.global_position = pos
-		#ap.stream = audio
-		#ap.finished.connect(ap.queue_free)
-		#ap.play()
-	#else:
-		#var ap: AudioStreamPlayer2D = audio_pool[ audio_index ]
-		#ap.global_position = pos
-		#ap.stream = audio
-		#ap.play()
-		#audio_index = wrapi( audio_index + 1, 0, 32 )
-		#pass
-		#
-	#if was_player:
-		#player_made_sound.emit( pos, volume )
+#func play_spatial_sound( audio : AudioStream, pos : Vector2 ) -> void:
+	#var ap : AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+	#add_child( ap )
+	#ap.bus = "SFX"
+	#ap.global_position = pos
+	#ap.stream = audio
+	#ap.finished.connect( ap.queue_free )
+	#ap.play()
 	#pass
+
+func play_spatial_sound(
+	audio: AudioStream,
+	pos: Vector2,
+	ignore_pool : bool = false,
+	was_player : bool = false,
+	volume : float = 0.5
+	 ) -> void:
+	if ignore_pool:
+		var ap: AudioStreamPlayer2D = AudioStreamPlayer2D.new()
+		add_child( ap )
+		ap.bus = "SFX"
+		ap.global_position = pos
+		ap.stream = audio
+		ap.finished.connect(ap.queue_free)
+		ap.play()
+	else:
+		var ap: AudioStreamPlayer2D = audio_pool[ audio_index ]
+		ap.global_position = pos
+		ap.stream = audio
+		ap.play()
+		audio_index = wrapi( audio_index + 1, 0, 32 )
+		pass
+		
+	if was_player:
+		player_made_sound.emit( pos, volume )
+	pass
 	
 func play_ui_audio(audio: AudioStream) -> void:
 	if ui_audio_player:
