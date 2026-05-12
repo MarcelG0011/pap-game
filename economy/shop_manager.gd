@@ -6,88 +6,65 @@ signal purchase_failed(reason: String)
 var shop_items: Dictionary = {}
 
 func _ready() -> void:
-	print("[SHOP] Sistema de loja inicializado")
+	print("[SHOP] Shop system initialized")
 	load_shop_catalog()
 
+# ==========================================
+# CATALOG – SINGLE SOURCE OF TRUTH
+# ==========================================
 func load_shop_catalog() -> void:
-	shop_items["upgrade_max_hp_1"] = {
-		"name": "Max HP +5",
-		"description": "Aumenta vida maxima em 5",
-		"price": 100,
-		"currency": "soul",
-		"type": "upgrade",
-		"stat": "max_hp",
-		"value": 5
-	}
-	
-	shop_items["upgrade_max_hp_2"] = {
-		"name": "Max HP +10",
-		"description": "Aumenta vida maxima em 10",
-		"price": 250,
-		"currency": "soul",
-		"type": "upgrade",
-		"stat": "max_hp",
-		"value": 10
-	}
-	
-	shop_items["upgrade_damage"] = {
-		"name": "Damage +1",
-		"description": "Aumenta dano base em 1",
-		"price": 150,
-		"currency": "soul",
-		"type": "upgrade",
-		"stat": "damage",
-		"value": 1
-	}
-	
-	shop_items["upgrade_speed"] = {
-		"name": "Speed +10%",
-		"description": "Aumenta velocidade em 10%",
-		"price": 200,
-		"currency": "soul",
-		"type": "upgrade",
-		"stat": "speed",
-		"value": 0.1
-	}
-	
-	shop_items["skin_red"] = {
-		"name": "Red Warrior Skin",
-		"description": "Skin vermelha para o personagem",
-		"price": 50,
-		"currency": "gems",
-		"type": "cosmetic",
-		"category": "skin"
-	}
-	
-	shop_items["skin_blue"] = {
-		"name": "Blue Knight Skin",
-		"description": "Skin azul para o personagem",
-		"price": 75,
-		"currency": "gems",
-		"type": "cosmetic",
-		"category": "skin"
-	}
-	
-	shop_items["trail_fire"] = {
-		"name": "Fire Trail",
-		"description": "Trilha de fogo ao correr",
-		"price": 100,
-		"currency": "gems",
-		"type": "cosmetic",
-		"category": "effect"
-	}
-	
-	shop_items["emote_dance"] = {
-		"name": "Dance Emote",
-		"description": "Emote de danca",
-		"price": 25,
-		"currency": "gems",
-		"type": "cosmetic",
-		"category": "emote"
-	}
-	
-	print("[SHOP] ", shop_items.size(), " items carregados")
+	shop_items.clear()
 
+	# ── Upgrades (Soul) ──────────────────────────────
+	_add_upgrade("upgrade_max_hp_1", "Max HP +5",
+		"Increases max HP by 5.", 100, "max_hp", 5, 5)
+
+	_add_upgrade("upgrade_max_hp_2", "Max HP +10",
+		"Increases max HP by 10.", 250, "max_hp", 10, 5)
+
+	_add_upgrade("upgrade_damage", "Damage +1",
+		"Increases base damage by 1.", 150, "damage", 1, 5)
+
+	_add_upgrade("upgrade_speed", "Speed +10%",
+		"Increases speed by 10%.", 200, "speed", 0.1, 5)
+
+	# ── Skins (Gems) ─────────────────────────────────
+	_add_skin("skin_red", "Red Warrior Skin",
+		"Red skin for the character.", 50)
+	_add_skin("skin_blue", "Blue Knight Skin",
+		"Blue skin for the character.", 75)
+	_add_skin("trail_fire", "Fire Trail",
+		"Fire trail while running.", 100)
+	_add_skin("emote_dance", "Dance Emote",
+		"Dance emote.", 25)
+
+	print("[SHOP] ", shop_items.size(), " items loaded in catalog.")
+
+# ── Helpers to build the dictionary ─────────────
+func _add_upgrade(id: String, upgrade_name: String, desc: String,
+		price: int, stat: String, value: float, max_level: int) -> void:
+	shop_items[id] = {
+		"name": upgrade_name,
+		"description": desc,
+		"price": price,
+		"currency": "soul",
+		"type": "upgrade",
+		"stat": stat,
+		"value": value,
+		"max_level": max_level
+	}
+
+func _add_skin(id: String, skin_name: String, desc: String, price: int) -> void:
+	shop_items[id] = {
+		"name": skin_name,
+		"description": desc,
+		"price": price,
+		"currency": "gems",
+		"type": "skin"
+	}
+# ==========================================
+
+# ── Search utilities ──────────────────────
 func get_items_by_currency(currency: String) -> Array:
 	var items = []
 	for item_id in shop_items:
@@ -101,112 +78,90 @@ func get_items_by_currency(currency: String) -> Array:
 func get_item(item_id: String) -> Dictionary:
 	return shop_items.get(item_id, {})
 
+# ── Purchase ──────────────────────────────────────
 func purchase_item(item_id: String) -> bool:
 	if not shop_items.has(item_id):
-		purchase_failed.emit("Item nao existe")
+		purchase_failed.emit("Item not found")
 		return false
-	
+
 	var item = shop_items[item_id]
 	var price = item.price
 	var currency = item.currency
-	
-	var has_enough = false
-	if currency == "soul":
-		has_enough = CurrencyManager.has_soul(price)
-	elif currency == "gems":
-		has_enough = CurrencyManager.has_gems(price)
-	
+
+	var has_enough = CurrencyManager.has_soul(price) if currency == "soul" else CurrencyManager.has_gems(price)
 	if not has_enough:
-		purchase_failed.emit("Moeda insuficiente")
-		print("[SHOP] Compra falhou - ", currency, " insuficiente")
+		purchase_failed.emit("Not enough currency")
+		print("[SHOP] Purchase failed – not enough ", currency)
 		return false
-	
-	var success = false
-	if currency == "soul":
-		success = CurrencyManager.remove_soul(price)
-	elif currency == "gems":
-		success = CurrencyManager.remove_gems(price)
-	
+
+	var success = CurrencyManager.remove_soul(price) if currency == "soul" else CurrencyManager.remove_gems(price)
 	if success:
 		apply_item_effect(item_id, item)
 		item_purchased.emit(item_id)
-		print("[SHOP] Item comprado: ", item.name)
+		print("[SHOP] Item purchased: ", item["name"])
 		return true
-	
 	return false
 
+# ── Apply effects ─────────────────────────
 func apply_item_effect(item_id: String, item: Dictionary) -> void:
 	match item.type:
 		"upgrade":
 			apply_upgrade(item)
-		"cosmetic":
-			unlock_cosmetic(item_id, item)
+		"skin":
+			unlock_skin(item_id, item)
 
 func apply_upgrade(item: Dictionary) -> void:
 	var player = get_tree().get_first_node_in_group("Player")
 	if not player:
-		print("[SHOP] Player nao encontrado para aplicar upgrade")
+		print("[SHOP] Player not found – cannot apply upgrade")
 		return
-	
+
 	match item.stat:
 		"max_hp":
 			player.max_hp += item.value
 			player.hp += item.value
-			print("[SHOP] Max HP aumentado em ", item.value)
+			print("[SHOP] Max HP increased by ", item.value)
 		"damage":
 			if player.has("damage"):
 				player.damage += item.value
-				print("[SHOP] Damage aumentado em ", item.value)
+				print("[SHOP] Damage increased by ", item.value)
 		"speed":
 			if player.has("speed"):
 				player.speed += player.speed * item.value
-				print("[SHOP] Speed aumentado em ", item.value * 100, "%")
+				print("[SHOP] Speed increased by ", item.value * 100, "%")
 
-func unlock_cosmetic(item_id: String, item: Dictionary) -> void:
+func unlock_skin(item_id: String, item: Dictionary) -> void:
 	if not AccountManager.is_logged_in:
-		print("[SHOP] Usuario nao logado")
+		print("[SHOP] User not logged in")
 		return
-	
-	if is_cosmetic_unlocked(item_id):
-		print("[SHOP] Cosmetico ja desbloqueado: ", item.name)
+
+	if is_skin_unlocked(item_id):
+		print("[SHOP] Skin already unlocked: ", item["name"])
 		return
-	
+
 	var user_id = AccountManager.get_user_id()
 	var timestamp = Time.get_unix_time_from_system()
-	
 	var query = """
 	INSERT INTO user_cosmetics (user_id, cosmetic_id, unlocked_at)
 	VALUES (?, ?, ?);
 	"""
 	DatabaseManager.db.query_with_bindings(query, [user_id, item_id, timestamp])
-	
-	print("[SHOP] Cosmetico desbloqueado: ", item.name)
+	print("[SHOP] Skin unlocked: ", item["name"])
 
-func get_unlocked_cosmetics() -> Array:
-	if not AccountManager.is_logged_in:
-		return []
-	
-	var user_id = AccountManager.get_user_id()
-	
-	var query = "SELECT cosmetic_id FROM user_cosmetics WHERE user_id = ?;"
-	DatabaseManager.db.query_with_bindings(query, [user_id])
-	
-	var cosmetics = []
-	for row in DatabaseManager.db.query_result:
-		cosmetics.append(row["cosmetic_id"])
-	
-	return cosmetics
-
-func is_cosmetic_unlocked(item_id: String) -> bool:
+func is_skin_unlocked(item_id: String) -> bool:
 	if not AccountManager.is_logged_in:
 		return false
-	
 	var user_id = AccountManager.get_user_id()
-	
-	var query = """
-	SELECT id FROM user_cosmetics
-	WHERE user_id = ? AND cosmetic_id = ?;
-	"""
+	var query = "SELECT id FROM user_cosmetics WHERE user_id = ? AND cosmetic_id = ?;"
 	DatabaseManager.db.query_with_bindings(query, [user_id, item_id])
-	
 	return not DatabaseManager.db.query_result.is_empty()
+
+func get_upgrade_level(item_id: String) -> int:
+	if not AccountManager.is_logged_in:
+		return 1
+	var user_id = AccountManager.get_user_id()
+	var query = "SELECT level FROM user_upgrades WHERE user_id = ? AND upgrade_id = ?;"
+	DatabaseManager.db.query_with_bindings(query, [user_id, item_id])
+	if not DatabaseManager.db.query_result.is_empty():
+		return DatabaseManager.db.query_result[0]["level"]
+	return 1
