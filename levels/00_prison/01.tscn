@@ -10,8 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://c67ssfmo87iw4" path="res://levels/props/torch.tscn" id="9_cwrg6"]
 [ext_resource type="Script" uid="uid://c10mlmbdah2oi" path="res://00_global/tutorial/tutorial_trigger.gd" id="9_xj1cd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3fuen"]
-size = Vector2(20, 184)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwrg6"]
+size = Vector2(20, 128)
 
 [node name="01" type="Node2D" unique_id=1341166125]
 
@@ -74,16 +74,15 @@ position = Vector2(96, 259)
 color = Color(0.35277888, 0.36260712, 0.38134852, 1)
 blend_mode = 2
 
-[node name="TutorialTrigger" type="Area2D" parent="." unique_id=1151655978]
-position = Vector2(208, 208)
+[node name="TutorialTrigger" type="Area2D" parent="." unique_id=324160633]
 collision_layer = 0
 collision_mask = 16
 script = ExtResource("9_xj1cd")
-tutorial_id = "tutorial_movement"
-tutorial_description = "Use A/D or ←/→ to move left and right."
-tutorial_image = "uid://chx05ital67vn"
+tutorial_id = "1tutorial_attack"
+title = "Attack"
+description = "Descriptiondqwdqwdqw"
 metadata/_custom_type_script = "uid://c10mlmbdah2oi"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialTrigger" unique_id=1003101538]
-position = Vector2(-24, -16)
-shape = SubResource("RectangleShape2D_3fuen")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialTrigger" unique_id=459125550]
+position = Vector2(144, 208)
+shape = SubResource("RectangleShape2D_cwrg6")

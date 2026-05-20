@@ -25,13 +25,13 @@ buses/default_bus_layout="uid://bvhbyivccoxao"
 
 [autoload]
 
+TutorialManager="*uid://bwsv0xikryk88"
 DatabaseManager="*uid://crlr3qmlwyxfq"
 SceneManager="*res://00_global/scene_manager/scene_manager.tscn"
 SaveManager="*uid://bgscoplfsxlkf"
 PauseManager="*uid://btcxh7ixdct1k"
 Messages="*uid://p055317qxas6"
 InactivityMonitor="*uid://337paet3pm47"
-TutorialManager="*uid://bwsv0xikryk88"
 SpeedrunTimer="*uid://bkms103iie8ry"
 LeaderboardManager="*uid://bqguosw4ocivl"
 SpeedrunHub="*uid://byeks2w1cub2e"
@@ -43,6 +43,8 @@ AutosaveManager="*uid://2e0duyqw6px3"
 AutoSaveIndicator="*uid://lmnfwln6rlp0"
 Audio="*uid://bieu6jm5j6yia"
 VisualEffects="*uid://bycue7emq3ar2"
+ShopMenu="uid://y7fg1y3m6sas"
+BossHud="*uid://cr8mdnh10wmia"
 
 [display]
 
@@ -52,6 +54,10 @@ window/size/mode=4
 window/size/window_width_override=1440
 window/size/window_height_override=810
 window/stretch/mode="viewport"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot-sqlite/plugin.cfg")
 
 [global_group]
 

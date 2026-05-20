@@ -24,25 +24,31 @@ signal game_loaded(slot: int)
 const FIRST_LEVEL_PATH: String = "res://levels/00_prison/01.tscn"
 const MAX_SLOTS: int = 3
 
+
+
 var _settings_loading : bool = false
 
 var is_loading_game: bool = false
 var is_creating_game: bool = false
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_initialize()
+	$Control.mouse_filter = Control.MOUSE_FILTER_PASS
 	pass
 
 func _initialize() -> void:
 	_hide_game_huds()
-	
 	if not _validate_user_logged_in():
 		return
-	
 	print("[TITLE] Bem-vindo, ", AccountManager.get_username())
-	
 	_connect_button_signals()
 	_update_slot_buttons()
+	
+	# Garantir que o rato funciona nos menus
+	%MainMenu.mouse_filter = Control.MOUSE_FILTER_PASS
+	%NewGameMenu.mouse_filter = Control.MOUSE_FILTER_PASS
+	%LoadGameMenu.mouse_filter = Control.MOUSE_FILTER_PASS
 	
 	show_main_menu()
 	pass
@@ -118,7 +124,8 @@ func _on_new_game_slot_pressed(slot: int) -> void:
 	if is_creating_game or is_loading_game:
 		push_warning("[TITLE] Operacao ja em progresso")
 		return
-	
+		
+	@warning_ignore("redundant_await")
 	await _create_and_start_new_game(slot)
 
 func _on_load_game_slot_pressed(slot: int) -> void:
@@ -131,31 +138,41 @@ func _on_load_game_slot_pressed(slot: int) -> void:
 func _create_and_start_new_game(slot: int) -> void:
 	print("[TITLE] ========== NEW GAME INICIADO ==========")
 	print("[TITLE] Slot: ", slot)
-	
+
 	is_creating_game = true
-	
+
 	var success = SaveManager.create_new_game_save(slot)
-	
+
 	if not success:
 		push_error("[TITLE] Falha ao criar novo jogo")
 		is_creating_game = false
 		return
+
 	
-	_start_speedrun()
-	_show_game_huds()
-	
+	# Introdução da história
+	var intro = load("res://intro/intro_story.tscn").instantiate()
+	get_tree().root.add_child(intro)
+	intro.start_pressed.connect(_on_intro_start_pressed.bind(slot))
+
+func _on_intro_start_pressed(slot: int) -> void:
+	print("[TITLE] Intro start pressed – a iniciar transição")
 	var transition_success = await SceneManager.transition_scene(
 		FIRST_LEVEL_PATH,
 		"", Vector2.ZERO, "up"
 	)
-	
-	is_creating_game = false
-	
+
 	if transition_success:
+		await get_tree().process_frame
+		_show_game_huds()
+		_start_speedrun()
+		
 		new_game_started.emit(slot)
 		print("[TITLE] ========== NEW GAME COMPLETO ==========")
 	else:
 		push_error("[TITLE] Falha na transicao de cena")
+	is_creating_game = false
+	pass
+	
 
 func _load_and_start_game(slot: int) -> void:
 	print("[TITLE] ========== LOAD GAME INICIADO ==========")
@@ -265,6 +282,10 @@ func _open_leaderboard() -> void:
 	var leaderboard = load("res://ranking/ui/leaderboard_screen.tscn").instantiate()
 	add_child(leaderboard)
 	
+	# Força visível (caso o nó raiz tenha visible=false no editor)
+	leaderboard.visible = true
+	print("[TITLE] Leaderboard visible: ", leaderboard.visible)
+	
 	_set_menu_visibility(false, false, false)
 	leaderboard_button.visible = false
 	
@@ -281,7 +302,9 @@ func _open_settings() -> void:
 		var settings_instance = settings_scene.instantiate()
 		settings_instance.name = "SettingsScreen"
 		
-		get_tree().root.add_child(settings_instance)
+		# Adiciona como filho do title_screen, não da raiz
+		add_child(settings_instance)
+		
 		print("[TITLE] Settings aberto com sucesso")
 	else:
 		printerr("[TITLE] Erro: Não foi possível carregar a cena de Settings!")

@@ -4,6 +4,7 @@
 resource_name = "Reverb"
 
 [resource]
+bus/0/volume_db = -8.798218
 bus/1/name = &"EffectPass"
 bus/1/solo = false
 bus/1/mute = false
@@ -30,3 +31,9 @@ bus/4/mute = false
 bus/4/bypass_fx = false
 bus/4/volume_db = 0.0
 bus/4/send = &"Master"
+bus/5/name = &"Narration"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 6.0199986
+bus/5/send = &"Master"

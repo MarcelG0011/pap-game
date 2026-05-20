@@ -5,6 +5,8 @@ class_name Slime extends CharacterBody2D
 @export var move_speed : float = 30
 @export var face_left_on_start : bool = false
 @export var death_sound : AudioStream
+signal was_killed()
+
 
 var dir : float = 1.0
 var move_tween : Tween
@@ -16,7 +18,8 @@ var move_tween : Tween
 @onready var edge_detector: EdgeDetector = $EdgeDetector
 
 
-
+@export var is_summoner: bool = false
+@export_file("*.tscn") var boss_scene_path: String = ""
 
 
 func _ready() -> void:
@@ -82,9 +85,20 @@ func knockback( a_pos : Vector2 ) -> void:
 	move_tween.tween_property( self, "dir", to, 0.3 )
 	pass
 	
-func _on_animation_finished( anim_name : String ) -> void:
+func _on_animation_finished(anim_name: String) -> void:
 	if anim_name == "stun":
-		animation_player.play( "walk" )
-	else:
+		animation_player.play("walk")
+	elif anim_name == "death":
+		# Invoca boss se for um summoner
+		if is_summoner and not boss_scene_path.is_empty():
+			_summon_boss()
 		queue_free()
-	pass
+
+func _summon_boss() -> void:
+	var boss_scene = load(boss_scene_path)
+	var boss = boss_scene.instantiate()
+	get_parent().add_child(boss)
+	boss.global_position = global_position + Vector2(0, -300)
+	
+	var tween = create_tween()
+	tween.tween_property(boss, "global_position:y", global_position.y, 0.8).set_trans(Tween.TRANS_BOUNCE)

@@ -5,6 +5,7 @@ const PLAYER = preload("uid://cklghektmr05n")
 func _ready() -> void:
 	visible = false
 	await get_tree().process_frame
+	await get_tree().process_frame
 	
 	if get_tree().get_first_node_in_group( "Player" ):
 		#We have a Player!
@@ -15,4 +16,6 @@ func _ready() -> void:
 	get_tree().root.add_child( player )
 	#Position the player scene
 	player.global_position = self.global_position
+	
+	await  get_tree().process_frame
 	pass

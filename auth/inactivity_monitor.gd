@@ -75,7 +75,7 @@ func _on_unlock_requested(password: String) -> void:
 	else:
 		print("[INACTIVITY] Senha falhou.")
 		if lockscreen:
-			lockscreen.show_error("Senha Incorreta")
+			lockscreen.show_error("Incorrect password")
 
 func _unlock_screen() -> void:
 	if lockscreen:

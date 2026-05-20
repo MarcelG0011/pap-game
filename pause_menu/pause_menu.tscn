@@ -57,6 +57,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="PauseScreen" type="Control" parent="Control" unique_id=1931300277]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -229,6 +230,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="System" type="Control" parent="Control" unique_id=83017248]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

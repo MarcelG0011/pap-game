@@ -75,6 +75,7 @@ func _ready() -> void:
 	Messages.back_to_title_screen.connect( queue_free )
 	damage_area.damage_taken.connect( _on_damage_taken )
 	hp = max_hp
+	add_to_group("Player")
 	pass
 
 
@@ -92,6 +93,9 @@ func _unhandled_input( event: InputEvent ) -> void:
 		#add_child( pause_menu )
 		#return
 	change_state( current_state.handle_input(event) )
+	
+	if event.is_action_pressed("ui_paste"):  # Enter
+		_trigger_escape()
 	pass
 	
 func _process( _delta: float) -> void:
@@ -223,3 +227,18 @@ func _find_state_by_class(state_class) -> PlayerState:
 		if is_instance_of(s, state_class):
 			return s
 	return null
+
+
+func _trigger_escape() -> void:
+	var escape = load("res://intro/escape_screen.tscn").instantiate()
+	get_tree().root.add_child(escape)
+	escape.continue_pressed.connect(_show_world_teaser)
+	escape.main_menu_pressed.connect(_go_to_main_menu)
+
+func _show_world_teaser() -> void:
+	var teaser = load("res://intro/world_teaser_screen.tscn").instantiate()
+	get_tree().root.add_child(teaser)
+	teaser.main_menu_pressed.connect(_go_to_main_menu)
+
+func _go_to_main_menu() -> void:
+	get_tree().change_scene_to_file("res://title_screen/title_screen.tscn")

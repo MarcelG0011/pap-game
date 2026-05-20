@@ -1,0 +1,114 @@
+[gd_scene format=3 uid="uid://dahb5mqy7k142"]
+
+[ext_resource type="Script" uid="uid://dcdtxl5xrve60" path="res://intro/escape_screen.gd" id="1_a35u4"]
+[ext_resource type="AudioStream" uid="uid://sjiwwhci5et7" path="res://general/audio/narration_escape_screen.mp3" id="2_f8w7a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f8w7a"]
+bg_color = Color(0.09985284, 0.09985284, 0.17923622, 0.90000004)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.8980392, 1, 1)
+
+[sub_resource type="Gradient" id="Gradient_a35u4"]
+colors = PackedColorArray(0, 0.8980392, 1, 1, 0.7019608, 0.6156863, 0.85882354, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y0go1"]
+gradient = SubResource("Gradient_a35u4")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_f8w7a"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(250, 150, 1)
+spread = 180.0
+gravity = Vector3(0, 20, 0)
+scale_min = 0.5
+color_ramp = SubResource("GradientTexture1D_y0go1")
+
+[node name="EscapeScreen" type="CanvasLayer" unique_id=1649587984]
+script = ExtResource("1_a35u4")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=366291238]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.76500005)
+
+[node name="Panel" type="Panel" parent="ColorRect" unique_id=1697152482]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -130.0
+offset_right = 240.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_f8w7a")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/Panel" unique_id=615072094]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="Control" type="Control" parent="ColorRect/Panel/VBoxContainer" unique_id=546566878]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/Panel/VBoxContainer" unique_id=604524274]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8980392, 1, 1)
+theme_override_constants/paragraph_spacing = 1
+text = "I Remember now ..."
+horizontal_alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect/Panel/VBoxContainer" unique_id=826515060]
+custom_minimum_size = Vector2(420, 170)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "The chains have fallen. The darkness is behind me now.
+
+I don't know who I was. But I know who I am becoming.
+
+Some echoes never fade. Some truths are never spoken.
+
+The prison held more than my body.
+What it held... I may never fully understand.
+
+But I am free. And that is enough."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/Panel/VBoxContainer" unique_id=760989344]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="ContinueButton" type="Button" parent="ColorRect/Panel/VBoxContainer/HBoxContainer" unique_id=1178620107]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Continue"
+
+[node name="MainMenuButton" type="Button" parent="ColorRect/Panel/VBoxContainer/HBoxContainer" unique_id=1546031532]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Main Menu"
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." unique_id=1488516369]
+position = Vector2(233, 122)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_f8w7a")
+
+[node name="NarrationPlayer" type="AudioStreamPlayer" parent="." unique_id=477615954]
+stream = ExtResource("2_f8w7a")
+volume_db = 24.0
+bus = &"Narration"

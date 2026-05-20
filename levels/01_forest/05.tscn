@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dqxxuf2rytk0k" path="res://levels/tilesets/sprites/light_stream.jpg" id="9_t5564"]
 [ext_resource type="Material" uid="uid://b0lfbnycigucg" path="res://materials_and_shaders/fog_fade_material.tres" id="11_2wtl0"]
 [ext_resource type="Script" uid="uid://c10mlmbdah2oi" path="res://00_global/tutorial/tutorial_trigger.gd" id="12_3sjnj"]
+[ext_resource type="Script" uid="uid://d1hwlq0caue5r" path="res://levels/01_forest/boss_summon_trigger.gd" id="13_vl0pl"]
+[ext_resource type="PackedScene" uid="uid://dk86vuiscnuor" path="res://enemies/slime/slime.tscn" id="14_1he8d"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yg251"]
 blend_mode = 1
@@ -310,7 +312,7 @@ location = 1
 target_level = "uid://de513objtf050"
 
 [node name="PlayerSpawn" parent="." unique_id=2057240805 instance=ExtResource("6_1he8d")]
-position = Vector2(1169, 613)
+position = Vector2(266, 625)
 
 [node name="MusicAutoTrigger" type="Node" parent="." unique_id=1553733751]
 script = ExtResource("7_jskpe")
@@ -341,9 +343,18 @@ collision_mask = 16
 script = ExtResource("12_3sjnj")
 tutorial_id = "tutorial_attack"
 title = "Attack"
-media_path = "uid://mhwn61xs2drs"
 metadata/_custom_type_script = "uid://c10mlmbdah2oi"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TutorialTrigger" unique_id=1566349379]
 position = Vector2(815, 561)
 shape = SubResource("RectangleShape2D_3sjnj")
+
+[node name="BossSummonTrigger" type="Node2D" parent="." unique_id=1397510937 node_paths=PackedStringArray("slime")]
+script = ExtResource("13_vl0pl")
+slime = NodePath("../Slime")
+boss_scene_path = "uid://bxtk2sftceoyg"
+
+[node name="Slime" parent="." unique_id=585226160 instance=ExtResource("14_1he8d")]
+position = Vector2(571, 645)
+is_summoner = true
+boss_scene_path = "uid://bxtk2sftceoyg"

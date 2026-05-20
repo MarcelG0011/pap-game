@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c8sqyrj5gf2va"]
+
+[ext_resource type="Texture2D" uid="uid://w5jnmn5vmb2s" path="res://economy/coin.png" id="1_etulj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5eju"]
+atlas = ExtResource("1_etulj")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5t4xo"]
+atlas = ExtResource("1_etulj")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0eeg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5eju")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5t4xo")
+}],
+"loop": true,
+"name": &"Soul",
+"speed": 0.5
+}]
+
+[node name="ShopItemButton" type="Button" unique_id=224418322]
+custom_minimum_size = Vector2(220, 42)
+offset_right = 220.0
+offset_bottom = 48.0
+
+[node name="Label" type="Label" parent="." unique_id=1003275637]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 16.0
+offset_right = 144.0
+offset_bottom = 31.0
+text = "item 001 for cosmetycs dsaasd"
+text_overrun_behavior = 3
+
+[node name="PriceLabel" type="Label" parent="." unique_id=1341590848]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 16.0
+offset_right = 210.0
+offset_bottom = 31.0
+theme_override_font_sizes/font_size = 10
+text = "0.99w"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="SoulIcon" type="AnimatedSprite2D" parent="." unique_id=98436920]
+position = Vector2(24, 24)
+scale = Vector2(1.875, 2)
+sprite_frames = SubResource("SpriteFrames_s0eeg")
+animation = &"Soul"
+autoplay = "Soul"
+offset = Vector2(1, 0)

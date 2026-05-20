@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://h1cn6ut77kiv"]
+
+[ext_resource type="Script" uid="uid://181joiwn6o1y" path="res://intro/world_teaser_screen.gd" id="1_vlovv"]
+
+[node name="WorldTeaserScreen" type="CanvasLayer" unique_id=973544187]
+layer = 100
+script = ExtResource("1_vlovv")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=403537056]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=687195323]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -134.0
+offset_top = -95.0
+offset_right = 134.0
+offset_bottom = 105.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1179469009]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.8980392, 1, 1)
+theme_override_font_sizes/font_size = 32
+text = "SoulBound"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=871560982]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7019608, 0.6156863, 0.85882354, 1)
+theme_override_font_sizes/font_size = 22
+text = "Echoes of Eternity"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1675075689]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer" unique_id=993685717]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8784314, 0.9411765, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "The world awaits..."
+
+[node name="Label4" type="Label" parent="VBoxContainer" unique_id=190064486]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6117647, 0.6392157, 0.6862745, 1)
+theme_override_font_sizes/font_size = 14
+text = "Your mind is free, but the echoes remain"
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer" unique_id=677319460]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "Main Menu"

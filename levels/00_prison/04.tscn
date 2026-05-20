@@ -174,3 +174,4 @@ position = Vector2(1388, 233)
 
 [node name="Chest" parent="." unique_id=900338358 instance=ExtResource("11_fhx7w")]
 position = Vector2(54.000004, 154)
+scale = Vector2(-1.1290915, 1.0840546)

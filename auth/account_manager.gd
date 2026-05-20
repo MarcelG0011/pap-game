@@ -141,7 +141,7 @@ func login(username_or_email: String, password: String, remember: bool = false) 
 	DatabaseManager.db.query_with_bindings(query, [username_or_email, username_or_email, password_hash])
 	
 	if DatabaseManager.db.query_result.is_empty():
-		login_failed.emit("Usuario ou senha incorretos")
+		login_failed.emit("Incorret username or password")
 		return false
 	
 	var user = DatabaseManager.db.query_result[0]
@@ -270,26 +270,26 @@ func get_security_question(username: String) -> String:
 
 func validate_signup(username: String, email: String, password: String, confirm_password: String) -> String:
 	if username.length() < 3 or username.length() > 20:
-		return "Username deve ter entre 3 e 20 caracteres"
+		return "Username must be between 3 and 20 characters"
 	
 	if not is_valid_email(email):
-		return "Email invalido"
+		return "Invalid email"
 	
 	if password.length() < 6:
-		return "Senha deve ter no minimo 6 caracteres"
+		return "Password must be at least 6 characters"
 	
 	if password != confirm_password:
-		return "Senhas nao coincidem"
+		return "Passwords do not match"
 	
 	var check_username = "SELECT id FROM users WHERE username = ?;"
 	DatabaseManager.db.query_with_bindings(check_username, [username])
 	if not DatabaseManager.db.query_result.is_empty():
-		return "Username ja existe"
+		return "Username already exists"
 	
 	var check_email = "SELECT id FROM users WHERE email = ?;"
 	DatabaseManager.db.query_with_bindings(check_email, [email])
 	if not DatabaseManager.db.query_result.is_empty():
-		return "Email ja cadastrado"
+		return "Email already registered"
 	
 	return ""
 

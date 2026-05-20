@@ -15,6 +15,7 @@ extends CanvasLayer
 @onready var back_button: Button = %BackButton
 
 func _ready() -> void:
+	layer = 1
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	
 	# Aplica tema visual
@@ -118,7 +119,7 @@ func _style_single_slider(slider: HSlider) -> void:
 	# Fill (parte preenchida)
 	var fill_style = StyleBoxFlat.new()
 	fill_style.bg_color = Color(0.4, 0.6, 0.8)
-	fill_style.corner_radius_all = 3
+	fill_style.set_corner_radius_all(3)
 	slider.add_theme_stylebox_override("grabber_area", fill_style)
 
 func _style_checkboxes() -> void:
@@ -126,7 +127,7 @@ func _style_checkboxes() -> void:
 		if checkbox:
 			_style_single_checkbox(checkbox)
 
-func _style_single_checkbox(checkbox: CheckBox) -> void:
+func _style_single_checkbox(_checkbox: CheckBox) -> void:
 	# Box quando marcado
 	var checked_style = StyleBoxFlat.new()
 	checked_style.bg_color = Color(0.4, 0.6, 0.8)
@@ -211,5 +212,6 @@ func _on_inactivity_timeout_changed(minutes: float) -> void:
 
 func _on_back_pressed() -> void:
 	print("[SETTINGS] A fechar...")
+	if back_button:
+		back_button.release_focus()  
 	queue_free()
-	pass

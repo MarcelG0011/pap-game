@@ -11,14 +11,21 @@ extends CanvasLayer
 
 func _ready() -> void:
 	Messages.player_health_changed.connect( update_health_bar )
-	
 	game_over.visible = false
 	load_button.pressed.connect( _on_load_pressed )
 	quit_button.pressed.connect( _on_quit_pressed )
-	
 	update_visibility()
 
-	pass
+	# Liga ao sinal de cena completamente carregada
+	if SceneManager:
+		SceneManager.load_scene_finished.connect(_on_scene_fully_loaded)
+
+func _on_scene_fully_loaded() -> void:
+	await get_tree().process_frame
+	if get_tree().get_first_node_in_group("Player") and not is_in_menu():
+		if get_tree().get_nodes_in_group("story_screen").is_empty():
+			visible = true
+			print("[PlayerHub] Exibido.")
 
 
 func update_health_bar(hp: float, max_hp: float) -> void:
@@ -84,3 +91,6 @@ func _on_quit_pressed() -> void:
 	SceneManager.transition_scene("res://title_screen/title_screen.tscn", "", Vector2.ZERO, "up" )
 	clear_game_over()
 	pass
+
+func force_show() -> void:
+	visible = true

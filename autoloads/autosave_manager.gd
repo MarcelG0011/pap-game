@@ -31,7 +31,7 @@ func _process(delta: float) -> void:
 	time_since_last_save += delta
 	
 	if time_since_last_save >= autosave_interval:
-		trigger_autosave("intervalo de tempo")
+		trigger_autosave("time interval")
 
 func trigger_autosave(reason: String) -> void:
 	if not autosave_enabled:
@@ -42,6 +42,7 @@ func trigger_autosave(reason: String) -> void:
 	
 	if success:
 		time_since_last_save = 0.0
+		@warning_ignore("narrowing_conversion")
 		last_save_timestamp = Time.get_unix_time_from_system()
 		autosave_triggered.emit(reason)
 
@@ -56,11 +57,11 @@ func _on_scene_changed(scene_path: String) -> void:
 	await get_tree().create_timer(0.5).timeout
 	
 	if get_tree().get_first_node_in_group("Player"):
-		trigger_autosave("mudanca de area")
+		trigger_autosave("area change")
 	
 
 func _on_checkpoint_reached(_checkpoint_name: String, _time_ms: int) -> void:
-	trigger_autosave("checkpoint alcancado")
+	trigger_autosave("checkpoint reached")
 
 func load_settings() -> void:
 	if not AccountManager.is_logged_in:
@@ -105,4 +106,4 @@ func set_autosave_interval(minutes: float) -> void:
 	save_settings()
 
 func force_autosave() -> void:
-	trigger_autosave("manual/forcado")
+	trigger_autosave("manual/forced")

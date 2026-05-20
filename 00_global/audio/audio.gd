@@ -15,6 +15,7 @@ var music_tweens: Array[Tween]
 var ui_audio_player: AudioStreamPlaybackPolyphonic
 var audio_pool: Array[ AudioStreamPlayer2D ]
 var audio_index : int = 0
+var narration_player: AudioStreamPlayer = null
 
 @onready var music_1: AudioStreamPlayer = %Music1
 @onready var music_2: AudioStreamPlayer = %Music2
@@ -138,6 +139,21 @@ func setup_button_audio(node: Node) -> void:
 		if not c.focus_entered.is_connected(ui_focus_change):
 			c.focus_entered.connect(ui_focus_change)
 	pass
+	
+# Narração (voz off) – layer especial de diálogo
+func play_narration(audio_stream: AudioStream) -> void:
+	if not narration_player:
+		# Cria o player de narração uma única vez
+		var player := AudioStreamPlayer.new()
+		player.name = "NarrationPlayer"
+		player.bus = "SFX"          # ou cria um bus "Voice" se quiseres volume separado
+		add_child(player)
+		narration_player = player
+	# Para qualquer narração anterior e inicia a nova
+	narration_player.stop()
+	narration_player.stream = audio_stream
+	narration_player.play()
+	
 #region UI Functions
 
 func ui_focus_change() -> void:

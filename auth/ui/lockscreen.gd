@@ -39,7 +39,7 @@ func _on_password_submitted(password: String) -> void:
 
 func _attempt_unlock(password: String) -> void:
 	if password.is_empty():
-		show_error("Digite a senha")
+		show_error("Enter your password")
 		return
 	unlock_requested.emit(password)
 

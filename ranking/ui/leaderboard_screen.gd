@@ -10,7 +10,10 @@ enum Tab { LOCAL, ONLINE }
 var current_tab: Tab = Tab.LOCAL
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	visible = true  # redundante, mas seguro
 	print("[LEADERBOARD] Tela inicializada")
+	
 	
 	# Conecta botões
 	local_button.pressed.connect(_on_local_pressed)

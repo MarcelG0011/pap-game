@@ -3956,7 +3956,6 @@ text = "Your Answer"
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
-text = "Your Answer"
 placeholder_text = "Enter your answer"
 
 [node name="SignupButton" type="Button" parent="Background/CenterContainer/Panel/MarginContainer/ScrollContainer/VBoxContainer" unique_id=236932253]
